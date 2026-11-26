@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team VeGu: Speech & ABA Hub (16-Week Living Plan & Worksheet Studio)</title>
+  <title>Team VeGu: Speech & ABA Hub (Traditional ↔ Research-Driven Mode)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -43,30 +43,20 @@
 
     /* LOGIN GATE */
     .login-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: linear-gradient(135deg, #0b4f9e 0%, #0f172a 100%);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      overflow-y: auto;
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      padding: 20px; overflow-y: auto;
     }
     .login-overlay.hidden { display: none; }
     .login-card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 490px;
-      border-radius: 26px;
-      padding: 32px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      background: #ffffff; width: 100%; max-width: 490px; border-radius: 26px;
+      padding: 32px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     }
     .login-logo {
-      width: 54px; height: 54px; border-radius: 15px;
-      background: var(--primary); color: #fff; font-weight: 900; font-size: 20px;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 16px rgba(18, 112, 218, 0.3);
+      width: 54px; height: 54px; border-radius: 15px; background: var(--primary);
+      color: #fff; font-weight: 900; font-size: 20px; display: flex;
+      align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(18, 112, 218, 0.3);
     }
     .form-group { margin-bottom: 13px; }
     .form-group label {
@@ -90,14 +80,18 @@
     }
     .role-pill-btn:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary-dark); }
 
-    /* HEADER & MINIMAL NAV */
+    /* HEADER & CURRICULUM MODE TOGGLE */
     .top-header {
       background: linear-gradient(135deg, #1270da 0%, #0b4f9e 100%);
       color: #fff; padding: 14px 24px; position: sticky; top: 0; z-index: 100;
       box-shadow: 0 4px 16px rgba(11, 79, 158, 0.18);
+      transition: background 0.25s;
+    }
+    body.mode-research .top-header {
+      background: linear-gradient(135deg, #0f766e 0%, #1e3a8a 100%);
     }
     .header-inner {
-      max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap;
+      max-width: 1260px; margin: 0 auto; display: flex; flex-wrap: wrap;
       align-items: center; justify-content: space-between; gap: 12px;
     }
     .brand-group { display: flex; align-items: center; gap: 12px; }
@@ -106,23 +100,57 @@
       color: var(--primary); font-weight: 900; font-size: 18px;
       display: flex; align-items: center; justify-content: center;
     }
-    .brand-title h1 { font-size: 18.5px; font-weight: 800; }
-    .brand-subtitle { font-size: 12px; color: #d6ebff; }
+    .brand-title h1 { font-size: 18px; font-weight: 800; }
+    .brand-subtitle { font-size: 11.5px; color: #d6ebff; }
     .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    /* Prominent Curriculum Mode Switcher Pill */
+    .mode-switch-group {
+      background: rgba(0, 0, 0, 0.28);
+      padding: 4px;
+      border-radius: 999px;
+      display: inline-flex;
+      gap: 4px;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+    }
+    .mode-switch-btn {
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: #e2e8f0;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .mode-switch-btn.active-research {
+      background: #fef08a;
+      color: #713f12;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .mode-switch-btn.active-trad {
+      background: #ffffff;
+      color: #0b4f9e;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
     .control-pill {
       background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #fff; padding: 6px 12px; border-radius: 999px; font-size: 12px;
+      color: #fff; padding: 6px 11px; border-radius: 999px; font-size: 11.5px;
       font-family: inherit; font-weight: 700; display: flex; align-items: center;
-      gap: 6px; cursor: pointer; text-decoration: none;
+      gap: 5px; cursor: pointer; text-decoration: none;
     }
     .control-pill select {
       background: transparent; border: none; color: #fff; font-family: inherit;
-      font-weight: 800; font-size: 12px; outline: none; cursor: pointer;
+      font-weight: 800; font-size: 11.5px; outline: none; cursor: pointer;
     }
     .control-pill select option { color: var(--text); background: #fff; }
     .role-badge-pill {
-      background: #fef08a; color: #854d0e; padding: 6px 12px;
-      border-radius: 999px; font-size: 12px; font-weight: 800;
+      background: rgba(255,255,255,0.22); color: #fff; padding: 6px 11px;
+      border-radius: 999px; font-size: 11.5px; font-weight: 800;
     }
 
     .readonly-banner {
@@ -132,29 +160,75 @@
     body.is-readonly .readonly-banner { display: block; }
     body.is-readonly .edit-only { opacity: 0.48; pointer-events: none !important; user-select: none; }
 
+    /* NAV BAR */
     .nav-bar {
       background: #fff; border-bottom: 1px solid var(--border);
       position: sticky; top: 72px; z-index: 90;
     }
     .nav-inner {
-      max-width: 1240px; margin: 0 auto; display: flex; gap: 8px;
-      padding: 10px 24px; overflow-x: auto;
+      max-width: 1260px; margin: 0 auto; display: flex; gap: 6px;
+      padding: 9px 24px; overflow-x: auto;
     }
     .nav-tab {
-      padding: 9px 16px; border-radius: 999px; border: 1px solid transparent;
+      padding: 8px 15px; border-radius: 999px; border: 1px solid transparent;
       background: transparent; color: var(--muted); font-family: inherit;
-      font-size: 13px; font-weight: 800; cursor: pointer; white-space: nowrap;
-      display: flex; align-items: center; gap: 7px; transition: all 0.15s;
+      font-size: 12.5px; font-weight: 800; cursor: pointer; white-space: nowrap;
+      display: flex; align-items: center; gap: 6px; transition: all 0.15s;
     }
     .nav-tab:hover { background: var(--primary-light); color: var(--primary); }
     .nav-tab.active {
       background: var(--primary); color: #fff;
       box-shadow: 0 2px 8px rgba(18, 112, 218, 0.25);
     }
+    body.mode-research .nav-tab.active {
+      background: #0f766e;
+    }
 
-    .main-container { max-width: 1240px; margin: 20px auto; padding: 0 24px; }
+    .main-container { max-width: 1260px; margin: 18px auto; padding: 0 24px; }
     .view-panel { display: none; }
     .view-panel.active { display: block; }
+
+    /* MODE EXPLANATION BANNER */
+    .mode-explainer-banner {
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .mode-explainer-banner.research-banner {
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      border: 2px solid #0d9488;
+    }
+    .mode-explainer-banner.trad-banner {
+      background: #f8fafc;
+      border: 2px solid #94a3b8;
+    }
+
+    /* SCERTS AROUSAL BAR */
+    .scerts-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 780px) { .scerts-bar { grid-template-columns: 1fr; } }
+    .scerts-btn {
+      border: 2px solid var(--border);
+      background: #fff;
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: left;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .scerts-btn.active-high { border-color: #d97706; background: #fffbeb; }
+    .scerts-btn.active-reg { border-color: #16a34a; background: #f0fdf4; }
+    .scerts-btn.active-low { border-color: #7c3aed; background: #faf5ff; }
 
     /* CARDS & GRIDS */
     .card-box {
@@ -172,7 +246,7 @@
     .tag-speech { background: #dcfce7; color: #166534; }
     .tag-blue { background: #dbeafe; color: #1e40af; }
     .tag-purple { background: #f3e8ff; color: #5b21b6; }
-    .tag-pink { background: #fce7f3; color: #9d174d; }
+    .tag-teal { background: #ccfbf1; color: #115e59; }
 
     .btn-primary {
       background: var(--primary); color: #fff; border: none; padding: 10px 16px;
@@ -216,15 +290,12 @@
     .week-card {
       background: #fff; border: 2px solid var(--border); border-radius: 18px;
       padding: 16px 18px; margin-bottom: 14px; box-shadow: var(--shadow);
-      transition: border-color 0.15s;
     }
     .week-card.status-Active { border-color: var(--primary); background: #f8fbff; }
     .week-card.status-Mastered { border-color: var(--success); background: #f0fdf4; }
     .week-card.status-Revised { border-color: var(--purple); background: #faf5ff; }
 
-    .week-grid {
-      display: grid; grid-template-columns: 1.1fr 1.1fr; gap: 14px; margin-top: 10px;
-    }
+    .week-grid { display: grid; grid-template-columns: 1.1fr 1.1fr; gap: 14px; margin-top: 10px; }
     @media (max-width: 780px) { .week-grid { grid-template-columns: 1fr; } }
 
     .track-pane {
@@ -233,20 +304,45 @@
     .track-pane.speech-pane { border-left: 5px solid var(--success); }
     .track-pane.aba-pane { border-left: 5px solid var(--warning); }
 
-    /* WORKSHEET REDESIGN STUDIO */
-    .studio-layout {
-      display: grid; grid-template-columns: 360px 1fr; gap: 22px; align-items: start;
+    /* ILLUSTRATED EXAMPLES TAB */
+    .example-comparison-card {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
     }
-    @media (max-width: 960px) { .studio-layout { grid-template-columns: 1fr; } }
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px) { .before-after-grid { grid-template-columns: 1fr; } }
+    .trad-box {
+      border: 2px solid #fca5a5;
+      background: #fef2f2;
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+    .res-box {
+      border: 2.5px solid #16a34a;
+      background: #f0fdf4;
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
 
+    /* WORKSHEET REDESIGN STUDIO */
+    .studio-layout { display: grid; grid-template-columns: 360px 1fr; gap: 22px; align-items: start; }
+    @media (max-width: 960px) { .studio-layout { grid-template-columns: 1fr; } }
     .studio-controls {
       background: #fff; border: 1.5px solid var(--border); border-radius: 20px;
       padding: 18px; box-shadow: var(--shadow);
     }
-
     .item-picker-grid {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;
-      max-height: 220px; overflow-y: auto; padding: 6px; border: 1px solid var(--border);
+      max-height: 200px; overflow-y: auto; padding: 6px; border: 1px solid var(--border);
       border-radius: 10px; background: #f8fafc;
     }
     .picker-item {
@@ -254,10 +350,9 @@
       background: #fff; padding: 5px 8px; border-radius: 7px; border: 1px solid #e2e8f0; cursor: pointer;
     }
 
-    /* LIVE PRINTABLE WORKSHEET CANVAS */
     .printable-canvas {
       background: #ffffff; border: 3px solid #1270da; border-radius: 20px;
-      padding: 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); min-height: 560px;
+      padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); min-height: 560px;
       display: flex; flex-direction: column; justify-content: space-between;
     }
     .printable-canvas.theme-pastel { background: #fdfcff; border-color: #7c3aed; }
@@ -265,12 +360,10 @@
 
     .ws-live-header {
       border: 2.5px solid #0b4f9e; border-radius: 14px; padding: 12px 16px;
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
       background: #fff;
     }
-    .ws-live-grid {
-      display: grid; gap: 14px; margin: 14px 0;
-    }
+    .ws-live-grid { display: grid; gap: 14px; margin: 12px 0; }
     .ws-live-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
     .ws-live-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
     .ws-live-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
@@ -282,21 +375,19 @@
     .ws-live-footer {
       border: 2px solid #eab308; background: #fefce8; border-radius: 12px;
       padding: 10px 16px; display: flex; align-items: center; justify-content: space-between;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
-    /* TABLES */
     table.clean-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
     table.clean-table th { text-align: left; padding: 9px 10px; background: #f1f5f9; color: var(--muted); font-weight: 800; text-transform: uppercase; font-size: 10.5px; }
     table.clean-table td { padding: 10px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
 
-    /* PERSISTENT BOTTOM BAR */
     .bottom-team-bar {
       position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
       border-top: 1px solid var(--border); padding: 10px 20px; z-index: 95;
       box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
     }
-    .bottom-bar-inner { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; }
+    .bottom-bar-inner { max-width: 1260px; margin: 0 auto; display: flex; align-items: center; gap: 10px; }
     .note-input-pill { flex: 1; display: flex; align-items: center; background: #f1f5f9; border-radius: 999px; padding: 8px 16px; gap: 8px; }
     .note-input-pill input { border: none; background: transparent; width: 100%; font-family: inherit; font-size: 13px; outline: none; }
 
@@ -318,7 +409,7 @@
     }
   </style>
 </head>
-<body>
+<body class="mode-research">
 
   <!-- ==================== LOGIN OVERLAY ==================== -->
   <div class="login-overlay" id="loginOverlay">
@@ -327,11 +418,11 @@
         <div class="login-logo">VeGu</div>
         <div>
           <div style="font-size:11px; font-weight:800; color:var(--primary); text-transform:uppercase; letter-spacing:0.8px;">Team VeGu · Speech &amp; ABA Hub</div>
-          <h2 style="font-size:21px; font-weight:900; color:var(--text);">16-Week Plan &amp; Worksheet Portal</h2>
+          <h2 style="font-size:21px; font-weight:900; color:var(--text);">Traditional ↔ Research-Driven Portal</h2>
         </div>
       </div>
       <p style="font-size:12.5px; color:var(--muted); margin-bottom:16px;">
-        Sign in with your role Login ID and Password provided by <strong>VaGu &amp; ShGu</strong> to run today's Speech &amp; ABA targets, update the 16-Week Plan, redesign worksheets, or view clinical graphs.
+        Sign in with your role Login ID and Password provided by <strong>VaGu &amp; ShGu</strong> to toggle between <strong>Traditional Curriculum</strong> and <strong>Research-Driven Strength Mode (NLA + JASPER + Bedrock VSD)</strong>.
       </p>
 
       <div class="login-error" id="loginErrorBox">Invalid Login ID or Password.</div>
@@ -364,53 +455,63 @@
   </div>
 
   <div class="readonly-banner">
-    🔒 <strong>VIEW &amp; PRINT ONLY MODE</strong> — Signed in as District IEP Review Team. You can inspect the 16-Week Plan, 3-RBT graphs, and print/download any PDF workbook.
+    🔒 <strong>VIEW &amp; PRINT ONLY MODE</strong> — Signed in as District IEP Review Team. You can toggle Traditional vs. Research-Driven modes, inspect all graphs, and print any PDF workbook.
   </div>
 
-  <!-- TOP HEADER -->
+  <!-- TOP HEADER WITH PROMINENT CURRICULUM MODE TOGGLE -->
   <header class="top-header">
     <div class="header-inner">
       <div class="brand-group">
         <div class="avatar-badge">VeGu</div>
         <div class="brand-title">
           <h1>Team VeGu: Speech &amp; ABA Hub</h1>
-          <div class="brand-subtitle">Minimal Daily Runner · 16-Week Living Plan · Custom Worksheet Redesign Studio</div>
+          <div class="brand-subtitle" id="headerModeSubtitle">🚀 Research-Driven Strength Mode: NLA Gestalt · JASPER 3D Play · Bedrock VSD · Functional Praxis</div>
         </div>
       </div>
 
       <div class="header-controls">
-        <span class="role-badge-pill" id="activeRoleBadge">👨‍👩‍👦 Parents (Admin)</span>
+        <!-- GLOBAL CURRICULUM TOGGLE BUTTON -->
+        <div class="mode-switch-group" title="Switch entire curriculum between Research-Driven Strength Methods and Traditional Drill Mode">
+          <button type="button" class="mode-switch-btn active-research" id="btnModeResearch" onclick="setCurriculumMode('research')">
+            🚀 Research-Driven Mode
+          </button>
+          <button type="button" class="mode-switch-btn" id="btnModeTrad" onclick="setCurriculumMode('traditional')">
+            🏛️ Traditional Mode
+          </button>
+        </div>
+
+        <span class="role-badge-pill" id="activeRoleBadge">👨‍👩‍👦 Parents</span>
         <div class="control-pill">
-          <span>👤 Initials:</span>
+          <span>👤</span>
           <select id="activePersonSelect" onchange="updateActivePerson(this.value)"></select>
         </div>
-        <button class="control-pill" onclick="syncFromCloud(true)" id="syncStatusPill">
-          <span id="syncIndicatorText">🟢 Local + Sync Ready</span>
-        </button>
         <button class="control-pill" style="background:rgba(220,38,38,0.35); border-color:rgba(254,202,202,0.5);" onclick="logoutUser()">
-          <span>🚪 Log Out</span>
+          <span>🚪 Exit</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- MINIMAL 5-TAB NAVIGATION -->
+  <!-- NAVIGATION BAR -->
   <nav class="nav-bar">
     <div class="nav-inner">
       <button class="nav-tab active" onclick="switchTab('today')" id="tab-today">
-        🎯 Today's Speech &amp; ABA Focus
+        🎯 Today's Focus
+      </button>
+      <button class="nav-tab" onclick="switchTab('examples')" id="tab-examples">
+        💡 Why Research-Driven? (Visual Examples)
       </button>
       <button class="nav-tab" onclick="switchTab('plan16')" id="tab-plan16">
-        📅 16-Week Living Plan (Edit &amp; Revise)
+        📅 16-Week Living Plan
       </button>
       <button class="nav-tab" onclick="switchTab('studio')" id="tab-studio">
-        🎨 Worksheet Studio &amp; 5 PDFs
+        🎨 Worksheet Studio &amp; 6 PDFs
       </button>
       <button class="nav-tab" onclick="switchTab('insights')" id="tab-insights">
         📊 3-RBT &amp; Speech Insights
       </button>
       <button class="nav-tab" onclick="switchTab('admin')" id="tab-admin" style="display:none;">
-        🔐 Parent Admin &amp; Logins
+        🔐 Parent Admin
       </button>
     </div>
   </nav>
@@ -418,8 +519,53 @@
   <!-- MAIN CONTENT -->
   <main class="main-container">
 
-    <!-- ================= TAB 1: TODAY'S MINIMAL SPEECH & ABA FOCUS ================= -->
+    <!-- GLOBAL MODE EXPLAINER BANNER -->
+    <div class="mode-explainer-banner research-banner no-print" id="globalModeBanner">
+      <div style="flex:1;">
+        <div style="font-size:11.5px; font-weight:900; color:#0f766e; text-transform:uppercase; letter-spacing:0.6px;" id="bannerTagText">
+          🚀 ACTIVE CURRICULUM: RESEARCH-DRIVEN STRENGTH MODE (LIKE BEDROCK FOR DHH)
+        </div>
+        <div style="font-size:13.5px; font-weight:700; color:#0f172a; margin-top:2px;" id="bannerBodyText">
+          Uses <strong>NLA Mitigable Gestalt Phrases</strong> (for Receptive &lt; Expressive), <strong>JASPER 3D-to-2D Play Maps</strong> (solving the 100% 3D toy → 20% 2D card cliff), <strong>Bedrock Print-Track Dots (🟢 ● ●) &amp; Visual Scene Displays</strong>, and <strong>3-Pit-Stop Functional Motor Praxis</strong>.
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-outline" style="border-color:#0d9488; color:#0f766e; background:#fff;" onclick="switchTab('examples')">
+          💡 See Illustrated Examples
+        </button>
+        <a href="Vedant_Research_Driven_Play_And_VSD_Pack.pdf" target="_blank" class="btn-primary" style="background:#0f766e;">
+          📥 Open Research-Driven PDF Pack (6p)
+        </a>
+      </div>
+    </div>
+
+    <!-- ================= TAB 1: TODAY'S SPEECH & ABA FOCUS ================= -->
     <section class="view-panel active" id="panel-today">
+
+      <!-- SCERTS Sensory-Arousal Real-Time Matcher (Visible in Research-Driven Mode) -->
+      <div class="card-box" id="scertsMatcherCard" style="padding:14px 18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap;">
+          <span style="font-size:12px; font-weight:900; color:#0f766e; text-transform:uppercase;">
+            🧠 SCERTS CO-REGULATION MATCHER — HOW IS VeGu REGULATED RIGHT NOW? (Tap to Adapt Session)
+          </span>
+          <span style="font-size:11.5px; color:var(--muted); font-weight:700;" id="scertsRecommendationBadge">Selected: 🟢 Regulated &amp; Ready</span>
+        </div>
+        <div class="scerts-bar">
+          <button type="button" class="scerts-btn" id="scertsBtn-high" onclick="setScertsState('high')">
+            <div style="font-size:13px; font-weight:900; color:#b45309;">⚡ 1. High Energy / Movement-Seeking</div>
+            <div style="font-size:11.5px; color:#78350f; margin-top:2px;">Flapping, running, shirt-chewing → Start w/ 3m Trampoline, Vertical-Wall Mat &amp; 60s Wait Mat!</div>
+          </button>
+          <button type="button" class="scerts-btn active-reg" id="scertsBtn-reg" onclick="setScertsState('reg')">
+            <div style="font-size:13px; font-weight:900; color:#15803d;">🟢 2. Regulated &amp; Ready (AM Window)</div>
+            <div style="font-size:11.5px; color:#14532d; margin-top:2px;">Calm posture, Hands on Lap → Best for JASPER 3D-to-2D Play Map, No-Gesture Listening &amp; 3-Pit-Stop Cut!</div>
+          </button>
+          <button type="button" class="scerts-btn" id="scertsBtn-low" onclick="setScertsState('low')">
+            <div style="font-size:13px; font-weight:900; color:#6d28d9;">🌙 3. Afternoon / Low Stamina Window</div>
+            <div style="font-size:11.5px; color:#4c1d95; margin-top:2px;">Post-school fatigue → Switch to NLA Melodic Action Songs &amp; Pretend Kitchen Visual Scene Display!</div>
+          </button>
+        </div>
+      </div>
+
       <div class="two-col">
         <!-- Left: Active Week Speech + ABA Quick Runner -->
         <div>
@@ -427,53 +573,56 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
               <div>
                 <span class="tag-pill tag-blue" id="todayActiveWeekBadge">CURRENT FOCUS · WEEK 1 OF 16</span>
-                <h2 style="font-size:21px; font-weight:900; margin-top:4px;" id="todayActiveWeekTitle">No-Gesture 1-Step Commands &amp; 60s Wait Mat</h2>
+                <h2 style="font-size:20px; font-weight:900; margin-top:4px;" id="todayActiveWeekTitle"></h2>
               </div>
               <div style="display:flex; gap:8px; align-items:center;">
-                <span style="font-size:12px; font-weight:700; color:var(--muted);">Jump to Week:</span>
-                <select id="quickWeekSelect" class="form-input" style="width:120px; padding:6px 10px; font-size:12.5px;" onchange="setActiveWeek(parseInt(this.value))"></select>
+                <span style="font-size:12px; font-weight:700; color:var(--muted);">Week:</span>
+                <select id="quickWeekSelect" class="form-input" style="width:125px; padding:6px 10px; font-size:12.5px;" onchange="setActiveWeek(parseInt(this.value))"></select>
               </div>
             </div>
 
-            <!-- Two Focused Cards: Speech Today & ABA Today -->
-            <div class="week-grid" style="margin-bottom:14px;">
+            <!-- Dynamic Speech & ABA Cards (Adapts to Research-Driven vs Traditional Mode!) -->
+            <div class="week-grid" style="margin-bottom:12px;">
               <div class="track-pane speech-pane">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                  <span class="tag-pill tag-speech">🗣️ TODAY'S SPEECH TARGET (10 MIN)</span>
+                  <span class="tag-pill tag-speech" id="todaySpeechModeTag">🗣️ SPEECH · NLA GESTALT &amp; VSD</span>
                   <button class="btn-outline" style="padding:3px 8px; font-size:11px;" onclick="openStudioPreset('speech')">🎨 Redesign Sheet</button>
                 </div>
-                <div style="font-size:14px; font-weight:800; color:#14532d; margin-top:4px;" id="todaySpeechTargetText"></div>
-                <div style="font-size:12.5px; color:#334155; margin-top:6px;" id="todaySpeechActivityText"></div>
+                <div style="font-size:13.5px; font-weight:800; color:#14532d; margin-top:4px;" id="todaySpeechTargetText"></div>
+                <div style="font-size:12px; color:#334155; margin-top:6px;" id="todaySpeechActivityText"></div>
               </div>
 
               <div class="track-pane aba-pane">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                  <span class="tag-pill tag-aba">🧩 TODAY'S ABA TARGET &amp; METHOD</span>
+                  <span class="tag-pill tag-aba" id="todayAbaModeTag">🧩 ABA · JASPER 3D PLAY &amp; PRAXIS</span>
                   <button class="btn-outline" style="padding:3px 8px; font-size:11px;" onclick="openStudioPreset('aba')">🎨 Redesign Sheet</button>
                 </div>
-                <div style="font-size:14px; font-weight:800; color:#78350f; margin-top:4px;" id="todayAbaTargetText"></div>
-                <div style="font-size:12.5px; color:#334155; margin-top:6px;" id="todayAbaMethodText"></div>
+                <div style="font-size:13.5px; font-weight:800; color:#78350f; margin-top:4px;" id="todayAbaTargetText"></div>
+                <div style="font-size:12px; color:#334155; margin-top:6px;" id="todayAbaMethodText"></div>
               </div>
             </div>
+
+            <!-- Why Research-Driven Helps VeGu Callout -->
+            <div id="todayWhyResearchBox" style="background:#f0fdfa; border:1.5px solid #5eead4; border-radius:12px; padding:10px 14px; font-size:12px; color:#134e4a; margin-bottom:12px;"></div>
 
             <!-- 8-Second Processing Wait Timer -->
             <div class="wait-timer-box">
               <div>
                 <div style="font-size:12.5px; font-weight:800; color:#38bdf8;">⏱️ 8-SECOND PROCESSING WAIT TIMER (4s–8s Latency Rule)</div>
-                <div style="font-size:11.5px; color:#cbd5e1;" id="timerStatusLabel">Give 3–5 word cue once, keep hands still (no pointing), and wait 8s silently.</div>
+                <div style="font-size:11.5px; color:#cbd5e1;" id="timerStatusLabel">Model phrase/action once, keep hands neutral, and wait 8s silently for VeGu to initiate.</div>
               </div>
               <div class="timer-bar-wrap"><div class="timer-bar-fill" id="waitTimerFill"></div></div>
               <button class="btn-timer" onclick="startWaitTimer()" id="waitTimerBtn">Start 8s Wait</button>
             </div>
 
-            <!-- Minimal 5-Trial Logger (Capped at 5 Trials!) -->
+            <!-- Minimal 5-Trial Logger + Joint Attention Check -->
             <div class="edit-only" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border);">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
                 <div>
-                  <h3 style="font-size:15.5px; font-weight:800;">⭐ Quick 5-Trial Logger (Cap at 5 Trials Before Fine-Motor Fatigue!)</h3>
-                  <p style="font-size:11.5px; color:var(--muted);">Select track &amp; tap prompt level for Trials 1–5 (I = Indep · V = Visual · G = Gesture · M = Model · Vb = Verbal · P = Physical).</p>
+                  <h3 style="font-size:15px; font-weight:800;">⭐ Quick 5-Trial Logger (Cap at 5 Trials!)</h3>
+                  <p style="font-size:11.5px; color:var(--muted);">Tap prompt level (I = Indep · V = Visual · G = Gesture · M = Model · Vb = Verbal · P = Physical).</p>
                 </div>
-                <select id="logTrackSelect" class="form-input" style="width:190px; padding:6px 10px; font-size:12.5px;">
+                <select id="logTrackSelect" class="form-input" style="width:185px; padding:6px 10px; font-size:12px;">
                   <option value="Speech Target">🗣️ Log Speech Target</option>
                   <option value="ABA Target">🧩 Log ABA Target</option>
                 </select>
@@ -481,66 +630,287 @@
 
               <div id="todayTrialRowsContainer"></div>
 
+              <!-- Research-Driven Quality Checks: Joint Attention & Function -->
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:11px; padding:8px 12px; margin-top:10px; display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-size:12px;">
+                <strong style="color:#0f766e;">👀 Joint Attention Shared:</strong>
+                <label style="cursor:pointer;"><input type="checkbox" id="jaEyeCheck" checked /> Eye Contact / Smiled</label>
+                <label style="cursor:pointer;"><input type="checkbox" id="jaPointCheck" /> Pointed to Share</label>
+                <label style="cursor:pointer;"><input type="checkbox" id="jaShowCheck" /> Showed 3D Toy</label>
+              </div>
+
               <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-                <input type="text" id="todaySessionNoteInput" class="form-input" style="flex:1; min-width:220px;" placeholder="Quick session note (e.g., 4/5 independent with prompt fading, zero throwing)..." />
-                <button class="btn-primary" onclick="saveTodayTrialLog()">✅ Save 5-Trial Log (<span id="todayLivePctText">80%</span>)</button>
+                <input type="text" id="todaySessionNoteInput" class="form-input" style="flex:1; min-width:200px;" placeholder="Session note (e.g., Mitigated 'Put dino in house!' on JASPER Play Map)..." />
+                <button class="btn-primary" onclick="saveTodayTrialLog()">✅ Save Log (<span id="todayLivePctText">80%</span>)</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Quick PDFs + Spontaneous Speech Wall + Team Feed -->
+        <!-- Right: 6 Printable PDFs + NLA Gestalt Stage Tracker + Team Feed -->
         <div>
-          <div class="card-box" style="background: linear-gradient(135deg, #0b4f9e 0%, #1270da 100%); color:#fff;">
-            <h3 style="font-size:16px; font-weight:800; margin-bottom:6px;">🖨️ Quick Printable PDF Packs</h3>
-            <p style="font-size:12px; color:#e0f2fe; margin-bottom:12px;">Open any of the 5 illustrated PDFs or customize your own in the Worksheet Studio:</p>
-            <div style="display:flex; flex-direction:column; gap:7px;">
-              <a href="Vedant_16Week_Speech_ABA_Master_Plan.pdf" target="_blank" class="btn-outline" style="background:#fef08a; color:#854d0e; border:none; justify-content:center; font-weight:800;">
-                📅 1. 16-Week Speech &amp; ABA Master Plan PDF (4p)
+          <div class="card-box" style="background: linear-gradient(135deg, #0f766e 0%, #1e3a8a 100%); color:#fff;">
+            <h3 style="font-size:15.5px; font-weight:800; margin-bottom:6px;">📦 6 Printable Illustrated PDF Packs</h3>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <a href="Vedant_Research_Driven_Play_And_VSD_Pack.pdf" target="_blank" class="btn-outline" style="background:#fef08a; color:#713f12; border:none; justify-content:center; font-weight:800;">
+                🚀 1. NEW Research-Driven VSD &amp; Play Map PDF (6p)
               </a>
-              <a href="Vedant_ABA_Focused_Worksheets.pdf" target="_blank" class="btn-outline" style="background:#fff; color:#0b4f9e; border:none; justify-content:center; font-weight:800;">
-                🧩 2. All Kids First ABA Worksheets PDF (6p)
+              <a href="Vedant_16Week_Speech_ABA_Master_Plan.pdf" target="_blank" class="btn-outline" style="background:#fff; color:#0b4f9e; border:none; justify-content:center; font-weight:800;">
+                📅 2. 16-Week Speech &amp; ABA Master Plan PDF (4p)
+              </a>
+              <a href="Vedant_ABA_Focused_Worksheets.pdf" target="_blank" class="btn-outline" style="background:#fffbeb; color:#92400e; border:none; justify-content:center; font-weight:800;">
+                🧩 3. All Kids First ABA Worksheets PDF (6p)
               </a>
               <a href="Vedant_4Week_Speech_Plan_Worksheets.pdf" target="_blank" class="btn-outline" style="background:#dcfce7; color:#14532d; border:none; justify-content:center; font-weight:800;">
-                🗣️ 3. Home Speech Illustrated Workbook PDF (6p)
+                🗣️ 4. Home Speech Illustrated Workbook PDF (6p)
               </a>
               <a href="Vedant_Provider_Progress_Report_Sample.pdf" target="_blank" class="btn-outline" style="background:rgba(255,255,255,0.18); color:#fff; border-color:rgba(255,255,255,0.35); justify-content:center;">
-                📊 4. 3-RBT Clinical Progress Report PDF (2p)
+                📊 5. 3-RBT Clinical Progress Report PDF (2p)
               </a>
             </div>
           </div>
 
+          <!-- NLA Gestalt Stage 1 -> Stage 2 -> Stage 3 Tracker -->
           <div class="card-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <h3 style="font-size:15px; font-weight:800;">🗣️ New Spontaneous 2–4 Word Phrases</h3>
-              <span class="tag-pill tag-speech">Speech Goal 3</span>
+              <h3 style="font-size:14.5px; font-weight:800;">🎵 NLA Gestalt &amp; Spontaneous Phrase Tracker</h3>
+              <span class="tag-pill tag-teal">NLA Stages 1–3</span>
             </div>
-            <div class="edit-only" style="display:flex; gap:6px; margin-bottom:10px;">
-              <input type="text" id="quickPhraseInput" class="form-input" style="padding:7px 10px; font-size:12.5px;" placeholder="e.g., 'Open big box', 'I see yellow car'..." onkeydown="if(event.key==='Enter') logQuickPhrase()" />
-              <button class="btn-primary" style="padding:7px 12px; font-size:12px;" onclick="logQuickPhrase()">+ Add</button>
+            <div class="edit-only" style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+              <select id="nlaStageSelect" class="form-input" style="width:125px; padding:6px 8px; font-size:11.5px;">
+                <option value="Stage 2 Mitigated">Stage 2 (Mitigated)</option>
+                <option value="Stage 3+ Generated">Stage 3+ (Self-Gen)</option>
+                <option value="Stage 1 Gestalt">Stage 1 (Whole Script)</option>
+              </select>
+              <input type="text" id="quickPhraseInput" class="form-input" style="flex:1; padding:6px 10px; font-size:12px;" placeholder="e.g., 'Put dino in house!'" onkeydown="if(event.key==='Enter') logQuickPhrase()" />
+              <button class="btn-primary" style="padding:6px 11px; font-size:12px;" onclick="logQuickPhrase()">+ Log</button>
             </div>
             <div id="quickPhraseWall" style="display:flex; flex-direction:column; gap:6px; max-height:175px; overflow-y:auto;"></div>
           </div>
 
           <div class="card-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <h3 style="font-size:15px; font-weight:800;">💬 Team Handoff Feed</h3>
+              <h3 style="font-size:14.5px; font-weight:800;">💬 Team Handoff Feed</h3>
               <button class="btn-outline" style="padding:3px 9px; font-size:11px;" onclick="exportTeamJSON()">⬇️ Backup JSON</button>
             </div>
-            <div id="teamFeedList" style="display:flex; flex-direction:column; gap:8px; max-height:280px; overflow-y:auto;"></div>
+            <div id="teamFeedList" style="display:flex; flex-direction:column; gap:8px; max-height:250px; overflow-y:auto;"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 2: 16-WEEK LIVING SPEECH & ABA PLAN (EDITABLE & REVISABLE) ================= -->
+    <!-- ================= TAB 2: WHY RESEARCH-DRIVEN? (CONCRETE ILLUSTRATED EXAMPLES) ================= -->
+    <section class="view-panel" id="panel-examples">
+      <div class="card-box" style="background: linear-gradient(135deg, #0f766e 0%, #1e3a8a 100%); color:#fff;">
+        <span class="tag-pill" style="background:#fef08a; color:#713f12;">FIRST-PRINCIPLES RETHINK · INSPIRED BY BEDROCK LITERACY FOR DHH</span>
+        <h2 style="font-size:22px; font-weight:900; margin-top:6px;">💡 Why Research-Driven Methods Accelerate VeGu's Trajectory (With Illustrated Examples)</h2>
+        <p style="font-size:13px; color:#e0f2fe; margin-top:4px;">
+          Traditional ABA and speech drills assume a child understands more than they speak and learns best from isolated 2D flashcards. VeGu is the opposite: <strong>Expressive SS 67 &gt; Receptive SS 58</strong>, <strong>100% on 3D animal toys vs. 20% on 2D flashcards</strong>, <strong>100% on Letters B, V, C</strong>, and a natural <strong>melodic/gestalt processor</strong>. Here is how each research-driven method works at home and in clinic:
+        </p>
+      </div>
+
+      <!-- Illustrated Example 1: NLA Mitigable Gestalt Phrases + Bedrock Print Dots -->
+      <div class="example-comparison-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="tag-pill tag-speech">METHOD 1 · NATURAL LANGUAGE ACQUISITION (NLA) + BEDROCK PRINT SCAFFOLDING</span>
+            <h3 style="font-size:18.5px; font-weight:900; margin-top:4px;">1. From Single-Word Quizzing → Mitigable Gestalt Phrase Frames (With Print Dots 🟢 ● ●)</h3>
+          </div>
+          <button class="btn-primary" style="background:#16a34a;" onclick="openStudioTemplate('nla_gestalt')">🎨 Open &amp; Print This Sheet in Studio</button>
+        </div>
+
+        <div class="before-after-grid">
+          <div class="trad-box">
+            <div style="font-size:13px; font-weight:900; color:#991b1b;">❌ Traditional Analytic Drill (Why It Plateaus)</div>
+            <p style="font-size:12.5px; color:#7f1d1d; margin-top:6px;">
+              Adult holds up a picture card and asks: <em>"What is this?"</em> VeGu waits for a prompt or says <em>"Ball."</em> Adult says: <em>"Say 'I want ball'."</em><br><br>
+              <strong>The Problem:</strong> Spoken words disappear in 0.5 seconds (hard for his 1st-percentile Auditory Comprehension SS 58), and memorized single-word answers don't teach him flexible grammar or true receptive comprehension.
+            </p>
+          </div>
+
+          <div class="res-box">
+            <div style="font-size:13px; font-weight:900; color:#15803d;">✅ Research-Driven NLA + Print-Referenced Way (How to Do It at Home)</div>
+            <div style="display:flex; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap;">
+              <!-- Embedded Visual Diagram of NLA Strip -->
+              <div style="background:#fff; border:2.5px solid #16a34a; border-radius:14px; padding:10px 14px; display:flex; align-items:center; gap:10px;">
+                <div style="text-align:center; border-right:2px dashed #bbf7d0; padding-right:10px;">
+                  <div style="font-size:14px; font-weight:900; color:#1e3a8a;">"LET'S GO..."</div>
+                  <div style="letter-spacing:4px;">🟢 <span style="color:#2563eb;">●</span></div>
+                </div>
+                <div style="font-size:18px; font-weight:900; color:#16a34a;">+</div>
+                <div style="display:flex; gap:8px;">
+                  <div style="text-align:center; background:#f0fdf4; padding:5px 8px; border-radius:8px; border:1.5px solid #86efac;">
+                    <div style="font-size:22px;">🤸</div>
+                    <div style="font-size:11px; font-weight:900;">"JUMP!"</div>
+                    <div>🟢</div>
+                  </div>
+                  <div style="text-align:center; background:#f0fdf4; padding:5px 8px; border-radius:8px; border:1.5px solid #86efac;">
+                    <div style="font-size:22px;">🍲</div>
+                    <div style="font-size:11px; font-weight:900;">"COOK!"</div>
+                    <div>🟢</div>
+                  </div>
+                  <div style="text-align:center; background:#f0fdf4; padding:5px 8px; border-radius:8px; border:1.5px solid #86efac;">
+                    <div style="font-size:22px;">🧼</div>
+                    <div style="font-size:11px; font-weight:900;">"WASH!"</div>
+                    <div>🟢</div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1; min-width:220px; font-size:12px; color:#14532d;">
+                <strong>3 Easy Steps at Home:</strong><br>
+                1. Since VeGu knows Letters <strong>B, V, C at 100%</strong> and loves melodic phrases, point to the green/blue dots (<code>🟢 ● ●</code>) under the printed words as you sing-say the stem: <em>"Let's go..."</em><br>
+                2. Pause 5–8 seconds and let VeGu swap in the action card he wants (<em>"...JUMP!"</em> / <em>"...COOK!"</em> / <em>"...WASH!"</em>).<br>
+                3. Swapping slots inside a familiar script ("Stage 2 mitigation") builds hundreds of real sentences!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Illustrated Example 2: JASPER 3D-to-2D Play Maps -->
+      <div class="example-comparison-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="tag-pill tag-blue">METHOD 2 · JASPER NDBI PLAY MAPS (DR. CONNIE KASARI, UCLA RESEARCH)</span>
+            <h3 style="font-size:18.5px; font-weight:900; margin-top:4px;">2. From Isolated 2D Table Flashcards → JASPER 3D-to-2D Toy Parking Play Maps</h3>
+          </div>
+          <button class="btn-primary" onclick="openStudioTemplate('jasper_map')">🎨 Open &amp; Print This Play Map in Studio</button>
+        </div>
+
+        <div class="before-after-grid">
+          <div class="trad-box">
+            <div style="font-size:13px; font-weight:900; color:#991b1b;">❌ Traditional 2D Table Sorting &amp; Animal Cards</div>
+            <p style="font-size:12.5px; color:#7f1d1d; margin-top:6px;">
+              In his actual ABA logs, VeGu scored <strong>100% (5/5 &amp; 3/3)</strong> spontaneously requesting real 3D animal toys by name, and <strong>100%</strong> rolling a toy car forward—yet dropped to <strong>20% (1/5)</strong> on 2D animal flashcards and <strong>0%–25%</strong> on 2D house/car sorting without prompt fading.
+            </p>
+          </div>
+
+          <div class="res-box" style="border-color:#2563eb; background:#eff6ff;">
+            <div style="font-size:13px; font-weight:900; color:#1d4ed8;">✅ Research-Driven JASPER 3D-to-2D Bridge (How to Do It at Home)</div>
+            <div style="display:flex; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap;">
+              <div style="background:#fff; border:2.5px solid #2563eb; border-radius:14px; padding:10px 14px; display:flex; align-items:center; gap:10px;">
+                <div style="text-align:center; background:#f0fdf4; padding:8px; border-radius:10px; border:2px solid #22c55e;">
+                  <div style="font-size:9px; font-weight:900; color:#15803d;">1. PARK 3D TOY</div>
+                  <div style="font-size:28px;">🦖 🚗</div>
+                  <div style="font-size:10px; font-weight:800;">Real 3D Dino/Car</div>
+                </div>
+                <div style="font-size:18px; font-weight:900; color:#2563eb;">➔</div>
+                <div style="text-align:center; background:#eff6ff; padding:8px; border-radius:10px; border:2px dashed #2563eb;">
+                  <div style="font-size:9px; font-weight:900; color:#1d4ed8;">2. MATCH 2D CARD</div>
+                  <div style="font-size:28px;">🏠 🟧</div>
+                  <div style="font-size:10px; font-weight:800;">2D House/Garage Card</div>
+                </div>
+                <div style="font-size:18px; font-weight:900; color:#7c3aed;">➔</div>
+                <div style="text-align:center; background:#faf5ff; padding:8px; border-radius:10px; border:2px solid #a855f7;">
+                  <div style="font-size:9px; font-weight:900; color:#6d28d9;">3. SURPRISE!</div>
+                  <div style="font-size:28px;">👀 🤩</div>
+                  <div style="font-size:10px; font-weight:800;">Joint Attention!</div>
+                </div>
+              </div>
+              <div style="flex:1; min-width:220px; font-size:12px; color:#1e3a8a;">
+                <strong>3 Easy Steps at Home:</strong><br>
+                1. Place Page 3 of the Research PDF on the floor/table. Let VeGu drive his real 3D car or walk his 3D dinosaur onto the mat.<br>
+                2. Immediately hand him the 2D picture card to place right next to his 3D toy (bridging 3D meaning to the 2D card!).<br>
+                3. <strong>Joint Attention Surprise:</strong> Put the Dinosaur inside the Car Garage and wait 5s for VeGu to look at your eyes and laugh: <em>"Uh-oh! Dino in garage!"</em>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Illustrated Example 3: Visual Scene Displays (VSDs) -->
+      <div class="example-comparison-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="tag-pill tag-purple">METHOD 3 · VISUAL SCENE DISPLAYS (VSD — DR. JANICE LIGHT RESEARCH)</span>
+            <h3 style="font-size:18.5px; font-weight:900; margin-top:4px;">3. From Isolated Preposition Cards → Coherent Pretend Kitchen Visual Scene Display</h3>
+          </div>
+          <button class="btn-primary" style="background:#7c3aed;" onclick="openStudioTemplate('vsd_kitchen')">🎨 Open &amp; Print Kitchen VSD in Studio</button>
+        </div>
+
+        <div class="before-after-grid">
+          <div class="trad-box">
+            <div style="font-size:13px; font-weight:900; color:#991b1b;">❌ Isolated Preposition &amp; Function Symbols</div>
+            <p style="font-size:12.5px; color:#7f1d1d; margin-top:6px;">
+              Showing 3 separate abstract boxes for <em>"In"</em>, <em>"On"</em>, and <em>"Under"</em> forces a 4-year-old to mentally reconstruct the spatial relationship from scratch on every card.
+            </p>
+          </div>
+
+          <div class="res-box" style="border-color:#7c3aed; background:#faf5ff;">
+            <div style="font-size:13px; font-weight:900; color:#6d28d9;">✅ Research-Driven Visual Scene Display (2x–3x Faster Vocabulary &amp; Preposition Learning)</div>
+            <div style="display:flex; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap;">
+              <div style="background:#fff; border:2.5px solid #7c3aed; border-radius:14px; padding:10px 14px; text-align:center; min-width:250px;">
+                <div style="display:flex; justify-content:space-around; font-size:11px; font-weight:900; color:#991b1b; margin-bottom:4px;">
+                  <span>🍎 IN POT</span>
+                  <span>🍴🥤 ON TABLE</span>
+                  <span>👩‍🍳 STIRRING</span>
+                </div>
+                <div style="background:#b45309; color:#fff; font-size:9px; font-weight:900; padding:3px; border-radius:4px;">═══ KITCHEN TABLE SURFACE ═══</div>
+                <div style="display:flex; justify-content:space-around; font-size:11px; font-weight:900; color:#78350f; margin-top:4px;">
+                  <span>🦖 DINO UNDER TABLE</span>
+                  <span>🎁 OPEN BOX</span>
+                </div>
+              </div>
+              <div style="flex:1; min-width:220px; font-size:12px; color:#4c1d95;">
+                <strong>3 Easy Steps at Home:</strong><br>
+                1. Use ONE big Pretend Kitchen Scene (Page 4 of the Research PDF) where everything lives in its real spatial relationship.<br>
+                2. Point to the hotspots right on the scene: <em>"Where is the apple? IN the pot! Where is the cup? ON the table! Where is Dino hiding? UNDER the table!"</em><br>
+                3. Pair directly with his real pretend kitchen toys!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Illustrated Example 4: Functional Motor Praxis (3 Pit-Stop Cutting Road & Vertical Wall) -->
+      <div class="example-comparison-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="tag-pill tag-aba">METHOD 4 · ECOLOGICAL MOTOR PRAXIS &amp; VERTICAL-WALL PRE-WRITING</span>
+            <h3 style="font-size:18.5px; font-weight:900; margin-top:4px;">4. From Abstract 5-Inch Scissor Lines (0%) → 3-Pit-Stop Car Cutting Road &amp; Vertical Wall</h3>
+          </div>
+          <button class="btn-primary" style="background:#d97706;" onclick="openStudioTemplate('praxis_road')">🎨 Open &amp; Print Pit-Stop Road in Studio</button>
+        </div>
+
+        <div class="before-after-grid">
+          <div class="trad-box">
+            <div style="font-size:13px; font-weight:900; color:#991b1b;">❌ Plain 5-Inch Scissor Line (0% Across All 3 RBTs)</div>
+            <p style="font-size:12.5px; color:#7f1d1d; margin-top:6px;">
+              Across 11/23 (<code>VyNg 0/5</code>), 11/24 (<code>WiCo 0/4</code>), and 11/25 (<code>MaGa 0/4</code>), VeGu scored <strong>0% independent</strong> on cutting a plain 5-inch line because a continuous 5-inch cut has no intermediate visual reward or functional play meaning.
+            </p>
+          </div>
+
+          <div class="res-box" style="border-color:#d97706; background:#fffbeb;">
+            <div style="font-size:13px; font-weight:900; color:#b45309;">✅ Functional Praxis 3-Pit-Stop Car Road &amp; Play-Dough "Dino Food" Snips</div>
+            <div style="display:flex; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap;">
+              <div style="background:#fff; border:2.5px solid #d97706; border-radius:14px; padding:10px 14px; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:22px;">🚗✂</span>
+                <span style="border-top:4px dashed #be185d; width:24px;"></span>
+                <span style="background:#fef08a; border:1.5px solid #ca8a04; padding:2px 6px; border-radius:99px; font-size:10px; font-weight:900;">⛽ 1.5"</span>
+                <span style="border-top:4px dashed #be185d; width:24px;"></span>
+                <span style="background:#bae6fd; border:1.5px solid #0284c7; padding:2px 6px; border-radius:99px; font-size:10px; font-weight:900;">🔧 3.0"</span>
+                <span style="border-top:4px dashed #be185d; width:24px;"></span>
+                <span style="background:#dc2626; color:#fff; padding:3px 7px; border-radius:6px; font-size:10px; font-weight:900;">🏠 5" GARAGE</span>
+              </div>
+              <div style="flex:1; min-width:220px; font-size:12px; color:#78350f;">
+                <strong>3 Easy Steps at Home:</strong><br>
+                1. <strong>3D Warm-Up:</strong> First let VeGu snip 3 pieces of play-dough "spaghetti" right into the Pretend Soup Pot!<br>
+                2. <strong>3 Pit-Stop Road (Page 5):</strong> Each scissor snip drives the Yellow Car to the next pit-stop sticker (<code>1.5" Gas → 3.0" Shop → 5.0" Garage</code>), allowing RBTs/parents to fade physical prompts to gestural point prompts!<br>
+                3. <strong>Vertical Wall Strokes:</strong> Tape stroke mats on a wall at chest height to naturally trigger wrist extension and a tripod grasp.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: 16-WEEK LIVING PLAN (DUAL-MODE: RESEARCH-DRIVEN ↔ TRADITIONAL) ================= -->
     <section class="view-panel" id="panel-plan16">
       <div class="card-box" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;">
         <div>
-          <span class="tag-pill tag-blue">LIVING 16-WEEK CURRICULUM · BUILT FOR UPDATES &amp; REVISIONS</span>
-          <h2 style="font-size:21px; font-weight:900; margin-top:4px;">📅 VeGu 16-Week Integrated Speech &amp; ABA Plan</h2>
+          <span class="tag-pill tag-blue" id="plan16ModeBadge">SHOWING: 🚀 RESEARCH-DRIVEN 16-WEEK DELIVERY</span>
+          <h2 style="font-size:20px; font-weight:900; margin-top:4px;">📅 VeGu 16-Week Integrated Speech &amp; ABA Living Plan</h2>
           <p style="font-size:12.5px; color:var(--muted);">
-            Click <strong>"✏️ Edit / Revise Week"</strong> on any week to adjust Speech or ABA targets, change teaching methods, or log a revision note as VeGu progresses.
+            Use the top toggle button to switch every week below between <strong>🚀 Research-Driven Mode</strong> and <strong>🏛️ Traditional Mode</strong>, or click <strong>"✏️ Edit / Revise Week"</strong> to adapt any target.
           </p>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -550,85 +920,88 @@
         </div>
       </div>
 
-      <!-- Phase Filter Chips -->
       <div class="phase-filter-bar">
         <button class="phase-chip active" onclick="filter16WeekPhase(0, this)">All 16 Weeks</button>
-        <button class="phase-chip" onclick="filter16WeekPhase(1, this)">Phase 1 (Wks 1–4): Foundation &amp; FCT</button>
-        <button class="phase-chip" onclick="filter16WeekPhase(2, this)">Phase 2 (Wks 5–8): Object Functions &amp; Actions</button>
-        <button class="phase-chip" onclick="filter16WeekPhase(3, this)">Phase 3 (Wks 9–12): Wh-Questions &amp; Prepositions</button>
-        <button class="phase-chip" onclick="filter16WeekPhase(4, this)">Phase 4 (Wks 13–16): Pronouns &amp; 3-Turn Peer Play</button>
+        <button class="phase-chip" onclick="filter16WeekPhase(1, this)">Phase 1 (Wks 1–4): Foundation &amp; NLA Frames</button>
+        <button class="phase-chip" onclick="filter16WeekPhase(2, this)">Phase 2 (Wks 5–8): VSD Functions &amp; 3-Pit-Stop Motor</button>
+        <button class="phase-chip" onclick="filter16WeekPhase(3, this)">Phase 3 (Wks 9–12): Scene Prepositions &amp; Wh-Questions</button>
+        <button class="phase-chip" onclick="filter16WeekPhase(4, this)">Phase 4 (Wks 13–16): Pronouns &amp; 3-Turn Kitchen Play</button>
       </div>
 
       <div id="plan16Container"></div>
 
-      <!-- Revision History Log -->
       <div class="card-box">
-        <h3 style="font-size:16px; font-weight:800; margin-bottom:8px;">🔄 Curriculum Revision &amp; Adaptation History</h3>
+        <h3 style="font-size:15.5px; font-weight:800; margin-bottom:8px;">🔄 Curriculum Revision &amp; Adaptation History</h3>
         <div id="revisionHistoryList" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
     </section>
 
-    <!-- ================= TAB 3: WORKSHEET REDESIGN STUDIO & 5 PRINTABLE PDFs ================= -->
+    <!-- ================= TAB 4: WORKSHEET REDESIGN STUDIO & 6 PRINTABLE PDFs ================= -->
     <section class="view-panel" id="panel-studio">
-      <!-- Top Row: 5 Pre-Compiled Illustrated PDFs -->
       <div class="card-box no-print">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
-          <div>
-            <span class="tag-pill tag-purple">READY-TO-PRINT ILLUSTRATED PDF WORKBOOKS (5 FILES)</span>
-            <h2 style="font-size:19px; font-weight:900; margin-top:3px;">📦 Download Pre-Built Full-Color PDFs — Or Redesign Custom Worksheets Below</h2>
-          </div>
-        </div>
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:10px;">
+        <span class="tag-pill tag-purple">6 READY-TO-PRINT ILLUSTRATED PDF WORKBOOKS</span>
+        <h2 style="font-size:18.5px; font-weight:900; margin:4px 0 10px;">📦 Download Any Pre-Built PDF — Or Redesign Custom Worksheets Below</h2>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap:8px;">
+          <a href="Vedant_Research_Driven_Play_And_VSD_Pack.pdf" target="_blank" class="btn-outline" style="justify-content:center; border-color:#0d9488; color:#0f766e; background:#f0fdfa; font-weight:800;">
+            🚀 1. Research VSD &amp; Play PDF (6p)
+          </a>
           <a href="Vedant_16Week_Speech_ABA_Master_Plan.pdf" target="_blank" class="btn-outline" style="justify-content:center; border-color:#2563eb; color:#1e40af; background:#eff6ff;">
-            📅 1. 16-Week Master Plan PDF (4p)
+            📅 2. 16-Week Master Plan PDF (4p)
           </a>
           <a href="Vedant_ABA_Focused_Worksheets.pdf" target="_blank" class="btn-outline" style="justify-content:center; border-color:#d97706; color:#92400e; background:#fffbeb;">
-            🧩 2. ABA-Focused Worksheets PDF (6p)
+            🧩 3. ABA-Focused PDF (6p)
           </a>
           <a href="Vedant_4Week_Speech_Plan_Worksheets.pdf" target="_blank" class="btn-outline" style="justify-content:center; border-color:#16a34a; color:#14532d; background:#f0fdf4;">
-            🗣️ 3. 4-Week Speech Plan PDF (6p)
+            🗣️ 4. Home Speech PDF (6p)
           </a>
           <a href="Vedant_Module0_Baseline_Worksheets.pdf" target="_blank" class="btn-outline" style="justify-content:center; border-color:#7c3aed; color:#5b21b6; background:#faf5ff;">
-            ⭐ 4. IEP Module 0 Workbook PDF (6p)
+            ⭐ 5. IEP Module 0 PDF (6p)
           </a>
           <a href="Vedant_Provider_Progress_Report_Sample.pdf" target="_blank" class="btn-outline" style="justify-content:center; border-color:#db2777; color:#9d174d; background:#fdf2f8;">
-            📊 5. 3-RBT Clinical Report PDF (2p)
+            📊 6. 3-RBT Clinical Report PDF (2p)
           </a>
         </div>
       </div>
 
-      <!-- Bottom: Interactive Worksheet Redesign Studio -->
       <div class="studio-layout">
-        <!-- Left Controls Panel -->
         <div class="studio-controls no-print">
-          <span class="tag-pill tag-aba">CUSTOM WORKSHEET REDESIGN STUDIO</span>
+          <span class="tag-pill tag-teal">CUSTOM WORKSHEET REDESIGN STUDIO</span>
           <h3 style="font-size:17px; font-weight:900; margin:6px 0 4px;">🎨 Redesign &amp; Print Custom Sheet</h3>
-          <p style="font-size:12px; color:var(--muted); margin-bottom:14px;">
-            Change layout, card density, visual clutter level, color theme, token bar, or target items—then print directly on a single landscape sheet!
+          <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
+            Choose a Research-Driven or Traditional template, toggle Bedrock Print-Track Dots (<code>🟢 ● ●</code>), adjust card clutter, and print!
           </p>
 
           <div class="form-group">
-            <label>1. Worksheet Template Type</label>
+            <label>1. Worksheet Template (Research-Driven &amp; Traditional)</label>
             <select id="studioTemplateSelect" class="form-input" onchange="renderStudioWorksheet()">
-              <option value="dtt">🗂️ DTT Array / Illustrated Flashcard Grid</option>
-              <option value="sorting">⚖️ Non-Identical Sorting Mat (2 Drop Zones)</option>
-              <option value="wait_fct">⏱️ 60s Wait Mat + First–Then + FCT Cards</option>
-              <option value="finemotor">✏️ 5-Trial Stroke, 5" Color Box &amp; 3-Dot Cut Line</option>
-              <option value="speech_strip">🗣️ Speech Sentence &amp; Preposition Builder (In/On/Under)</option>
+              <option value="nla_gestalt">🚀 [Research] NLA Mitigable Gestalt Board (With Print Dots 🟢 ● ●)</option>
+              <option value="jasper_map">🦖 [Research] JASPER 3D-to-2D Toy Parking Play Map + Surprise</option>
+              <option value="vsd_kitchen">🖼️ [Research] Pretend Kitchen Visual Scene Display (VSD: In/On/Under)</option>
+              <option value="praxis_road">🚗 [Research] Functional Praxis 3-Pit-Stop Car Cutting Road &amp; Wall Mat</option>
+              <option value="dtt">🏛️ [Traditional] DTT Array / Illustrated Flashcard Grid</option>
+              <option value="wait_fct">⏱️ [Shared] 60s Wait Mat + First–Then Contract + FCT Cards</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>2. Card Size &amp; Visual Clutter Level</label>
+            <label>2. Bedrock Print-Referenced Word Dots (🟢 ● ●)</label>
+            <select id="studioPrintDotsSelect" class="form-input" onchange="renderStudioWorksheet()">
+              <option value="on" selected>✅ Show Print-Tracking Dots (🟢 ● ●) Under Words</option>
+              <option value="off">Hide Print-Tracking Dots</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>3. Card Size &amp; Visual Clutter Level</label>
             <select id="studioColsSelect" class="form-input" onchange="renderStudioWorksheet()">
               <option value="cols-3">Large Cards (3 per row · Low Visual Clutter)</option>
               <option value="cols-4" selected>Medium Cards (4 per row · Balanced)</option>
-              <option value="cols-5">Compact Cards (5 per row · Full Set)</option>
+              <option value="cols-5">Compact Cards (5 per row)</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>3. Visual Theme / Printer Mode</label>
+            <label>4. Visual Theme / Printer Mode</label>
             <select id="studioThemeSelect" class="form-input" onchange="renderStudioWorksheet()">
               <option value="theme-color">High-Contrast Color Borders (Printer-Friendly White)</option>
               <option value="theme-pastel">Soft Sensory-Calm Pastel Tint</option>
@@ -637,26 +1010,26 @@
           </div>
 
           <div class="form-group">
-            <label>4. Reward / Token Bar Style</label>
+            <label>5. Reward / Engagement Bar Style</label>
             <select id="studioTokenSelect" class="form-input" onchange="renderStudioWorksheet()">
               <option value="stars">⭐ 5 Gold Stars (Cap at 5 Trials!)</option>
-              <option value="wait60">⏱️ 60-Second Wait Circles (10s · 20s · 30s · 40s · 50s · 60s)</option>
-              <option value="dinos">🦖 5 Dinosaur Reward Tokens</option>
+              <option value="wait60">⏱️ 60-Second Wait Counter (10s–60s)</option>
+              <option value="dinos">🦖 5 Dinosaur Play Tokens</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>5. Custom Worksheet Title</label>
-            <input type="text" id="studioTitleInput" class="form-input" value="VeGu Custom Speech & ABA Practice Sheet" oninput="renderStudioWorksheet()" />
+            <label>6. Custom Worksheet Title</label>
+            <input type="text" id="studioTitleInput" class="form-input" value="VeGu Research-Driven Play & Language Sheet" oninput="renderStudioWorksheet()" />
           </div>
 
           <div class="form-group">
-            <label>6. Custom Adult Script (3–5 Words + 8s Wait)</label>
-            <input type="text" id="studioScriptInput" class="form-input" value="Hands still (No Pointing) · Wait 8 Seconds · Reinforce Immediately!" oninput="renderStudioWorksheet()" />
+            <label>7. Custom Adult Cue / NLA Gestalt Script</label>
+            <input type="text" id="studioScriptInput" class="form-input" value="Tap Green/Blue Print Dots Left-to-Right · Wait 8s · Celebrate Joint Attention!" oninput="renderStudioWorksheet()" />
           </div>
 
           <div class="form-group" id="studioCardPickerGroup">
-            <label>7. Choose Illustrated Cards to Include</label>
+            <label>8. Choose Illustrated Cards to Include</label>
             <div class="item-picker-grid" id="studioItemPickerContainer"></div>
           </div>
 
@@ -665,12 +1038,12 @@
           </button>
         </div>
 
-        <!-- Right Live Preview & Print Canvas -->
+        <!-- Right Live Preview Canvas -->
         <div class="printable-canvas" id="studioLiveCanvas"></div>
       </div>
     </section>
 
-    <!-- ================= TAB 4: 3-RBT & SPEECH INSIGHTS ================= -->
+    <!-- ================= TAB 5: 3-RBT & SPEECH INSIGHTS ================= -->
     <section class="view-panel" id="panel-insights">
       <div class="card-box" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
         <div>
@@ -687,8 +1060,8 @@
           <div id="chartRbtComparisonSVG"></div>
         </div>
         <div class="card-box">
-          <h3 style="font-size:15.5px; font-weight:800;">2. Method Efficacy Proof (Why Specific Techniques Win for VeGu)</h3>
-          <p style="font-size:12px; color:var(--muted); margin-bottom:10px;">Comparing Prompt Fading vs. No Fade, 5-Trial Cap vs. 6 Trials, Gestural Hand-Washing, and 3D Animal NET.</p>
+          <h3 style="font-size:15.5px; font-weight:800;">2. Method Efficacy Proof (Why Strength-Based Techniques Win for VeGu)</h3>
+          <p style="font-size:12px; color:var(--muted); margin-bottom:10px;">Comparing 3D Toy NET (100%) vs. 2D Cards (20%), Prompt Fading (67%) vs. No Fade (0%), and 5-Trial vs. 6-Trial Cap.</p>
           <div id="chartMethodProofSVG"></div>
         </div>
       </div>
@@ -712,15 +1085,12 @@
       </div>
     </section>
 
-    <!-- ================= TAB 5: PARENT ADMIN & LOGINS ================= -->
+    <!-- ================= TAB 6: PARENT ADMIN & LOGINS ================= -->
     <section class="view-panel" id="panel-admin">
       <div class="card-box" style="border:2px solid var(--primary);">
         <span class="tag-pill tag-blue">PARENT ADMIN ONLY (VaGu &amp; ShGu)</span>
         <h2 style="font-size:20px; font-weight:900; margin-top:4px;">🔐 Manage Role Logins, Passwords &amp; Cloud Sync</h2>
-        <p style="font-size:12.5px; color:var(--muted); margin-bottom:12px;">
-          Edit any role's Login ID or Password below, or click <strong>"📋 Copy Login Invite"</strong> to send login instructions to <code>StMa</code>, <code>VyNg</code>, <code>WiCo</code>, <code>MaGa</code>, Building Bridges SLP/OT, or <code>AmSo</code>.
-        </p>
-        <div style="overflow-x:auto;">
+        <div style="overflow-x:auto; margin-top:10px;">
           <table class="clean-table">
             <thead>
               <tr>
@@ -740,7 +1110,7 @@
       <div class="card-box">
         <h3 style="font-size:16px; font-weight:800; margin-bottom:8px;">☁️ Cloud &amp; File Backup Manager</h3>
         <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-          <input type="text" id="cloudSyncUrlInput" class="form-input" style="max-width:320px;" value="/api/sync" />
+          <input type="text" id="cloudSyncUrlInput" class="form-input" style="max-width:300px;" value="/api/sync" />
           <button class="btn-primary" onclick="saveCloudConfig()">💾 Save Cloud Sync Endpoint</button>
           <button class="btn-outline" onclick="exportTeamJSON()">⬇️ Export Full Team JSON</button>
           <label class="btn-outline" style="cursor:pointer;">
@@ -756,7 +1126,6 @@
 
   </main>
 
-  <!-- PERSISTENT BOTTOM TEAM BAR -->
   <footer class="bottom-team-bar no-print">
     <div class="bottom-bar-inner">
       <div style="font-size:12px; font-weight:800; color:var(--primary-dark); white-space:nowrap;" id="activePersonFooterLabel">
@@ -764,7 +1133,7 @@
       </div>
       <div class="note-input-pill edit-only">
         <span>💬</span>
-        <input type="text" id="quickTeamNoteInput" placeholder="Post a quick note or target revision for VaGu, ShGu, StMa, VyNg, WiCo, MaGa, or SLP..." onkeydown="if(event.key==='Enter') postQuickTeamNote()" />
+        <input type="text" id="quickTeamNoteInput" placeholder="Post a quick note, NLA gestalt heard, or target revision for VaGu, ShGu, StMa, VyNg, WiCo, MaGa, or SLP..." onkeydown="if(event.key==='Enter') postQuickTeamNote()" />
       </div>
       <button class="btn-primary edit-only" onclick="postQuickTeamNote()">Post Note</button>
     </div>
@@ -777,219 +1146,295 @@
     const DEFAULT_ACCOUNTS = [
       { roleKey: "admin", roleTitle: "👨‍👩‍👦 Parents (Admin)", loginId: "parents", password: "vegu2026", permission: "edit", defaultTab: "today", members: ["VaGu (Parent)", "ShGu (Parent)"] },
       { roleKey: "aba", roleTitle: "🧩 All Kids First ABA", loginId: "aba", password: "aba2026", permission: "edit", defaultTab: "today", members: ["StMa (BCBA)", "VyNg (RBT · 11/23)", "WiCo (RBT · 11/24)", "MaGa (RBT · 11/25)"] },
-      { roleKey: "clinic", roleTitle: "🗣️ Building Bridges SLP/OT", loginId: "clinic", password: "speech2026", permission: "edit", defaultTab: "plan16", members: ["Building Bridges SLP", "Building Bridges OT"] },
+      { roleKey: "clinic", roleTitle: "🗣️ Building Bridges SLP/OT", loginId: "clinic", password: "speech2026", permission: "edit", defaultTab: "today", members: ["Building Bridges SLP", "Building Bridges OT"] },
       { roleKey: "school", roleTitle: "🏫 IvyBrook Preschool", loginId: "ivybrook", password: "school2026", permission: "edit", defaultTab: "today", members: ["AmSo (Teacher)", "YaNe (Director)"] },
       { roleKey: "viewer", roleTitle: "🔒 District IEP Team", loginId: "iep", password: "view2026", permission: "readonly", defaultTab: "insights", members: ["JuWi (Case Mgr)", "JeFa (IEP SLP)", "DaHa (IEP OT)"] }
     ];
 
-    // ==================== 16-WEEK LIVING SPEECH & ABA CURRICULUM (EDITABLE & REVISABLE) ====================
+    // ==================== 16-WEEK DUAL-MODE CURRICULUM (RESEARCH-DRIVEN ↔ TRADITIONAL) ====================
     const DEFAULT_16_WEEKS = [
       {
         week: 1, phase: 1, status: "Active",
-        title: "No-Gesture 1-Step Commands & 60-Second Wait Mat",
-        speechTarget: "Follow 5 routine 1-step verbal directions with adult hands still (zero pointing!) + 8s wait timer; Action song pause ('Ready, set... GO!').",
-        speechActivity: "Morning 'Hands-in-Pockets' 5-command listening game ('Sit on chair', 'Give me book', 'Throw in trash', 'Get shoes', 'Touch door').",
-        abaTarget: "1-Minute Delayed Reinforcement Wait Mat (100% on 11/23 & 11/24) + Proactive FCT ('Help', 'Open', 'Stop' at 100%) + 'Hands on Lap'.",
-        abaMethod: "Count 6 × 10-second stars on ABA Sheet 1 before delivering delayed tangibles to prevent lunch tangible-denial tantrums.",
+        title: "No-Gesture Listening, Melodic Gestalt Frames & 60s Wait Mat",
+        // Research-Driven Mode
+        resSpeechTarget: "NLA Stage 2 Mitigable Gestalt Frame: 'LET'S GO + [JUMP / COOK / WASH]' with Bedrock Print-Track Dots (🟢 ● ●) & 8s silent wait on 5 no-gesture routine commands.",
+        resSpeechActivity: "Tap the printed word dots left-to-right during trampoline & arrival routines; pause 8s for VeGu to fill in the action slot without adult pointing.",
+        resAbaTarget: "SCERTS Co-Regulated 60-Second Star Wait Mat (before any delayed tangible) + Proactive FCT ('Open', 'Help', 'Stop', 'Break' at 100%).",
+        resAbaMethod: "Place 60s Star Mat on table at lunch/snack; count 6 × 10s stars together while holding chewy/fidget to prevent tangible-denial tantrums.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Pairing spoken phrases with permanent printed word dots (🟢 ● ●) bypasses VeGu's Auditory SS 58 bottleneck using his 100% letter/visual memory!",
+        // Traditional Mode
+        speechTarget: "Follow 5 routine 1-step verbal directions without gestural cues (80% across 3 sessions); imitate song actions (80%).",
+        speechActivity: "Deliver 5 single commands ('Sit down', 'Give book', 'Throw trash', 'Get shoes', 'Touch door') with hands neutral.",
+        abaTarget: "Wait 1 Minute for delayed reinforcement (2/2–2/4 trials); FCT requests for Help (3/3) and Stop (2/2); Hands on Lap (86%–100%).",
+        abaMethod: "Discrete trials with Least-to-Most prompting and 60-second timer.",
         revisionNote: "Baseline verified across VyNg (11/23), WiCo (11/24), and MaGa (11/25)."
       },
       {
         week: 2, phase: 1, status: "Upcoming",
-        title: "2-Word Functional Mands ('Open + Noun') & 9-Step Hand-Washing",
-        speechTarget: "Expand 100% mastered 1-word ABA mands ('Open', 'Help', Animal names) into 2-word Verb+Noun requests ('Open box', 'Help shoe', 'Want dino').",
-        speechActivity: "Place favorite snack or animal toy inside a clear snap container at snack time; wait 5–8s for 2-word combination.",
-        abaTarget: "9-Step 'Wash Hands' Task Analysis (77.8% [7/9] w/ WiCo) & 20-Min Circle Time ('Everybody...' 100%).",
-        abaMethod: "Tape 9-Step Strip above sink and use Gestural Point Prompts instead of physical hand-over-hand.",
+        title: "NLA 'Open / Put In' Mitigation & 9-Step Gestural Hand-Washing",
+        resSpeechTarget: "Mitigate Stage 2 Frame 'OPEN THE + [BOX / BAG / DOOR]' and 'I NEED + [HELP / BREAK]' using print-referenced strips during play.",
+        resSpeechActivity: "Place favorite 3D dinosaur inside a clear snap box; tap print dots '🟢 OPEN ● BOX' and wait 8s.",
+        resAbaTarget: "Ecological 9-Step 'Wash Hands' Task Analysis at Sink (77.8% [7/9] w/ WiCo) + 20m Circle Time ('Everybody...' 100%).",
+        resAbaMethod: "Tape 9-Step Illustrated Strip at eye level above sink; use silent Gestural Point Prompts + melodic song cadence.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Gestural pointing to a mirror strip achieved 78% independence with WiCo vs. 22% with verbal/physical prompting!",
+        speechTarget: "Use 2-word utterances ('Open box', 'Help shoe', 'Want dino') to request across 5 snack/play trials (80%).",
+        speechActivity: "Hold 2 choices or closed container; model 2-word mand.",
+        abaTarget: "9-Step Wash Hands Task Analysis (7/9 correct) & Circle Time group instruction compliance (100%).",
+        abaMethod: "Forward chaining and gestural prompting on task analysis.",
         revisionNote: "Standard protocol."
       },
       {
         week: 3, phase: 1, status: "Upcoming",
-        title: "Non-Identical Sorting (Prompt Fading) & Melodic Action Songs",
-        speechTarget: "Joint attention & vocal/action fill-ins across 3 songs ('Wheels on the Bus', 'Head, Shoulders, Knees & Toes' — Knees 100% in ABA!).",
-        speechActivity: "Pause 8 seconds before climax word in songs during trampoline or floor play.",
-        abaTarget: "Non-Identical Sorting: 'Houses vs. Cars' (reached 66.7% [2/3] with VyNg on 11/23 vs 25% WiCo / 0% MaGa).",
-        abaMethod: "Use VyNg's winning method: Errorless Teaching on Trial 1 + immediate within-block Prompt Fading on ABA Sheet 2.",
+        title: "JASPER 3D-to-2D House/Garage Play Map & Melodic Songs",
+        resSpeechTarget: "Embed NLA phrases ('Walk dino IN HOUSE!' / 'Roll car IN GARAGE!') + Melodic pause songs ('Wheels on the Bus', 'Knees & Toes' — Knees 100%!).",
+        resSpeechActivity: "Use Research PDF Page 3 Floor Play Map; pause 8s before climax word in songs.",
+        resAbaTarget: "JASPER 3D-to-2D Sorting Map for 'Houses vs. Cars' (combining 100% 'Car-Roll' mastery with VyNg's 67% Prompt-Fading method).",
+        resAbaMethod: "Drive real 3D car onto Garage Zone first, then place 2D non-identical car card onto the zone using Errorless → Immediate Prompt Fading.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Anchoring abstract 2D sorting cards to his 100%-mastered 3D toy car play bridges the 3D-to-2D gap effortlessly!",
+        speechTarget: "Joint attention: imitate actions and sounds in 3 familiar songs at 80% across 3 sessions.",
+        speechActivity: "Table/floor song trials with anticipatory pauses.",
+        abaTarget: "Non-Identical Sorting: 'Houses vs. Cars' in 4-trial DTT block (66.7% w/ VyNg).",
+        abaMethod: "Errorless teaching on Trial 1 with within-block prompt fading.",
         revisionNote: "Standardize VyNg prompt-fading protocol across all RBTs."
       },
       {
         week: 4, phase: 1, status: "Upcoming",
-        title: "Phase 1 Consolidation & 3D-to-2D Animal Transfer",
-        speechTarget: "Generalize 2-word functional mands across VaGu, ShGu, and Building Bridges SLP with zero hand-leading.",
-        speechActivity: "2-choice forced-choice board during snack and afternoon toy transitions.",
-        abaTarget: "'Animals' DTT Program (bridge 100% 3D animal toy requesting in NET to 20%–60% 2D animal flashcards).",
-        abaMethod: "Let VeGu mand for the 3D plastic animal toy first, then immediately place the 3D toy onto the matching 2D card!",
+        title: "JASPER Animal Habitat Play Map & Joint-Attention Surprises",
+        resSpeechTarget: "Spark Joint Attention Commenting ('LOOK! It's a big dino!' / 'Uh-oh! Dino in garage!') via playful environmental sabotage.",
+        resSpeechActivity: "Put a dinosaur in a silly spot (inside the soup pot or car garage) and wait 5–8s for eye contact + shared pointing.",
+        resAbaTarget: "JASPER 3D-to-2D Animal Transfer (bridging 100% 3D Animal Toy manding in NET to 20%–60% 2D Animal cards).",
+        resAbaMethod: "Let VeGu request his real 3D animal toy first (100%), stand the 3D toy on the Play Map, and match the 2D card right underneath it.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Solves the #1 discrepancy in VeGu's ABA data (100% 3D animal toys vs. 20% 2D flashcards)!",
+        speechTarget: "Generalize 2-word requests across Home and Clinic at 80% accuracy.",
+        speechActivity: "5-trial forced-choice requesting drill.",
+        abaTarget: "Receptive & expressive identification of 5 Animals on 2D DTT flashcards (80%).",
+        abaMethod: "3-card array DTT with differential reinforcement.",
         revisionNote: "Phase 1 milestone check."
       },
       {
         week: 5, phase: 2, status: "Upcoming",
-        title: "Receptive Object Functions ('What Do We Use To...?')",
-        speechTarget: "Identify 6 everyday objects by function ('What do we eat/drink/draw with?' → Fork, Cup, Pencil, Umbrella, Toothbrush, Ball).",
-        speechActivity: "3-Card Riddle game using nouns VeGu already knows at 100% in ABA maintenance (Fork, Umbrella, Pencil)!",
-        abaTarget: "Array-of-3 DTT Maintenance on Everyday Objects, Clothing (Hat, Pants 100%), and Community Helpers (Mechanic 100%, Chef 67%).",
-        abaMethod: "Rotate 3 cards across Slots A, B, C with Verbal + Model prompting.",
+        title: "Visual Scene Display (VSD) Object Functions ('What Do We Use?')",
+        resSpeechTarget: "Learn 6 Object Functions inside the Pretend Kitchen Visual Scene Display (Page 4: Fork, Cup, Umbrella, Pencil, Toothbrush, Ball).",
+        resSpeechActivity: "Touch hotspots on the Kitchen VSD while holding the real Fork (100% ABA) and Cup: 'We eat with FORK! We drink from CUP!'",
+        resAbaTarget: "Contextual maintenance of Fork (100%), Umbrella (100%), Pencil (100%), Hat (100%), Pants (100%), and Helpers (Mechanic 100%, Chef 67%).",
+        resAbaMethod: "Embed 3-item function selection inside pretend kitchen & dress-up routines.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Dr. Janice Light's VSD research proves autistic preschoolers learn functions 2–3x faster in a coherent scene than isolated cards!",
+        speechTarget: "Identify 6 everyday objects by function ('What do we eat/draw/drink with?') in an array of 3 (80%).",
+        speechActivity: "Table-top 3-card riddle drill.",
+        abaTarget: "DTT Maintenance on everyday objects, clothing, and community helpers (80%–100%).",
+        abaMethod: "Array-of-3 DTT rotation.",
         revisionNote: "Leverages 11/23 VyNg 100% mastery of Fork, Umbrella, Pencil."
       },
       {
         week: 6, phase: 2, status: "Upcoming",
-        title: "Action Verbs in Array of 3 & Verb + Noun Combinations",
-        speechTarget: "Expand 'Brushing' (100% all 3 days) and 'Playing' (100%) to 6 action verbs (Eating, Drinking, Kicking, Sleeping, Washing, Jumping).",
-        speechActivity: "During outdoor play, pair motor actions with 2-word speech ('Kick ball!', 'Roll car!', 'Brush teeth!').",
-        abaTarget: "Motor directives in natural play ('Ball - Kick it' 100%, 'Car - Roll it forward' 100% w/ VyNg) + Action DTT cards.",
-        abaMethod: "Natural Environment Teaching (NET) + 30m outdoor ball/bike play (WiCo 11/24 zero-aggression method).",
+        title: "Action Verbs in Live Play & NLA Action + Object Combos",
+        resSpeechTarget: "Mitigate Action Frames ('KICK + BIG BALL', 'ROLL + YELLOW CAR', 'BRUSH + TEETH', 'STIR + HOT SOUP') with print-track dots.",
+        resSpeechActivity: "30m outdoor play & pretend kitchen routine pairing physical action with 2–3 word print strip.",
+        resAbaTarget: "Natural play motor directives ('Ball - Kick it' 100%, 'Car - Roll it forward' 100%) + 6 Action Verbs in VSD/Play.",
+        resAbaMethod: "WiCo's 11/24 zero-aggression method: 30m gross-motor outdoor ball/bike play with embedded NET trials.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Encoding action verbs while his body is performing the action builds motor-semantic memory instantly!",
+        speechTarget: "Identify and label 6 action verbs in pictures and use 2-word Verb+Noun phrases (80%).",
+        speechActivity: "Action flashcard drill at table.",
+        abaTarget: "Label pictures of common actions in an array of 3 ('Brushing' 100%, 'Playing' 100%).",
+        abaMethod: "Discrete Trial Training (DTT) in array of 3.",
         revisionNote: "Standard protocol."
       },
       {
         week: 7, phase: 2, status: "Upcoming",
-        title: "3-Word Commenting ('I see + Size/Color + Noun') & 5-Inch Coloring Cap",
-        speechTarget: "Move beyond requesting to commenting ('I see yellow car', 'It's a small ball') using his 100% mastered ABA modifiers ('Small', 'Yellow').",
-        speechActivity: "Use the 3-step Commenting Strip while looking at favorite picture books or toy cars.",
-        abaTarget: "'Color in 5-Inch Space' (80% [4/5] w/ WiCo on 11/24 vs 0% [0/6] w/ VyNg on 11/23).",
-        abaMethod: "Strictly cap fine-motor coloring blocks at 4–5 trials maximum inside a heavy blue 5-inch boundary box!",
+        title: "Joint-Attention Commenting ('Look! Yellow Car!') & 5-Trial Coloring",
+        resSpeechTarget: "Shift from requesting to Joint-Attention Commenting ('LOOK! It's a + [yellow car / small ball / big dino]!') using mastered ABA modifiers.",
+        resSpeechActivity: "Pull surprise items out of a mystery bag and tap the 3-step print strip ('🟢 LOOK! ● YELLOW ● CAR').",
+        resAbaTarget: "Vertical-Wall / Easel 'Color in 5-Inch Space' strictly capped at 4–5 trials (WiCo's 80% method vs. VyNg's 0/6 fatigue drop).",
+        resAbaMethod: "Tape the 5-inch heavy-bordered box vertically on a wall/easel at chest height; stop at Trial 5 while successful!",
+        whyResearch: "💡 Why Research-Driven Wins Here: Vertical-wall coloring naturally extends the wrist into a tripod grasp and capping at 5 trials prevents Trial-6 refusal!",
+        speechTarget: "Use 3-word Modifier + Noun utterances ('I see yellow car', 'Small ball') to comment (80%).",
+        speechActivity: "Sentence strip drill at table.",
+        abaTarget: "'Color in 5-Inch Space' for 4–5 trials (80% criterion).",
+        abaMethod: "Table coloring with visual boundary.",
         revisionNote: "Never run a 6th trial on fine-motor tasks."
       },
       {
         week: 8, phase: 2, status: "Upcoming",
-        title: "Phase 2 Review, 3-Checkpoint Scissor Cutting & Letters B, V, C, A, M",
-        speechTarget: "80% mastery probe on Object Functions and 3-word Modifier+Noun comments across Home and Speech Clinic.",
-        speechActivity: "5-trial probe with VaGu/ShGu and Building Bridges SLP.",
-        abaTarget: "'5-Inch Cut on Line' (0% across all 3 RBTs: 0/5, 0/4, 0/4) + Letters expansion (B, V, C at 100% → add A & M).",
-        abaMethod: "Use 3 visual checkpoint dots at 1.5\", 3\", and 5\" on the cutting line to fade physical prompts one segment at a time.",
+        title: "Functional Praxis '3-Pit-Stop Car Road' Cutting & Orthographic Print",
+        resSpeechTarget: "Print-Referenced Shared Reading using his 100% mastered letters (B, V, C → add A, M) as visual anchors for 3-word phrases.",
+        resSpeechActivity: "Point to bold initial letters B (Ball/Book/Box), V (VeGu/Van), C (Car/Cup/Chef) inside storybooks.",
+        resAbaTarget: "Functional Praxis Scissor Cutting: 3D Play-Dough 'Dino Food' Snips → 5-Inch Car Road with 3 Pit-Stops (1.5\" Gas → 3.0\" Shop → 5.0\" Garage).",
+        resAbaMethod: "Use Research PDF Page 5: each snip drives the car to the next pit-stop sticker so physical prompts fade to gestural points!",
+        whyResearch: "💡 Why Research-Driven Wins Here: Turns an abstract 0% 5-inch line into a meaningful 3-snip car game!",
+        speechTarget: "Phase 2 probe on Object Functions and 3-word comments (80%).",
+        speechActivity: "5-trial clinical probe.",
+        abaTarget: "'5-Inch Cut — Cut on Line' (4 trials) & Letters B, V, C, A, M.",
+        abaMethod: "Graduated physical-to-gestural guidance on 5-inch line.",
         revisionNote: "Phase 2 milestone check."
       },
       {
         week: 9, phase: 3, status: "Upcoming",
-        title: "Spatial Prepositions (IN, ON, UNDER) with Real Toys & Cards",
-        speechTarget: "Receptive & expressive spatial prepositions ('IN the box', 'ON the table', 'UNDER the table') — PLS-5 receptive gap.",
-        speechActivity: "Hide favorite dinosaur/dog IN box, ON chair, or UNDER table, then match to illustrated preposition cards.",
-        abaTarget: "Generalize spatial placement directions during classroom/home clean-up and block routines.",
-        abaMethod: "Least-to-most prompting (Model → Gestural → Independent).",
+        title: "Kitchen Visual Scene Display (VSD) Spatial Prepositions (IN / ON / UNDER)",
+        resSpeechTarget: "Learn 'IN the pot', 'ON the table', and 'UNDER the table' inside the Pretend Kitchen Visual Scene Display (Research PDF Page 4).",
+        resSpeechActivity: "Hide real 3D dinosaur IN pot, ON table, or UNDER table first, then touch the matching hotspot on the Kitchen VSD!",
+        resAbaTarget: "Generalize spatial placement directions during natural play clean-up and pretend cooking routines.",
+        resAbaMethod: "JASPER play routine + Print-Referenced preposition labels ('🟢 IN ● POT').",
+        whyResearch: "💡 Why Research-Driven Wins Here: Seeing IN, ON, and UNDER simultaneously inside one coherent kitchen scene makes spatial contrast obvious!",
+        speechTarget: "Receptively and expressively identify spatial prepositions IN, ON, UNDER (80%).",
+        speechActivity: "3-card preposition flashcard drill.",
+        abaTarget: "Follow spatial directions with objects across 5 trials.",
+        abaMethod: "Least-to-most prompting.",
         revisionNote: "Standard protocol."
       },
       {
         week: 10, phase: 3, status: "Upcoming",
-        title: "Answering 'WHAT' vs. 'WHERE' Contrast Questions & 6-Block Tower",
-        speechTarget: "5-trial contrast drill alternating: 1. 'WHAT is this?' (Dog) · 2. 'WHAT is he doing?' (Jumping) · 3. 'WHERE is he?' (In box).",
-        speechActivity: "Use the same toy animal for all 3 questions so VeGu listens to the Wh-word ('What' vs. 'Where').",
-        abaTarget: "'Blocks' (6-Block Tower Imitation — 33.3% [2/6] on 11/25).",
-        abaMethod: "Forward Chaining: let VeGu stack Blocks 1 & 2 independently, prompt Block 3–4, and reinforce immediately.",
+        title: "JASPER 'What' vs. 'Where' Play Contrast & 6-Block Garage Tower",
+        resSpeechTarget: "Contrast 'WHAT is Dino doing?' (Jumping/Eating) vs. 'WHERE is Dino?' (In pot / Under table) during live 3D toy play.",
+        resSpeechActivity: "Use the same 3D dinosaur on the Kitchen VSD so VeGu discriminates the Wh-word ('What' vs. 'Where').",
+        resAbaTarget: "Functional 6-Block 'Lookout Tower' for Dinosaur (building from 2/6 [33%] to 6/6 via Forward Chaining).",
+        resAbaMethod: "Make the 6-block tower functional: 'Build a tall tower so Dino can jump off the top!'",
+        whyResearch: "💡 Why Research-Driven Wins Here: Building a tower for his favorite Dinosaur to jump from turns a 33% block drill into an exciting play climax!",
+        speechTarget: "Answer 'What' and 'Where' questions in a 5-trial contrast drill (80%).",
+        speechActivity: "Table Wh-question cards.",
+        abaTarget: "'Blocks' — stack 6 blocks (4/6 to 6/6 correct).",
+        abaMethod: "Forward chaining with model prompt.",
         revisionNote: "Standard protocol."
       },
       {
         week: 11, phase: 3, status: "Upcoming",
-        title: "Emotion Identification & Self-Selected Coping Strategies",
-        speechTarget: "Identify and label 5 emotions (Happy, Sad, Mad/Frustrated, Tired, Excited) in mirror play and picture cards.",
-        speechActivity: "Make silly emotion faces in the bathroom mirror and match to the 5 Emotion cards.",
-        abaTarget: "Choose a pre-taught coping strategy (Chewy Tool, 5 Jumps, Quiet Pillow) or FCT Break card when frustrated (IEP Goal 11).",
-        abaMethod: "Present visual 3-Option Coping Menu proactively before task refusal.",
+        title: "SCERTS Emotion Co-Regulation & Self-Selected Coping Menu",
+        resSpeechTarget: "Connect 5 Emotions (Happy, Sad, Mad/Frustrated, Tired, Excited) to body sensations and NLA coping phrases ('I feel mad → I need jumps!').",
+        resSpeechActivity: "Mirror emotion game + matching real photos to the 3-Option Coping Menu (Chewy, 5 Jumps, Quiet Pillow).",
+        resAbaTarget: "Independent selection of a pre-taught coping strategy or FCT Break card before frustration peaks (IEP Goal 11).",
+        resAbaMethod: "SCERTS proactive co-regulation: model choosing a coping strategy during minor play saboteurs.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Teaches emotions as real functional tools for self-advocacy rather than static face flashcards!",
+        speechTarget: "Receptively and expressively identify 5 emotions (80%).",
+        speechActivity: "5-card emotion identification drill.",
+        abaTarget: "Choose a pre-taught coping strategy when frustrated (4/5 trials).",
+        abaMethod: "Visual choice board prompting.",
         revisionNote: "Standard protocol."
       },
       {
         week: 12, phase: 3, status: "Upcoming",
-        title: "Phase 3 Review, Upper Teeth Brushing & 7-Step Pants Dressing",
-        speechTarget: "Probe 'What', 'Where', and Emotion labeling across novel storybooks at 80% accuracy.",
-        speechActivity: "Evening book routine with VaGu & ShGu.",
-        abaTarget: "'Brush Upper Teeth' (50% 1/2 w/ WiCo vs 0/4 w/ MaGa) & 7-Step 'Pants' dressing chain (42.9% 3/7; 'Pants Up' is 100%).",
-        abaMethod: "Break Upper Teeth into 3 quick 3-second counted quadrants (Top-Left, Top-Front 'EEEE!', Top-Right).",
+        title: "Melodic Upper-Teeth Brushing Song & 7-Step Dressing Chain",
+        resSpeechTarget: "Probe 'What', 'Where', and Emotion comments during print-referenced shared storybook reading with VaGu & ShGu.",
+        resSpeechActivity: "Evening storybook routine using finger-tracking on speech bubbles.",
+        resAbaTarget: "Sensory-friendly 'Brush Upper Teeth' (3-second melodic count per quadrant) & 7-Step 'Pants' Chain (43% → 80%).",
+        resAbaMethod: "Sing a 3-second melodic chant for Top-Left, Top-Front ('Say EEEE in mirror!'), and Top-Right.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Predictable melodic countdowns reduce oral-sensory defensiveness during upper-teeth brushing!",
+        speechTarget: "Phase 3 expressive Wh-question probe (80%).",
+        speechActivity: "5-trial clinical probe.",
+        abaTarget: "'Brush Upper Teeth' (4/4) & 'Pants' 7-step task analysis (80%).",
+        abaMethod: "Task analysis with graduated guidance.",
         revisionNote: "Phase 3 milestone check."
       },
       {
         week: 13, phase: 4, status: "Upcoming",
-        title: "Pronouns & Possessives ('My Turn / Your Turn', 'My / Your')",
-        speechTarget: "Receptive & expressive pronouns/possessives ('Touch MY nose' vs 'YOUR nose', 'VeGu's shirt', 'MY turn / YOUR turn').",
-        speechActivity: "Chest-tap cue for 'MY turn' and open-palm point for 'YOUR turn' during ball rolling.",
-        abaTarget: "Reciprocal turn-taking (3 back-and-forth turns with adult/peer) & 'Staying in Line' (4-second latency rule).",
-        abaMethod: "Allow 4–6 seconds processing latency after 'Line up' cue + hold mastered fidget spinner while walking.",
+        title: "JASPER 3-Turn Peer Play & Pronouns ('My Turn / Your Turn')",
+        resSpeechTarget: "NLA Pronoun Frames ('MY turn to roll!' / 'YOUR turn to roll!' / 'Touch MY nose vs. YOUR nose') with chest-tap & visual badge.",
+        resSpeechActivity: "Pass a physical 'MY TURN' star badge back and forth during ball kicking (100% mastered) and car rolling.",
+        resAbaTarget: "3 reciprocal turns with peer/adult & 'Staying in Line' (honoring his 4-second processing latency + fidget spinner).",
+        resAbaMethod: "Give line-up cue once, wait 4–6 seconds silently for motor initiation, and let him hold his mastered fidget spinner.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Respecting his 4-second motor-initiation latency eliminates prompt overload during hallway transitions!",
+        speechTarget: "Receptively and expressively use pronouns My/Your and I/You (80%).",
+        speechActivity: "Table pronoun cards.",
+        abaTarget: "Take 3 turns with peers (80%) & Stay in line with verbal prompts (80%).",
+        abaMethod: "Visual turn marker and verbal prompting.",
         revisionNote: "Standard protocol."
       },
       {
         week: 14, phase: 4, status: "Upcoming",
-        title: "3-Step Pretend Kitchen Play Sequences & 3–4 Word Utterances",
-        speechTarget: "Narrate 3-step pretend cooking sequence using 3–4 word phrases ('Put apple in pot → Stir hot soup → Eat with big spoon').",
-        speechActivity: "Pretend kitchen play feeding dinosaur or doll ('Dino eats hot soup!').",
-        abaTarget: "Functional play with same toy for 3–5+ minutes & 'Chef' community helper role play (67% → 100%).",
-        abaMethod: "Natural Environment Teaching (NET) with shared play roles.",
+        title: "3-Step Pretend Kitchen Storyboard & Stage 3 Self-Generated Sentences",
+        resSpeechTarget: "Narrate 3-step pretend cooking sequence in 3–4 word sentences ('Put apple in pot → Stir hot soup → Feed big dino!').",
+        resSpeechActivity: "Use the Pretend Kitchen VSD + real pot, spoon, and dinosaur for a 5-minute cooperative restaurant game.",
+        resAbaTarget: "Sustained functional pretend play (3–5+ mins) & peer sharing at IvyBrook and home.",
+        resAbaMethod: "JASPER joint engagement expansion (add 1 new symbolic play step each day).",
+        whyResearch: "💡 Why Research-Driven Wins Here: Combines his highest-motivation play theme (Pretend Kitchen) with multi-step cognitive sequencing!",
+        speechTarget: "Use 3–4 word spontaneous combinations to describe play sequences (80%).",
+        speechActivity: "3-card sequencing drill.",
+        abaTarget: "Functional play with same toy for 3+ minutes (80%).",
+        abaMethod: "Natural Environment Teaching (NET).",
         revisionNote: "Standard protocol."
       },
       {
         week: 15, phase: 4, status: "Upcoming",
-        title: "Related 2-Step Verbal Directions Without Gestures",
-        speechTarget: "Follow 2-step related routine directions without adult pointing ('Get your shoes and sit on the chair').",
-        speechActivity: "Morning arrival and bedtime routine 2-step game with 8-second wait time.",
-        abaTarget: "Generalize 100% Circle Time compliance ('Everybody...') and 1-Minute Waiting across IvyBrook classroom with AmSo.",
-        abaMethod: "Intermittent Variable-Ratio Reinforcement schedule (fade continuous prompts).",
+        title: "Related 2-Step Episodic Directions Without Gestures",
+        resSpeechTarget: "Follow 2-step episodic directions tied to a natural goal ('Get your shoes and go to the door', 'Put apple in pot and stir soup').",
+        resSpeechActivity: "Use real-life episodic routines (where Step 1 naturally leads to Step 2) + 8s processing wait.",
+        resAbaTarget: "Generalize 20-Min Circle Time ('Everybody...' 100%) and 1-Minute Waiting across IvyBrook classroom with AmSo.",
+        resAbaMethod: "Fade adult proximity and shift to intermittent peer-modeled reinforcement.",
+        whyResearch: "💡 Why Research-Driven Wins Here: Episodic 2-step commands (where Step 1 logically connects to Step 2) build true executive working memory!",
+        speechTarget: "Follow 2-step verbal directions without gestural cues (80%).",
+        speechActivity: "5-trial 2-step command probe.",
+        abaTarget: "Classroom group participation and transition independence (80%).",
+        abaMethod: "Intermittent reinforcement schedule.",
         revisionNote: "Standard protocol."
       },
       {
         week: 16, phase: 4, status: "Upcoming",
-        title: "16-Week Mastery Audit, Prompt-Fading Review & Next Cycle Design",
-        speechTarget: "Full receptive & expressive probe across all 16-week targets with Building Bridges SLP, JeFa, VaGu, and ShGu.",
-        speechActivity: "Log all mastered 3×80% goals and spontaneous 3–4 word sentences.",
-        abaTarget: "Cross-RBT generalization check with StMa, VyNg, WiCo, MaGa, and AmSo.",
-        abaMethod: "Graduate mastered targets to Maintenance and generate next 16-week revision in the Hub!",
+        title: "16-Week NLA / JASPER Mastery Audit & Next Quarter Co-Design",
+        resSpeechTarget: "Audit NLA progression from Stage 1 scripts → Stage 2 mitigated frames → Stage 3+ self-generated 3–4 word speech across settings.",
+        resSpeechActivity: "Collaborative review with VaGu, ShGu, Building Bridges SLP, and JeFa.",
+        resAbaTarget: "Cross-RBT generalization audit with StMa, VyNg, WiCo, MaGa, and AmSo.",
+        resAbaMethod: "Graduate all 3×80% targets and co-design the next 16-week strength cycle in the Hub!",
+        whyResearch: "💡 Why Research-Driven Wins Here: Measures real-world spontaneous communication, joint attention, and self-regulation—not just table compliance!",
+        speechTarget: "16-week receptive and expressive mastery probe across all IEP language goals.",
+        speechActivity: "Formal 5-trial probes.",
+        abaTarget: "16-week ABA mastery and maintenance review.",
+        abaMethod: "Clinical probe across settings.",
         revisionNote: "Quarter 1 completion check."
       }
     ];
 
-    // ==================== ILLUSTRATED CARD LIBRARY FOR WORKSHEET STUDIO ====================
     const STUDIO_LIBRARY = [
-      { id: "APPLE", label: "APPLE", sub: "Food · Eat with fork/hand", cat: "Foods", icon: "🍎", selected: true },
-      { id: "WATER", label: "WATER CUP", sub: "What do we DRINK from?", cat: "Functions", icon: "🥤", selected: true },
-      { id: "FORK", label: "FORK", sub: "What do we EAT with? (100% ABA)", cat: "Functions", icon: "🍴", selected: true },
-      { id: "UMBRELLA", label: "UMBRELLA", sub: "Keeps us DRY in rain (100% ABA)", cat: "Functions", icon: "☂️", selected: true },
-      { id: "PENCIL", label: "PENCIL / CRAYON", sub: "What do we DRAW with? (100% ABA)", cat: "Functions", icon: "✏️", selected: true },
+      { id: "APPLE", label: "APPLE", sub: "Put apple IN pot", cat: "Foods", icon: "🍎", selected: true },
+      { id: "WATER", label: "WATER CUP", sub: "Drink from cup (ON table)", cat: "Functions", icon: "🥤", selected: true },
+      { id: "FORK", label: "FORK", sub: "Eat with fork (100% ABA)", cat: "Functions", icon: "🍴", selected: true },
+      { id: "UMBRELLA", label: "UMBRELLA", sub: "Keeps us dry (100% ABA)", cat: "Functions", icon: "☂️", selected: true },
+      { id: "PENCIL", label: "PENCIL / CRAYON", sub: "Draw on wall mat (100% ABA)", cat: "Functions", icon: "✏️", selected: true },
       { id: "BRUSHING", label: "BRUSHING TEETH", sub: "Action Verb (100% All 3 RBTs)", cat: "Actions", icon: "🪥", selected: true },
-      { id: "KICK_BALL", label: "KICK BALL", sub: "Action + Object (100% w/ VyNg)", cat: "Actions", icon: "⚽", selected: true },
-      { id: "ROLL_CAR", label: "ROLL YELLOW CAR", sub: "Action + Modifier (100% w/ VyNg)", cat: "Actions", icon: "🚗", selected: true },
-      { id: "DINO", label: "DINOSAUR", sub: "3D Toy Mand 100% → 2D Card", cat: "Animals", icon: "🦖", selected: false },
-      { id: "DOG", label: "DOG", sub: "Animal ID & 'What is he doing?'", cat: "Animals", icon: "🐶", selected: false },
-      { id: "LION", label: "LION", sub: "Animal ID (3D-to-2D Transfer)", cat: "Animals", icon: "🦁", selected: false },
-      { id: "ELEPHANT", label: "ELEPHANT", sub: "Big Animal ID", cat: "Animals", icon: "🐘", selected: false },
-      { id: "CHEF", label: "CHEF", sub: "Community Helper (67% ABA)", cat: "Helpers", icon: "👩‍🍳", selected: false },
-      { id: "MECHANIC", label: "MECHANIC", sub: "Community Helper (100% ABA)", cat: "Helpers", icon: "🧑‍🔧", selected: false },
-      { id: "LETTERS_BVC", label: "LETTERS B · V · C", sub: "100% Mastered in ABA!", cat: "Letters", icon: "🔤", selected: false },
-      { id: "SHAPES", label: "CIRCLE & TRIANGLE", sub: "100% Mastered w/ VyNg", cat: "Concepts", icon: "🟡", selected: false },
-      { id: "BODY_EYES", label: "EYES · EARS · KNEE", sub: "100% Body Parts w/ VyNg", cat: "Body", icon: "👀", selected: false },
-      { id: "EMOTIONS", label: "HAPPY · SAD · MAD", sub: "Emotion ID & Coping Menu", cat: "Emotions", icon: "😊", selected: false }
+      { id: "KICK_BALL", label: "KICK BIG BALL", sub: "Outdoor NET (100% w/ VyNg)", cat: "Actions", icon: "⚽", selected: true },
+      { id: "ROLL_CAR", label: "ROLL YELLOW CAR", sub: "Drive to Garage (100% w/ VyNg)", cat: "Actions", icon: "🚗", selected: true },
+      { id: "DINO", label: "BIG DINOSAUR", sub: "3D Toy Mand 100% → 2D Card", cat: "Animals", icon: "🦖", selected: false },
+      { id: "DOG", label: "DOG", sub: "Walk dog IN house", cat: "Animals", icon: "🐶", selected: false },
+      { id: "CHEF", label: "CHEF & SOUP POT", sub: "Stir hot soup (67% ABA)", cat: "Helpers", icon: "👩‍🍳", selected: false },
+      { id: "MECHANIC", label: "MECHANIC", sub: "Fix car in garage (100% ABA)", cat: "Helpers", icon: "🧑‍🔧", selected: false },
+      { id: "LETTERS_BVC", label: "LETTERS B · V · C", sub: "100% Orthographic Strength!", cat: "Letters", icon: "🔤", selected: false },
+      { id: "EMOTIONS", label: "HAPPY · MAD · CALM", sub: "SCERTS Coping Choice", cat: "Emotions", icon: "😊", selected: false }
     ];
 
     const MASTER_TABLE_DATA = [
-      { cat: "Circle Time", goal: "Weather (Indep), Group 'Everybody...' (100%), 20m Circle Sit", s23: "100% Weather/Sit", s24: "100% (1/1) 20m", s25: "100% (2/2)", meth: "Music + Peer/Adult Model", stat: "MET (3/3 Days)" },
-      { cat: "Regulation", goal: "'Hands on Lap' Table & Circle Readiness", s23: "100% (4/4)", s24: "100% (4/4)", s25: "85.7% (6/7)", meth: "DRA + Visual Cue Card", stat: "MET (3/3 Days)" },
-      { cat: "Waiting", goal: "Wait 1 Min for Delayed Reinforcer & Wait w/ Verbal Prompt", s23: "100% (2/2 Both)", s24: "100% (1m) / 56%", s25: "50% (1m) / 60%", meth: "60s Visual Star Mat (ABA Sheet 1)", stat: "Met 2 of 3 Days" },
-      { cat: "FCT / Mand", goal: "Animal Toys by Name (100%) + 'Help', 'Open', 'Stop', 'Break'", s23: "100% Anim/Help/Open", s24: "Proactive Break FCT", s25: "100% Anim/Help/Stop", meth: "NET + Proactive FCT PECS", stat: "MET (100% All 3)" },
-      { cat: "Actions/Play", goal: "'Brushing' (Array of 3), 'Playing', 'Ball-Kick', 'Car-Roll'", s23: "100% (5/5 Brush)", s24: "100% (9/9 Brush)", s25: "100% (4/4 Brush)", meth: "3-Card Array + Outdoor Play", stat: "MET (3/3 Days)" },
-      { cat: "Letters/Shapes", goal: "Letters B (6/6), V (4/4), C (5/5) + Circle, Triangle, Yellow, Small", s23: "100% B,V,C,Circ,Tri", s24: "66.7% Yellow", s25: "100% V, C, Small", meth: "Errorless -> Least-to-Most", stat: "MET (100%)" },
-      { cat: "Clothing/Obj", goal: "Clothing (100%), Hat, Pants, Pants Up, Umbrella, Fork, Pencil", s23: "100% All 7 Items", s24: "100% Cloth/PantsUp", s25: "100% PantsUp/Pencil", meth: "Object Function (Speech Wk 5)", stat: "MET (3/3 Days)" },
-      { cat: "Helpers/Body", goal: "Mechanic (100%), Chef (67%) + Eyes, Ears, Hand, Tummy, Knee", s23: "100% Mech/Eyes/Ears", s24: "100% Knee (3/3)", s25: "100% Mech / 67% Chef", meth: "Array of 3 + Mirror Game", stat: "MET (67%–100%)" },
-      { cat: "Sorting (ABA)", goal: "Non-Identical Sorting: 'Houses vs. Cars'", s23: "66.7% (2/3)", s24: "25% (1/4)", s25: "0% (0/4)", meth: "Prompt Fading (VyNg Method!)", stat: "67% w/ Fading" },
-      { cat: "Animals DTT", goal: "'Animals' 2D Cards (vs. 100% 3D Animal Toy Requesting)", s23: "100% 3D Toy Mand", s24: "60% (3/5 Cards)", s25: "20% (1/5 Cards)", meth: "Pair 3D Toy w/ 2D Card (Wk 4)", stat: "In Progress" },
-      { cat: "Fine Motor", goal: "'Color in 5-Inch Space' (Proves 5-Trial Fatigue Rule!)", s23: "0% (0/6 Trials!)", s24: "80% (4/5 Trials!)", s25: "25% (1/4 Trials)", meth: "Cap at 4–5 Trials (Avoid 6th!)", stat: "80% at 5 Trials" },
-      { cat: "Fine Motor", goal: "'5-Inch Cut on Line' (0% All 3 Days) & '6-Block Tower' (33%)", s23: "0% (0/5 Cut)", s24: "0% (0/4 Cut)", s25: "0% Cut / 33% Blocks", meth: "3 Checkpoint Dots + Forward Chain", stat: "Needs Support" },
-      { cat: "Self-Care TA", goal: "'Wash Hands' (9-Step Task Analysis) & 'Brush Upper Teeth'", s23: "Targeted", s24: "77.8% (7/9) Wash", s25: "22.2% Wash / 0% Teeth", meth: "Gestural Prompt on 9-Step Strip", stat: "78% w/ Gestures" },
-      { cat: "Transitions", goal: "'Staying in Line' (With Verbal Prompts — 4s Latency Note)", s23: "0 Elopement", s24: "25% (1/4) · 4s Wait", s25: "Targeted", meth: "Wait 4–6s Latency + Fidget Spinner", stat: "In Progress" }
+      { cat: "Circle Time", goal: "Weather (Indep), Group 'Everybody...' (100%), 20m Circle Sit", s23: "100% Weather/Sit", s24: "100% (1/1) 20m", s25: "100% (2/2)", meth: "Melodic Song + Peer Model", stat: "MET (3/3 Days)" },
+      { cat: "Regulation", goal: "'Hands on Lap' & SCERTS Co-Regulation Readiness", s23: "100% (4/4)", s24: "100% (4/4)", s25: "85.7% (6/7)", meth: "DRA + Visual Cue Card", stat: "MET (3/3 Days)" },
+      { cat: "Waiting", goal: "Wait 1 Min for Delayed Reinforcer & Wait w/ Verbal Prompt", s23: "100% (2/2 Both)", s24: "100% (1m) / 56%", s25: "50% (1m) / 60%", meth: "60s Visual Star Mat", stat: "Met 2 of 3 Days" },
+      { cat: "FCT / NLA", goal: "Animal Toys by Name (100%) + 'Help', 'Open', 'Stop', 'Break'", s23: "100% Anim/Help/Open", s24: "Proactive Break FCT", s25: "100% Anim/Help/Stop", meth: "NLA Stage 2 Frame + PECS", stat: "MET (100% All 3)" },
+      { cat: "Actions/Play", goal: "'Brushing' (Array of 3), 'Playing', 'Ball-Kick', 'Car-Roll'", s23: "100% (5/5 Brush)", s24: "100% (9/9 Brush)", s25: "100% (4/4 Brush)", meth: "JASPER Play + 3-Card Array", stat: "MET (3/3 Days)" },
+      { cat: "Orthographic", goal: "Letters B (6/6), V (4/4), C (5/5) + Circle, Triangle, Yellow, Small", s23: "100% B,V,C,Circ,Tri", s24: "66.7% Yellow", s25: "100% V, C, Small", meth: "Bedrock Print-Track Dots (🟢 ● ●)", stat: "MET (100%)" },
+      { cat: "Functions/VSD", goal: "Clothing (100%), Hat, Pants, Pants Up, Umbrella, Fork, Pencil", s23: "100% All 7 Items", s24: "100% Cloth/PantsUp", s25: "100% PantsUp/Pencil", meth: "Kitchen Visual Scene Display (VSD)", stat: "MET (3/3 Days)" },
+      { cat: "Sorting (JASPER)", goal: "Non-Identical Sorting: 'Houses vs. Cars'", s23: "66.7% (2/3)", s24: "25% (1/4)", s25: "0% (0/4)", meth: "3D Car Parking + VyNg Prompt Fade", stat: "67% w/ Fading" },
+      { cat: "Animals Bridge", goal: "'Animals' 2D Cards (vs. 100% 3D Animal Toy Requesting)", s23: "100% 3D Toy Mand", s24: "60% (3/5 Cards)", s25: "20% (1/5 Cards)", meth: "JASPER 3D-to-2D Play Map (Page 3)", stat: "In Progress" },
+      { cat: "Fine Motor", goal: "'Color in 5-Inch Space' (Proves 5-Trial Fatigue Rule!)", s23: "0% (0/6 Trials!)", s24: "80% (4/5 Trials!)", s25: "25% (1/4 Trials)", meth: "Vertical Wall + Cap at 5 Trials!", stat: "80% at 5 Trials" },
+      { cat: "Motor Praxis", goal: "'5-Inch Cut on Line' (0% All 3 Days) & '6-Block Tower' (33%)", s23: "0% (0/5 Cut)", s24: "0% (0/4 Cut)", s25: "0% Cut / 33% Blocks", meth: "3-Pit-Stop Car Road (1.5\"→3\"→5\")", stat: "Needs Praxis Road" },
+      { cat: "Self-Care TA", goal: "'Wash Hands' (9-Step Task Analysis) & 'Brush Upper Teeth'", s23: "Targeted", s24: "77.8% (7/9) Wash", s25: "22.2% Wash / 0% Teeth", meth: "Gestural Point on 9-Step Sink Strip", stat: "78% w/ Gestures" }
     ];
 
     const DEFAULT_PHRASES = [
-      { phrase: '"I want dinosaur!"', context: "Spontaneous animal toy manding (100% 5/5 in ABA)", author: "MaGa (RBT · 11/25)" },
-      { phrase: '"Open box!" / "Help!"', context: "FCT requesting during home ABA session (100%)", author: "VyNg (RBT · 11/23)" },
-      { phrase: '"Kick ball!" / "Roll car!"', context: "30m outdoor play & motor directive (100%)", author: "WiCo (RBT · 11/24)" },
-      { phrase: '"Ready, set, GO!"', context: "Trampoline & circle time action song fill-in", author: "VaGu (Parent)" }
+      { stage: "Stage 2 Mitigated", phrase: '"Put dino in house!" / "Roll yellow car!"', context: "JASPER 3D-to-2D Play Map mitigation", author: "VaGu (Parent)" },
+      { stage: "Stage 2 Mitigated", phrase: '"I want dinosaur!" / "Open box!"', context: "Spontaneous 3D animal & container manding (100% ABA)", author: "VyNg / MaGa (RBT)" },
+      { stage: "Stage 1 Gestalt", phrase: '"Ready, set, GO!" / "It\'s a ball!"', context: "Melodic intonation trampoline & outdoor routine", author: "WiCo (RBT · 11/24)" }
     ];
 
     const DEFAULT_FEED = [
-      { author: "VaGu & ShGu (Parents)", time: "Today", badge: "16-Wk Plan", text: "Launched the 16-Week Integrated Speech & ABA Living Plan + Custom Worksheet Redesign Studio! Focusing first on Speech & ABA coordination." },
-      { author: "MaGa (RBT · 11/25)", time: "11/25 · 3:08 PM", badge: "ABA", text: "100% on Spontaneous Animal Toy Manding (5/5), 'Everybody...' circle time (2/2), Letters V (4/4) & C (5/5), Help (3/3), Stop (2/2), Small (2/2), Brushing (4/4). Use 60s Wait Mat at lunch." },
-      { author: "WiCo (RBT · 11/24)", time: "11/24 · 3:02 PM", badge: "ABA", text: "ZERO aggression, 0 flopping, 0 throwing! 20m circle time (100% 'Everybody...'), 100% Wait 1 Min, 80% (4/5) Color in 5-Inch Box, 77.8% (7/9) Wash Hands with gestural prompting." },
+      { author: "VaGu & ShGu (Parents)", time: "Today", badge: "Research Mode", text: "Added the Global Traditional ↔ Research-Driven Toggle, Illustrated Visual Examples tab, and the 6-Page Research-Driven VSD & JASPER Play Map PDF!" },
+      { author: "MaGa (RBT · 11/25)", time: "11/25 · 3:08 PM", badge: "ABA", text: "100% on Spontaneous 3D Animal Toy Manding (5/5), 'Everybody...' circle time (2/2), Letters V (4/4) & C (5/5), Help (3/3), Stop (2/2), Small (2/2), Brushing (4/4)." },
+      { author: "WiCo (RBT · 11/24)", time: "11/24 · 3:02 PM", badge: "ABA", text: "ZERO aggression, 0 flopping, 0 throwing! 20m circle time (100%), 100% Wait 1 Min, 80% (4/5) Color in 5-Inch Box, 77.8% (7/9) Wash Hands with gestural prompting." },
       { author: "VyNg (RBT · 11/23)", time: "11/23 · 3:00 PM", badge: "ABA", text: "0 aggression, 0 flopping, 0 elopement! Prompt fading unlocked 66.7% (2/3) on Houses-Cars sorting! 100% on Weather, Letter B (6/6), V, C, Circle, Triangle, Yellow, Umbrella, Fork, Hat, Pants, Eyes, Open, Help." }
     ];
 
     const DEFAULT_REVISIONS = [
-      { date: "11/25/2026", author: "VaGu & ShGu", week: "Weeks 1–16", note: "Created initial 16-Week Integrated Speech & ABA Roadmap combining PLS-5 gaps with 11/23–11/25 All Kids First ABA session findings." },
+      { date: "11/26/2026", author: "VaGu & ShGu", week: "All 16 Weeks", note: "Added Research-Driven Strength Mode (NLA Mitigable Gestalts, JASPER 3D-to-2D Play Maps, Bedrock Print-Track Dots, Visual Scene Displays, and 3-Pit-Stop Functional Praxis) alongside Traditional Mode." },
       { date: "11/25/2026", author: "Clinical Synthesis", week: "Week 3 & Week 7", note: "Adopted VyNg's Prompt Fading method for Houses-Cars (67%) and WiCo's 5-Trial Fine-Motor Cap for 5-Inch Coloring (80% vs 0/6)." }
     ];
 
     // ==================== STATE ====================
     let appState = {
+      curriculumMode: "research", // 'research' or 'traditional'
+      scertsState: "reg",         // 'high', 'reg', 'low'
       accounts: JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS)),
       activeWeekNum: 1,
       weeks16: JSON.parse(JSON.stringify(DEFAULT_16_WEEKS)),
@@ -1007,7 +1452,7 @@
     let waitTimerInterval = null;
 
     function loadState() {
-      const saved = localStorage.getItem("team_vegu_hub_state_v3");
+      const saved = localStorage.getItem("team_vegu_hub_state_v4");
       if (saved) {
         try { appState = Object.assign(appState, JSON.parse(saved)); } catch (e) {}
       }
@@ -1022,7 +1467,7 @@
     }
 
     function saveState(pushCloud = true) {
-      localStorage.setItem("team_vegu_hub_state_v3", JSON.stringify(appState));
+      localStorage.setItem("team_vegu_hub_state_v4", JSON.stringify(appState));
       if (pushCloud) pushToCloud();
     }
 
@@ -1033,7 +1478,57 @@
       setTimeout(() => { t.style.display = "none"; }, 2600);
     }
 
-    // ==================== LOGIN & ROLES ====================
+    // ==================== GLOBAL CURRICULUM MODE TOGGLE (RESEARCH ↔ TRADITIONAL) ====================
+    function setCurriculumMode(mode) {
+      appState.curriculumMode = mode;
+      const isRes = mode === "research";
+      document.body.classList.toggle("mode-research", isRes);
+
+      document.getElementById("btnModeResearch").className = `mode-switch-btn ${isRes ? 'active-research' : ''}`;
+      document.getElementById("btnModeTrad").className = `mode-switch-btn ${!isRes ? 'active-trad' : ''}`;
+
+      document.getElementById("headerModeSubtitle").textContent = isRes
+        ? "🚀 Research-Driven Strength Mode: NLA Gestalt · JASPER 3D Play · Bedrock VSD · Functional Praxis"
+        : "🏛️ Traditional Curriculum Mode: Discrete Trial Training (DTT) · Analytic Speech Drills · Task Analysis";
+
+      const banner = document.getElementById("globalModeBanner");
+      banner.className = `mode-explainer-banner no-print ${isRes ? 'research-banner' : 'trad-banner'}`;
+      document.getElementById("bannerTagText").textContent = isRes
+        ? "🚀 ACTIVE CURRICULUM: RESEARCH-DRIVEN STRENGTH MODE (LIKE BEDROCK FOR DHH)"
+        : "🏛️ ACTIVE CURRICULUM: TRADITIONAL ABA (DTT) & ANALYTIC SPEECH DRILL MODE";
+      document.getElementById("bannerTagText").style.color = isRes ? "#0f766e" : "#334155";
+      document.getElementById("bannerBodyText").innerHTML = isRes
+        ? "Uses <strong>NLA Mitigable Gestalt Phrases</strong> (for Receptive &lt; Expressive), <strong>JASPER 3D-to-2D Play Maps</strong> (solving the 100% 3D toy → 20% 2D card cliff), <strong>Bedrock Print-Track Dots (🟢 ● ●) &amp; Visual Scene Displays</strong>, and <strong>3-Pit-Stop Functional Motor Praxis</strong>."
+        : "Showing traditional table-top Discrete Trial Training (DTT), single-word to multi-word analytic speech drills, and standard task analysis protocols. Click <strong>🚀 Research-Driven Mode</strong> in the top header anytime to compare!";
+
+      document.getElementById("scertsMatcherCard").style.display = isRes ? "block" : "none";
+      document.getElementById("plan16ModeBadge").textContent = isRes
+        ? "SHOWING: 🚀 RESEARCH-DRIVEN 16-WEEK DELIVERY (NLA + JASPER + VSD + PRAXIS)"
+        : "SHOWING: 🏛️ TRADITIONAL 16-WEEK DELIVERY (DTT + ANALYTIC SPEECH)";
+
+      saveState(false);
+      renderTodayFocus();
+      render16WeekPlan();
+      showToast(isRes ? "Switched to 🚀 Research-Driven Strength Mode!" : "Switched to 🏛️ Traditional Curriculum Mode!");
+    }
+
+    function setScertsState(stateKey) {
+      appState.scertsState = stateKey;
+      ["high", "reg", "low"].forEach(k => {
+        document.getElementById(`scertsBtn-${k}`).className = "scerts-btn";
+      });
+      document.getElementById(`scertsBtn-${stateKey}`).classList.add(`active-${stateKey}`);
+
+      const labels = {
+        high: "⚡ High Energy: Do 3m Trampoline + Vertical Wall Mat + 60s Wait Mat before seated work!",
+        reg: "🟢 Regulated & Ready: Optimal window for JASPER 3D-to-2D Play Map & No-Gesture Listening!",
+        low: "🌙 Afternoon / Low Stamina: Switch to NLA Melodic Action Songs & Pretend Kitchen VSD!"
+      };
+      document.getElementById("scertsRecommendationBadge").textContent = labels[stateKey];
+      saveState(false);
+    }
+
+    // ==================== AUTH ====================
     function quickFillLogin(loginId) {
       const acc = appState.accounts.find(a => a.loginId === loginId);
       if (!acc) return;
@@ -1093,6 +1588,7 @@
     }
 
     function renderAll() {
+      setCurriculumMode(appState.curriculumMode || "research");
       renderTodayFocus();
       render16WeekPlan();
       renderRevisionHistory();
@@ -1106,27 +1602,39 @@
       document.getElementById("cloudSyncUrlInput").value = appState.cloudSyncUrl || "/api/sync";
     }
 
-    // ==================== TAB 1: TODAY'S SPEECH & ABA FOCUS ====================
+    // ==================== TAB 1: TODAY'S FOCUS ====================
     function renderTodayFocus() {
       const sel = document.getElementById("quickWeekSelect");
       sel.innerHTML = appState.weeks16.map(w => `<option value="${w.week}" ${w.week === appState.activeWeekNum ? 'selected' : ''}>Week ${w.week} (Phase ${w.phase})</option>`).join("");
 
       const activeW = appState.weeks16.find(w => w.week === appState.activeWeekNum) || appState.weeks16[0];
-      document.getElementById("todayActiveWeekBadge").textContent = `CURRENT FOCUS · WEEK ${activeW.week} OF 16 (PHASE ${activeW.phase} · ${activeW.status.toUpperCase()})`;
+      const isRes = appState.curriculumMode === "research";
+
+      document.getElementById("todayActiveWeekBadge").textContent = `CURRENT FOCUS · WEEK ${activeW.week} OF 16 (PHASE ${activeW.phase} · ${isRes ? '🚀 RESEARCH-DRIVEN' : '🏛️ TRADITIONAL'})`;
       document.getElementById("todayActiveWeekTitle").textContent = `Week ${activeW.week}: ${activeW.title}`;
-      document.getElementById("todaySpeechTargetText").textContent = activeW.speechTarget;
-      document.getElementById("todaySpeechActivityText").innerHTML = `<strong>Parent / SLP Routine:</strong> ${activeW.speechActivity}`;
-      document.getElementById("todayAbaTargetText").textContent = activeW.abaTarget;
-      document.getElementById("todayAbaMethodText").innerHTML = `<strong>Proven ABA Method:</strong> ${activeW.abaMethod}`;
+
+      document.getElementById("todaySpeechModeTag").textContent = isRes ? "🗣️ SPEECH · NLA GESTALT & VSD" : "🗣️ SPEECH · TRADITIONAL DRILL";
+      document.getElementById("todayAbaModeTag").textContent = isRes ? "🧩 ABA · JASPER 3D PLAY & PRAXIS" : "🧩 ABA · TRADITIONAL DTT / TA";
+
+      document.getElementById("todaySpeechTargetText").textContent = isRes ? (activeW.resSpeechTarget || activeW.speechTarget) : activeW.speechTarget;
+      document.getElementById("todaySpeechActivityText").innerHTML = `<strong>${isRes ? 'Research-Driven Routine' : 'Traditional Routine'}:</strong> ${isRes ? (activeW.resSpeechActivity || activeW.speechActivity) : activeW.speechActivity}`;
+
+      document.getElementById("todayAbaTargetText").textContent = isRes ? (activeW.resAbaTarget || activeW.abaTarget) : activeW.abaTarget;
+      document.getElementById("todayAbaMethodText").innerHTML = `<strong>${isRes ? 'Strength-Based Method' : 'Traditional Method'}:</strong> ${isRes ? (activeW.resAbaMethod || activeW.abaMethod) : activeW.abaMethod}`;
+
+      const whyBox = document.getElementById("todayWhyResearchBox");
+      if (isRes && activeW.whyResearch) {
+        whyBox.style.display = "block";
+        whyBox.textContent = activeW.whyResearch;
+      } else {
+        whyBox.style.display = "none";
+      }
 
       renderTodayTrials();
     }
 
     function setActiveWeek(wNum) {
       appState.activeWeekNum = wNum;
-      appState.weeks16.forEach(w => {
-        if (w.week === wNum && w.status === "Upcoming") w.status = "Active";
-      });
       saveState();
       renderTodayFocus();
       render16WeekPlan();
@@ -1173,12 +1681,19 @@
       const pct = indep * 20;
       const note = document.getElementById("todaySessionNoteInput").value.trim();
       const activeW = appState.weeks16.find(w => w.week === appState.activeWeekNum);
+      const modeTag = appState.curriculumMode === "research" ? "🚀 Research Mode" : "🏛️ Trad Mode";
+
+      const jaList = [];
+      if (document.getElementById("jaEyeCheck").checked) jaList.push("Eye Contact");
+      if (document.getElementById("jaPointCheck").checked) jaList.push("Pointed to Share");
+      if (document.getElementById("jaShowCheck").checked) jaList.push("Showed 3D Toy");
+      const jaStr = jaList.length ? ` | Joint Attention: ${jaList.join("+")}` : "";
 
       appState.teamFeed.unshift({
         author: activePerson,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        badge: `Wk ${activeW.week} ${track}`,
-        text: `[Week ${activeW.week} · ${track}] ${indep}/5 Independent (${pct}%) [${appState.todayTrials.join(', ')}]. ${note ? 'Note: ' + note : ''}`
+        badge: `Wk ${activeW.week}`,
+        text: `[Week ${activeW.week} · ${track} · ${modeTag}] ${indep}/5 Independent (${pct}%) [${appState.todayTrials.join(', ')}]${jaStr}. ${note ? 'Note: ' + note : ''}`
       });
       document.getElementById("todaySessionNoteInput").value = "";
       saveState();
@@ -1199,10 +1714,10 @@
         elapsed++;
         fill.style.width = Math.min(100, (elapsed / total) * 100) + "%";
         const rem = Math.max(0, ((total - elapsed) / 10)).toFixed(1);
-        label.textContent = `Silent processing wait... ${rem}s remaining (watch for initiation).`;
+        label.textContent = `Silent processing wait... ${rem}s remaining (watch for eye contact or phrase mitigation).`;
         if (elapsed >= total) {
           clearInterval(waitTimerInterval);
-          label.textContent = "✅ 8 seconds complete! If needed, offer next least-intrusive prompt.";
+          label.textContent = "✅ 8 seconds complete! If needed, tap the green print dot (🟢) or model in play.";
           btn.textContent = "Restart 8s Wait";
         }
       }, 100);
@@ -1211,8 +1726,9 @@
     function renderQuickPhraseWall() {
       document.getElementById("quickPhraseWall").innerHTML = appState.phrases.map(p => `
         <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:7px 10px; font-size:12px;">
-          <strong style="color:#14532d;">${p.phrase}</strong> <span style="color:#166534;">— ${p.context}</span>
-          <div style="font-size:10.5px; color:var(--muted); font-weight:700;">Heard by: ${p.author}</div>
+          <span class="tag-pill tag-teal" style="font-size:9.5px; padding:1px 6px;">${p.stage || 'Stage 2'}</span>
+          <strong style="color:#14532d; margin-left:4px;">${p.phrase}</strong>
+          <div style="font-size:11px; color:#166534; margin-top:2px;">${p.context} · <span style="color:var(--muted);">${p.author}</span></div>
         </div>
       `).join("");
     }
@@ -1220,20 +1736,22 @@
     function logQuickPhrase() {
       if (currentUser && currentUser.permission === "readonly") return;
       const inp = document.getElementById("quickPhraseInput");
+      const stg = document.getElementById("nlaStageSelect").value;
       const val = inp.value.trim();
       if (!val) return;
       appState.phrases.unshift({
+        stage: stg,
         phrase: val.startsWith('"') ? val : `"${val}"`,
-        context: `Week ${appState.activeWeekNum} spontaneous utterance`,
+        context: `Week ${appState.activeWeekNum} (${appState.curriculumMode === 'research' ? 'Research Mode' : 'Trad Mode'})`,
         author: activePerson
       });
       inp.value = "";
       saveState();
       renderQuickPhraseWall();
-      showToast("Added spontaneous phrase!");
+      showToast(`Logged ${stg} utterance!`);
     }
 
-    // ==================== TAB 2: 16-WEEK LIVING PLAN & REVISION EDITOR ====================
+    // ==================== TAB 3: 16-WEEK LIVING PLAN ====================
     function filter16WeekPhase(phaseNum, btn) {
       activePhaseFilter = phaseNum;
       document.querySelectorAll(".phase-chip").forEach(c => c.classList.remove("active"));
@@ -1244,46 +1762,51 @@
     function render16WeekPlan() {
       const container = document.getElementById("plan16Container");
       const filtered = appState.weeks16.filter(w => activePhaseFilter === 0 || w.phase === activePhaseFilter);
+      const isRes = appState.curriculumMode === "research";
 
       container.innerHTML = filtered.map(w => {
-        const statusColors = {
-          "Active": "tag-blue",
-          "Mastered": "tag-speech",
-          "Revised": "tag-purple",
-          "Upcoming": "tag-aba"
-        };
+        const spTarget = isRes ? (w.resSpeechTarget || w.speechTarget) : w.speechTarget;
+        const spAct = isRes ? (w.resSpeechActivity || w.speechActivity) : w.speechActivity;
+        const abTarget = isRes ? (w.resAbaTarget || w.abaTarget) : w.abaTarget;
+        const abMeth = isRes ? (w.resAbaMethod || w.abaMethod) : w.abaMethod;
+
         return `
           <div class="week-card status-${w.status}">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
               <div>
-                <span class="tag-pill ${statusColors[w.status] || 'tag-blue'}">WEEK ${w.week} · PHASE ${w.phase} · ${w.status.toUpperCase()}</span>
+                <span class="tag-pill ${isRes ? 'tag-teal' : 'tag-blue'}">WEEK ${w.week} · PHASE ${w.phase} · ${w.status.toUpperCase()} · ${isRes ? '🚀 RESEARCH MODE' : '🏛️ TRADITIONAL'}</span>
                 <h3 style="font-size:17.5px; font-weight:900; margin-top:4px;">Week ${w.week}: ${w.title}</h3>
               </div>
               <div class="edit-only" style="display:flex; gap:7px; flex-wrap:wrap;">
-                <button class="btn-outline" style="padding:6px 11px; font-size:11.5px;" onclick="setActiveWeek(${w.week})">🎯 Set as Today's Focus</button>
+                <button class="btn-outline" style="padding:6px 11px; font-size:11.5px;" onclick="setActiveWeek(${w.week})">🎯 Set Today's Focus</button>
                 <button class="btn-outline" style="padding:6px 11px; font-size:11.5px;" onclick="cycleWeekStatus(${w.week})">🔄 Status: ${w.status}</button>
-                <button class="btn-primary" style="padding:6px 12px; font-size:11.5px;" onclick="toggleWeekEditForm(${w.week})">✏️ Edit / Revise Week</button>
+                <button class="btn-primary" style="padding:6px 12px; font-size:11.5px;" onclick="toggleWeekEditForm(${w.week})">✏️ Edit / Revise</button>
               </div>
             </div>
 
             <div class="week-grid">
               <div class="track-pane speech-pane">
-                <div style="font-size:11px; font-weight:800; color:#15803d; text-transform:uppercase;">🗣️ Speech &amp; Language Target</div>
-                <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:3px;">${w.speechTarget}</div>
-                <div style="font-size:12px; color:#475569; margin-top:4px;"><strong>Parent / SLP Routine:</strong> ${w.speechActivity}</div>
+                <div style="font-size:11px; font-weight:800; color:#15803d; text-transform:uppercase;">
+                  ${isRes ? '🗣️ Research-Driven Speech (NLA Gestalt / VSD / Print Dots)' : '🗣️ Traditional Speech Target'}
+                </div>
+                <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:3px;">${spTarget}</div>
+                <div style="font-size:12px; color:#475569; margin-top:4px;"><strong>Activity:</strong> ${spAct}</div>
               </div>
               <div class="track-pane aba-pane">
-                <div style="font-size:11px; font-weight:800; color:#b45309; text-transform:uppercase;">🧩 All Kids First ABA Target &amp; Method</div>
-                <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:3px;">${w.abaTarget}</div>
-                <div style="font-size:12px; color:#475569; margin-top:4px;"><strong>Proven Method:</strong> ${w.abaMethod}</div>
+                <div style="font-size:11px; font-weight:800; color:#b45309; text-transform:uppercase;">
+                  ${isRes ? '🧩 Research-Driven ABA (JASPER 3D Play Map / Praxis / SCERTS)' : '🧩 Traditional ABA Target & Method'}
+                </div>
+                <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:3px;">${abTarget}</div>
+                <div style="font-size:12px; color:#475569; margin-top:4px;"><strong>Method:</strong> ${abMeth}</div>
               </div>
             </div>
 
-            <div style="margin-top:8px; font-size:11.5px; color:var(--purple); font-weight:700;">
-              📌 Revision / Clinical Note: ${w.revisionNote}
+            ${isRes && w.whyResearch ? `<div style="margin-top:8px; background:#f0fdfa; border:1px solid #99f6e4; padding:6px 10px; border-radius:8px; font-size:11.5px; font-weight:700; color:#0f766e;">${w.whyResearch}</div>` : ''}
+            <div style="margin-top:6px; font-size:11.5px; color:var(--purple); font-weight:700;">
+              📌 Revision Note: ${w.revisionNote}
             </div>
 
-            <!-- Inline Edit & Revision Form (Hidden by default) -->
+            <!-- Inline Edit Form -->
             <div id="editFormWeek-${w.week}" style="display:none; margin-top:12px; padding-top:12px; border-top:2px dashed var(--border);">
               <div class="form-group">
                 <label>Week ${w.week} Title</label>
@@ -1291,24 +1814,24 @@
               </div>
               <div class="week-grid">
                 <div class="form-group">
-                  <label>🗣️ Speech Target</label>
-                  <input type="text" id="editSpeechTarget-${w.week}" class="form-input" value="${w.speechTarget.replace(/"/g, '&quot;')}" />
-                  <label style="margin-top:6px;">🗣️ Parent / Clinic Activity</label>
-                  <input type="text" id="editSpeechAct-${w.week}" class="form-input" value="${w.speechActivity.replace(/"/g, '&quot;')}" />
+                  <label>🗣️ Speech Target (${isRes ? 'Research Mode' : 'Traditional Mode'})</label>
+                  <input type="text" id="editSpeechTarget-${w.week}" class="form-input" value="${spTarget.replace(/"/g, '&quot;')}" />
+                  <label style="margin-top:6px;">🗣️ Activity</label>
+                  <input type="text" id="editSpeechAct-${w.week}" class="form-input" value="${spAct.replace(/"/g, '&quot;')}" />
                 </div>
                 <div class="form-group">
-                  <label>🧩 ABA Target</label>
-                  <input type="text" id="editAbaTarget-${w.week}" class="form-input" value="${w.abaTarget.replace(/"/g, '&quot;')}" />
-                  <label style="margin-top:6px;">🧩 ABA Teaching Method</label>
-                  <input type="text" id="editAbaMeth-${w.week}" class="form-input" value="${w.abaMethod.replace(/"/g, '&quot;')}" />
+                  <label>🧩 ABA Target (${isRes ? 'Research Mode' : 'Traditional Mode'})</label>
+                  <input type="text" id="editAbaTarget-${w.week}" class="form-input" value="${abTarget.replace(/"/g, '&quot;')}" />
+                  <label style="margin-top:6px;">🧩 Teaching Method</label>
+                  <input type="text" id="editAbaMeth-${w.week}" class="form-input" value="${abMeth.replace(/"/g, '&quot;')}" />
                 </div>
               </div>
               <div class="form-group">
-                <label>🔄 Reason for Revision / Adaptation Note (Logged to History)</label>
-                <input type="text" id="editRevNote-${w.week}" class="form-input" value="${w.revisionNote.replace(/"/g, '&quot;')}" placeholder="e.g., Mastered early at 90%; added 2-step generalization..." />
+                <label>🔄 Revision Note</label>
+                <input type="text" id="editRevNote-${w.week}" class="form-input" value="${w.revisionNote.replace(/"/g, '&quot;')}" />
               </div>
               <div style="display:flex; gap:8px;">
-                <button class="btn-primary" onclick="saveWeekRevision(${w.week})">💾 Save Revision to Week ${w.week}</button>
+                <button class="btn-primary" onclick="saveWeekRevision(${w.week})">💾 Save Revision</button>
                 <button class="btn-outline" onclick="toggleWeekEditForm(${w.week})">Cancel</button>
               </div>
             </div>
@@ -1334,11 +1857,19 @@
 
     function saveWeekRevision(wNum) {
       const w = appState.weeks16.find(x => x.week === wNum);
+      const isRes = appState.curriculumMode === "research";
       w.title = document.getElementById(`editTitle-${wNum}`).value.trim();
-      w.speechTarget = document.getElementById(`editSpeechTarget-${wNum}`).value.trim();
-      w.speechActivity = document.getElementById(`editSpeechAct-${wNum}`).value.trim();
-      w.abaTarget = document.getElementById(`editAbaTarget-${wNum}`).value.trim();
-      w.abaMethod = document.getElementById(`editAbaMeth-${wNum}`).value.trim();
+      if (isRes) {
+        w.resSpeechTarget = document.getElementById(`editSpeechTarget-${wNum}`).value.trim();
+        w.resSpeechActivity = document.getElementById(`editSpeechAct-${wNum}`).value.trim();
+        w.resAbaTarget = document.getElementById(`editAbaTarget-${wNum}`).value.trim();
+        w.resAbaMethod = document.getElementById(`editAbaMeth-${wNum}`).value.trim();
+      } else {
+        w.speechTarget = document.getElementById(`editSpeechTarget-${wNum}`).value.trim();
+        w.speechActivity = document.getElementById(`editSpeechAct-${wNum}`).value.trim();
+        w.abaTarget = document.getElementById(`editAbaTarget-${wNum}`).value.trim();
+        w.abaMethod = document.getElementById(`editAbaMeth-${wNum}`).value.trim();
+      }
       w.revisionNote = document.getElementById(`editRevNote-${wNum}`).value.trim();
       w.status = "Revised";
 
@@ -1349,18 +1880,10 @@
         note: `${w.title} — ${w.revisionNote}`
       });
 
-      appState.teamFeed.unshift({
-        author: activePerson,
-        time: "Just now",
-        badge: `Revised Wk ${wNum}`,
-        text: `Updated Week ${wNum} (${w.title}): ${w.revisionNote}`
-      });
-
       saveState();
       render16WeekPlan();
       renderRevisionHistory();
       renderTodayFocus();
-      renderTeamFeed();
       showToast(`Saved revision for Week ${wNum}!`);
     }
 
@@ -1372,12 +1895,23 @@
       `).join("");
     }
 
-    // ==================== TAB 3: WORKSHEET REDESIGN STUDIO ====================
+    // ==================== TAB 4: WORKSHEET REDESIGN STUDIO ====================
+    function openStudioTemplate(tplKey) {
+      document.getElementById("studioTemplateSelect").value = tplKey;
+      renderStudioWorksheet();
+      switchTab("studio");
+    }
+
     function openStudioPreset(mode) {
       const w = appState.weeks16.find(x => x.week === appState.activeWeekNum) || appState.weeks16[0];
-      document.getElementById("studioTitleInput").value = `Week ${w.week} (${mode.toUpperCase()}): ${w.title}`;
-      document.getElementById("studioScriptInput").value = mode === "speech" ? w.speechTarget : w.abaMethod;
-      document.getElementById("studioTemplateSelect").value = mode === "speech" ? "speech_strip" : "dtt";
+      const isRes = appState.curriculumMode === "research";
+      document.getElementById("studioTitleInput").value = `Week ${w.week}: ${w.title}`;
+      document.getElementById("studioScriptInput").value = mode === "speech"
+        ? (isRes ? w.resSpeechTarget : w.speechTarget)
+        : (isRes ? w.resAbaMethod : w.abaMethod);
+      document.getElementById("studioTemplateSelect").value = isRes
+        ? (mode === "speech" ? "nla_gestalt" : "jasper_map")
+        : "dtt";
       renderStudioWorksheet();
       switchTab("studio");
     }
@@ -1400,6 +1934,7 @@
 
     function renderStudioWorksheet() {
       const tpl = document.getElementById("studioTemplateSelect").value;
+      const showDots = document.getElementById("studioPrintDotsSelect").value === "on";
       const cols = document.getElementById("studioColsSelect").value;
       const theme = document.getElementById("studioThemeSelect").value;
       const tokenStyle = document.getElementById("studioTokenSelect").value;
@@ -1409,111 +1944,189 @@
       const canvas = document.getElementById("studioLiveCanvas");
       canvas.className = `printable-canvas ${theme}`;
 
-      document.getElementById("studioCardPickerGroup").style.display = (tpl === "dtt" || tpl === "speech_strip") ? "block" : "none";
-
-      let bodyHtml = "";
+      const dotsHtml = showDots ? `<div style="margin-top:4px; letter-spacing:5px; font-size:14px;"><span style="color:#16a34a;">🟢</span> <span style="color:#2563eb;">● ●</span></div>` : "";
       const selectedCards = appState.studioItems.filter(i => i.selected);
 
-      if (tpl === "dtt") {
+      let bodyHtml = "";
+
+      if (tpl === "nla_gestalt") {
+        bodyHtml = `
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="border:3px solid #2563eb; border-radius:16px; padding:12px; background:#eff6ff; display:grid; grid-template-columns: 190px 24px 1fr; align-items:center; gap:10px;">
+              <div style="background:#fff; border:2.5px solid #1d4ed8; border-radius:12px; padding:10px; text-align:center;">
+                <div style="font-size:10px; font-weight:900; color:#2563eb;">NLA GESTALT STEM 1</div>
+                <div style="font-size:18px; font-weight:900; color:#1e3a8a;">"LET'S GO..."</div>
+                ${dotsHtml}
+              </div>
+              <div style="font-size:22px; font-weight:900; color:#2563eb; text-align:center;">+</div>
+              <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px;">
+                ${selectedCards.slice(0, 4).map(c => `
+                  <div class="ws-live-card" style="padding:8px;">
+                    <div style="font-size:32px;">${c.icon}</div>
+                    <div style="font-size:12px; font-weight:900;">"${c.label}!"</div>
+                    ${dotsHtml}
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+
+            <div style="border:3px solid #16a34a; border-radius:16px; padding:12px; background:#f0fdf4; display:grid; grid-template-columns: 190px 24px 1fr; align-items:center; gap:10px;">
+              <div style="background:#fff; border:2.5px solid #15803d; border-radius:12px; padding:10px; text-align:center;">
+                <div style="font-size:10px; font-weight:900; color:#16a34a;">NLA GESTALT STEM 2</div>
+                <div style="font-size:16px; font-weight:900; color:#14532d;">"LOOK! IT'S A..."</div>
+                ${dotsHtml}
+              </div>
+              <div style="font-size:22px; font-weight:900; color:#16a34a; text-align:center;">+</div>
+              <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px;">
+                ${selectedCards.slice(4, 8).map(c => `
+                  <div class="ws-live-card" style="padding:8px; border-color:#16a34a;">
+                    <div style="font-size:32px;">${c.icon}</div>
+                    <div style="font-size:12px; font-weight:900;">"${c.label}!"</div>
+                    ${dotsHtml}
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (tpl === "jasper_map") {
+        bodyHtml = `
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin:8px 0;">
+            <div style="border:3.5px solid #16a34a; border-radius:18px; background:#f0fdf4; padding:14px; text-align:center;">
+              <div style="background:#16a34a; color:#fff; font-weight:900; font-size:13px; padding:5px 12px; border-radius:8px;">ZONE A: ANIMAL HOUSE PLAY MAP ("Walk Dino In House!")</div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:12px 0;">
+                <div style="background:#fff; border:2.5px solid #22c55e; border-radius:14px; padding:12px;">
+                  <div style="font-size:10px; font-weight:900; color:#15803d;">1. PARK REAL 3D TOY</div>
+                  <div style="font-size:44px; margin:6px 0;">🦖 🐶</div>
+                  <div style="font-size:11px; font-weight:800;">Stand 3D Animal Here</div>
+                </div>
+                <div style="background:#fff; border:2.5px dashed #16a34a; border-radius:14px; padding:12px;">
+                  <div style="font-size:10px; font-weight:900; color:#15803d;">2. MATCH 2D CARD</div>
+                  <div style="font-size:44px; margin:6px 0;">🏠</div>
+                  <div style="font-size:11px; font-weight:800;">Place 2D Card Here</div>
+                </div>
+              </div>
+              ${dotsHtml}
+            </div>
+
+            <div style="border:3.5px solid #ea580c; border-radius:18px; background:#fff7ed; padding:14px; text-align:center;">
+              <div style="background:#ea580c; color:#fff; font-weight:900; font-size:13px; padding:5px 12px; border-radius:8px;">ZONE B: CAR GARAGE PLAY MAP ("Roll Yellow Car In Garage!")</div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:12px 0;">
+                <div style="background:#fff; border:2.5px solid #f97316; border-radius:14px; padding:12px;">
+                  <div style="font-size:10px; font-weight:900; color:#c2410c;">1. PARK REAL 3D CAR</div>
+                  <div style="font-size:44px; margin:6px 0;">🚗 🚙</div>
+                  <div style="font-size:11px; font-weight:800;">Park 3D Toy Car Here</div>
+                </div>
+                <div style="background:#fff; border:2.5px dashed #ea580c; border-radius:14px; padding:12px;">
+                  <div style="font-size:10px; font-weight:900; color:#c2410c;">2. MATCH 2D CARD</div>
+                  <div style="font-size:44px; margin:6px 0;">🟧</div>
+                  <div style="font-size:11px; font-weight:800;">Place 2D Car Card Here</div>
+                </div>
+              </div>
+              ${dotsHtml}
+            </div>
+          </div>
+          <div style="border:2px solid #7c3aed; background:#faf5ff; border-radius:12px; padding:8px 14px; font-size:12px; font-weight:800; color:#5b21b6; text-align:center;">
+            ✨ JASPER JOINT-ATTENTION SURPRISE: Put the Dinosaur inside the Car Garage &amp; wait 5s for eye contact: "Uh-oh! Dino in garage!" (☐ Looked ☐ Pointed ☐ Smiled)
+          </div>
+        `;
+      } else if (tpl === "vsd_kitchen") {
+        bodyHtml = `
+          <div style="border:3px solid #0f172a; border-radius:18px; padding:14px; background:linear-gradient(180deg, #f0f9ff 0%, #fefce8 62%, #f1f5f9 62%);">
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-bottom:10px;">
+              <div class="ws-live-card" style="border-style:solid; border-color:#dc2626;">
+                <span class="tag-pill" style="background:#fee2e2; color:#991b1b;">PREPOSITION "IN"</span>
+                <div style="font-size:38px; margin:4px 0;">🍎 ➔ 🍲</div>
+                <div style="font-weight:900; font-size:14px;">"APPLE IN THE POT"</div>
+                ${dotsHtml}
+              </div>
+              <div class="ws-live-card" style="border-style:solid; border-color:#2563eb;">
+                <span class="tag-pill" style="background:#dbeafe; color:#1e40af;">PREPOSITION "ON" &amp; FUNCTION</span>
+                <div style="font-size:38px; margin:4px 0;">🍴 🥤 🥣</div>
+                <div style="font-weight:900; font-size:14px;">"FORK &amp; CUP ON TABLE"</div>
+                ${dotsHtml}
+              </div>
+              <div class="ws-live-card" style="border-style:solid; border-color:#16a34a;">
+                <span class="tag-pill" style="background:#dcfce7; color:#166534;">ACTION VERB</span>
+                <div style="font-size:38px; margin:4px 0;">👩‍🍳 🥄</div>
+                <div style="font-weight:900; font-size:14px;">"CHEF STIRS HOT SOUP"</div>
+                ${dotsHtml}
+              </div>
+            </div>
+            <div style="background:#b45309; color:#fff; font-weight:900; font-size:11px; text-align:center; padding:4px; border-radius:6px; margin-bottom:10px;">
+              ▲ ABOVE / ON THE KITCHEN TABLE &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; ▼ UNDER THE KITCHEN TABLE
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; padding:0 30px;">
+              <div class="ws-live-card" style="border-style:solid; border-color:#d97706;">
+                <span class="tag-pill tag-aba">PREPOSITION "UNDER"</span>
+                <div style="font-size:36px;">🦖</div>
+                <div style="font-weight:900; font-size:14px;">"DINO UNDER THE TABLE"</div>
+                ${dotsHtml}
+              </div>
+              <div class="ws-live-card" style="border-style:solid; border-color:#7c3aed;">
+                <span class="tag-pill tag-purple">2-WORD MAND</span>
+                <div style="font-size:36px;">🎁</div>
+                <div style="font-weight:900; font-size:14px;">"OPEN SURPRISE BOX!"</div>
+                ${dotsHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (tpl === "praxis_road") {
+        bodyHtml = `
+          <div style="display:grid; grid-template-columns: 160px 1fr; gap:16px;">
+            <div style="border:3.5px dashed #2563eb; border-radius:16px; background:#eff6ff; padding:12px; text-align:center; display:flex; flex-direction:column; justify-content:center;">
+              <div style="font-size:52px;">🖐️</div>
+              <div style="font-weight:900; font-size:14px; color:#1e3a8a;">HELPER HAND HERE</div>
+              <div style="font-size:11px; color:#1d4ed8; margin-top:4px;">Or tape vertically on wall at chest height!</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div style="border:3px solid #db2777; border-radius:14px; padding:12px 16px; background:#fdf2f8; display:flex; align-items:center; justify-content:space-between;">
+                <span style="font-size:28px;">🚗✂</span>
+                <div style="flex:1; border-top:7px dashed #be185d; margin:0 12px; display:flex; justify-content:space-around;">
+                  <span style="background:#fef08a; border:2px solid #ca8a04; padding:2px 10px; border-radius:99px; font-size:11px; font-weight:900; margin-top:-13px;">⛽ PIT STOP 1 (1.5")</span>
+                  <span style="background:#bae6fd; border:2px solid #0284c7; padding:2px 10px; border-radius:99px; font-size:11px; font-weight:900; margin-top:-13px;">🔧 PIT STOP 2 (3.0")</span>
+                </div>
+                <span style="background:#dc2626; color:#fff; font-weight:900; padding:6px 12px; border-radius:8px; font-size:12px;">🏠 5" GARAGE</span>
+              </div>
+              <div style="border:5px solid #1d4ed8; border-radius:14px; height:105px; display:flex; align-items:center; justify-content:center; background:#f8fafc;">
+                <span style="font-size:16px; font-weight:900; color:#93c5fd;">🖍️ COLOR INSIDE THIS 5-INCH GARAGE BOX (STOP AT TRIAL 5!)</span>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (tpl === "wait_fct") {
+        bodyHtml = `
+          <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:14px; margin-bottom:12px;">
+            <div style="border:3px solid #d97706; border-radius:16px; padding:12px; background:#fffbeb; text-align:center;">
+              <div style="font-weight:900; font-size:14px; color:#92400e;">⏱️ 60-SECOND DELAYED REINFORCEMENT WAIT MAT</div>
+              <div style="display:grid; grid-template-columns: repeat(6, 1fr); gap:6px; margin:10px 0;">
+                ${[10,20,30,40,50,60].map(s => `<div style="border:2px solid #d97706; background:#fff; border-radius:8px; padding:8px 2px; font-weight:900;">${s}s<br>⭐</div>`).join("")}
+              </div>
+            </div>
+            <div style="border:3px solid #16a34a; border-radius:16px; padding:12px; background:#f0fdf4; text-align:center;">
+              <div style="font-weight:900; font-size:14px; color:#14532d;">FIRST 5 TRIALS ➔ THEN REWARD</div>
+              <div style="font-size:40px; margin:10px 0;">🦖 🤸 🌊 🎵</div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;">
+            <div class="ws-live-card" style="border-color:#16a34a;"><div style="font-size:30px;">📦</div><strong>"OPEN BOX"</strong>${dotsHtml}</div>
+            <div class="ws-live-card" style="border-color:#d97706;"><div style="font-size:30px;">🙋‍♂️</div><strong>"I NEED HELP"</strong>${dotsHtml}</div>
+            <div class="ws-live-card" style="border-color:#dc2626;"><div style="font-size:30px;">🛑</div><strong>"STOP PLEASE"</strong>${dotsHtml}</div>
+            <div class="ws-live-card" style="border-color:#7c3aed;"><div style="font-size:30px;">⏸️</div><strong>"I NEED BREAK"</strong>${dotsHtml}</div>
+          </div>
+        `;
+      } else {
         bodyHtml = `
           <div class="ws-live-grid ${cols}">
             ${selectedCards.map(c => `
               <div class="ws-live-card">
                 <div style="position:absolute; top:4px; right:8px; font-size:11px; color:#94a3b8;">✂</div>
                 <div style="font-size:10px; font-weight:800; color:#2563eb; text-transform:uppercase;">${c.cat}</div>
-                <div style="font-size:48px; margin:8px 0;">${c.icon}</div>
-                <div style="font-size:15px; font-weight:900; color:#0f172a;">${c.label}</div>
-                <div style="font-size:11px; color:#475569; margin:3px 0 6px;">${c.sub}</div>
-                <div style="border-top:1px solid #e2e8f0; padding-top:4px; font-size:11px; font-weight:800; color:#1d4ed8;">
-                  ☐ Rec (Point) &nbsp;&nbsp; ☐ Exp (Say)
-                </div>
-              </div>
-            `).join("")}
-          </div>
-        `;
-      } else if (tpl === "sorting") {
-        bodyHtml = `
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px; margin:10px 0;">
-            <div style="border:3.5px dashed #2563eb; border-radius:18px; background:#eff6ff; padding:18px; text-align:center;">
-              <div style="background:#2563eb; color:#fff; font-weight:900; font-size:15px; padding:6px 14px; border-radius:99px; display:inline-block;">ZONE 1: HOUSES (67% w/ Prompt Fading)</div>
-              <div style="font-size:58px; margin:16px 0;">🏠 🏡 🏘️</div>
-              <div style="font-size:13px; font-weight:800; color:#1e3a8a;">Place All Non-Identical Houses Here (Fade Gestural Prompt Trials 1→4)</div>
-            </div>
-            <div style="border:3.5px dashed #ea580c; border-radius:18px; background:#fff7ed; padding:18px; text-align:center;">
-              <div style="background:#ea580c; color:#fff; font-weight:900; font-size:15px; padding:6px 14px; border-radius:99px; display:inline-block;">ZONE 2: CARS &amp; VEHICLES</div>
-              <div style="font-size:58px; margin:16px 0;">🚗 🚙 🚕</div>
-              <div style="font-size:13px; font-weight:800; color:#9a3412;">Place All Non-Identical Cars Here (Errorless Trial 1 → Independent)</div>
-            </div>
-          </div>
-        `;
-      } else if (tpl === "wait_fct") {
-        bodyHtml = `
-          <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:16px; margin-bottom:14px;">
-            <div style="border:3px solid #d97706; border-radius:16px; padding:14px; background:#fffbeb; text-align:center;">
-              <div style="font-weight:900; font-size:15px; color:#92400e;">⏱️ 1-MINUTE DELAYED REINFORCEMENT WAIT MAT</div>
-              <div style="display:grid; grid-template-columns: repeat(6, 1fr); gap:8px; margin:12px 0;">
-                ${[10,20,30,40,50,60].map(s => `<div style="border:2px solid #d97706; background:#fff; border-radius:10px; padding:10px 4px; font-weight:900;">${s}s<br>⭐</div>`).join("")}
-              </div>
-              <div style="font-size:12px; font-weight:800; color:#78350f;">"First Hands on Lap &amp; Wait 60s → Then Preferred Toy / Snack!"</div>
-            </div>
-            <div style="border:3px solid #16a34a; border-radius:16px; padding:14px; background:#f0fdf4; text-align:center;">
-              <div style="font-weight:900; font-size:15px; color:#14532d;">FIRST 5 TRIALS ➔ THEN REWARD</div>
-              <div style="font-size:44px; margin:12px 0;">🦖 🤸 🌊 🎵</div>
-              <div style="font-size:13px; font-weight:800; color:#166534;">Animal Toys · Trampoline · Sensory Table · Song</div>
-            </div>
-          </div>
-          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;">
-            <div class="ws-live-card" style="border-color:#16a34a;"><div style="font-size:32px;">📦</div><strong>"OPEN BOX"</strong></div>
-            <div class="ws-live-card" style="border-color:#d97706;"><div style="font-size:32px;">🙋‍♂️</div><strong>"HELP PLEASE"</strong></div>
-            <div class="ws-live-card" style="border-color:#dc2626;"><div style="font-size:32px;">🛑</div><strong>"STOP"</strong></div>
-            <div class="ws-live-card" style="border-color:#7c3aed;"><div style="font-size:32px;">⏸️</div><strong>"BREAK PLEASE"</strong></div>
-          </div>
-        `;
-      } else if (tpl === "finemotor") {
-        bodyHtml = `
-          <div style="display:grid; grid-template-columns: 165px 1fr; gap:16px;">
-            <div style="border:3.5px dashed #2563eb; border-radius:16px; background:#eff6ff; padding:14px; text-align:center; display:flex; flex-direction:column; justify-content:center;">
-              <div style="font-size:56px;">🖐️</div>
-              <div style="font-weight:900; font-size:15px; color:#1e3a8a;">HELPER HAND HERE</div>
-              <div style="font-size:11.5px; color:#1d4ed8; margin-top:4px;">Hold paper flat with left hand!</div>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-              <div style="border:5px solid #1d4ed8; border-radius:14px; height:110px; display:flex; align-items:center; justify-content:center; background:#f8fafc;">
-                <span style="font-size:18px; font-weight:900; color:#93c5fd;">🖍️ COLOR INSIDE THIS 5-INCH BOX (STOP AT TRIAL 5!)</span>
-              </div>
-              <div style="border:2.5px solid #db2777; border-radius:14px; padding:14px; background:#fdf2f8; display:flex; align-items:center; justify-content:space-between;">
-                <span style="background:#16a34a; color:#fff; font-weight:900; padding:6px 12px; border-radius:99px;">GO</span>
-                <div style="flex:1; border-top:6px dashed #be185d; margin:0 12px; display:flex; justify-content:space-around;">
-                  <span style="background:#facc15; padding:2px 8px; border-radius:99px; font-size:11px; font-weight:900; margin-top:-12px;">✂ 1.5"</span>
-                  <span style="background:#facc15; padding:2px 8px; border-radius:99px; font-size:11px; font-weight:900; margin-top:-12px;">✂ 3.0"</span>
-                </div>
-                <span style="background:#dc2626; color:#fff; font-weight:900; padding:6px 12px; border-radius:8px;">5" STOP</span>
-              </div>
-            </div>
-          </div>
-        `;
-      } else {
-        bodyHtml = `
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-bottom:14px;">
-            <div style="border:3px solid #2563eb; border-radius:14px; padding:12px; text-align:center; background:#eff6ff;">
-              <div style="font-size:12px; font-weight:900; color:#2563eb;">1. STARTER</div>
-              <div style="font-size:18px; font-weight:900; color:#1e3a8a; margin-top:4px;">"I SEE" / "I WANT" / "OPEN"</div>
-            </div>
-            <div style="border:3px solid #d97706; border-radius:14px; padding:12px; text-align:center; background:#fffbeb;">
-              <div style="font-size:12px; font-weight:900; color:#d97706;">2. MODIFIER / LOCATION</div>
-              <div style="font-size:16px; font-weight:900; color:#92400e; margin-top:4px;">BIG · SMALL · YELLOW · IN · ON · UNDER</div>
-            </div>
-            <div style="border:3px dashed #16a34a; border-radius:14px; padding:12px; text-align:center; background:#f0fdf4;">
-              <div style="font-size:12px; font-weight:900; color:#16a34a;">3. TARGET NOUN</div>
-              <div style="font-size:16px; font-weight:900; color:#14532d; margin-top:4px;">[ PLACE CARD HERE ]</div>
-            </div>
-          </div>
-          <div class="ws-live-grid ${cols}">
-            ${selectedCards.slice(0, 8).map(c => `
-              <div class="ws-live-card">
-                <div style="font-size:38px;">${c.icon}</div>
-                <div style="font-size:14px; font-weight:900;">${c.label}</div>
-                <div style="font-size:10.5px; color:#475569;">${c.sub}</div>
+                <div style="font-size:44px; margin:6px 0;">${c.icon}</div>
+                <div style="font-size:14.5px; font-weight:900; color:#0f172a;">${c.label}</div>
+                <div style="font-size:11px; color:#475569; margin:2px 0 4px;">${c.sub}</div>
+                ${dotsHtml}
               </div>
             `).join("")}
           </div>
@@ -1522,21 +2135,21 @@
 
       let tokenHtml = "";
       if (tokenStyle === "stars") {
-        tokenHtml = `<span>⭐ <strong>5-TRIAL REWARD BAR (Stop at 5 Before Fatigue!):</strong></span><div style="font-size:22px; letter-spacing:8px;">⭐ ⭐ ⭐ ⭐ ⭐</div>`;
+        tokenHtml = `<span>⭐ <strong>5-TRIAL REWARD BAR (Cap at 5 Trials · Celebrate Joint Attention!):</strong></span><div style="font-size:22px; letter-spacing:8px;">⭐ ⭐ ⭐ ⭐ ⭐</div>`;
       } else if (tokenStyle === "wait60") {
         tokenHtml = `<span>⏱️ <strong>60-SECOND DELAYED REINFORCEMENT COUNTER:</strong></span><div style="font-weight:900; color:#92400e;">[10s] · [20s] · [30s] · [40s] · [50s] · [60s ➔ REWARD!]</div>`;
       } else {
-        tokenHtml = `<span>🦖 <strong>5-TRIAL DINOSAUR TOKEN BAR:</strong></span><div style="font-size:22px; letter-spacing:8px;">🦖 🦖 🦖 🦖 🦖</div>`;
+        tokenHtml = `<span>🦖 <strong>5-TRIAL DINOSAUR PLAY TOKEN BAR:</strong></span><div style="font-size:22px; letter-spacing:8px;">🦖 🦖 🦖 🦖 🦖</div>`;
       }
 
       canvas.innerHTML = `
         <div>
           <div class="ws-live-header">
             <div>
-              <span class="tag-pill tag-blue">TEAM VeGu · CUSTOM REDESIGNED WORKSHEET</span>
-              <h2 style="font-size:20px; font-weight:900; margin-top:3px;">${title}</h2>
+              <span class="tag-pill tag-teal">TEAM VeGu · CUSTOM WORKSHEET STUDIO</span>
+              <h2 style="font-size:19px; font-weight:900; margin-top:3px;">${title}</h2>
             </div>
-            <div style="text-align:right; font-size:12px; font-weight:800; color:#0b4f9e; max-width:340px;">
+            <div style="text-align:right; font-size:11.5px; font-weight:800; color:#0b4f9e; max-width:340px;">
               🗣️ Adult Cue: "${script}"
             </div>
           </div>
@@ -1546,7 +2159,7 @@
       `;
     }
 
-    // ==================== TAB 4: INSIGHTS & CHARTS ====================
+    // ==================== TAB 5: INSIGHTS & CHARTS ====================
     function renderDashboardCharts() {
       const targets = [
         { name: "Wait 1m", v23: 100, v24: 100, v25: 50 },
@@ -1580,12 +2193,12 @@
       `;
 
       const proofs = [
+        { label: "3D Toy NET", val: 100, col: "#15803d" },
+        { label: "2D Card DTT", val: 20, col: "#fca5a5" },
         { label: "Sort w/ Fade", val: 67, col: "#7c3aed" },
-        { label: "Sort No Fade", val: 0, col: "#cbd5e1" },
         { label: "Color 5-Trial", val: 80, col: "#16a34a" },
-        { label: "Color 6-Trial", val: 0, col: "#fca5a5" },
-        { label: "Wash Gesture", val: 78, col: "#0284c7" },
-        { label: "3D Animal NET", val: 100, col: "#15803d" }
+        { label: "Color 6-Trial", val: 0, col: "#cbd5e1" },
+        { label: "Wash Gesture", val: 78, col: "#0284c7" }
       ];
       let bars4 = "";
       proofs.forEach((p, i) => {
@@ -1693,44 +2306,33 @@
       const url = appState.cloudSyncUrl;
       if (!url || window.location.protocol === "file:") return;
       try {
-        const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(appState) });
-        if (res.ok) document.getElementById("syncIndicatorText").textContent = "☁️ Cloud Synced";
+        await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(appState) });
       } catch (e) {}
     }
 
     async function syncFromCloud(manual = false) {
       const url = appState.cloudSyncUrl;
-      if (!url || window.location.protocol === "file:") {
-        if (manual) showToast("Running offline locally — push to GitHub/Vercel for live Cloud Sync!");
-        return;
-      }
+      if (!url || window.location.protocol === "file:") return;
       try {
         const res = await fetch(url);
         if (res.ok) {
           const data = await res.json();
           if (data && data.weeks16) {
             appState = Object.assign(appState, data);
-            localStorage.setItem("team_vegu_hub_state_v3", JSON.stringify(appState));
+            localStorage.setItem("team_vegu_hub_state_v4", JSON.stringify(appState));
             renderAll();
-            document.getElementById("syncIndicatorText").textContent = "☁️ Cloud Synced";
-            if (manual) showToast("Synced latest team data from cloud!");
-          } else if (manual) {
-            await pushToCloud();
-            showToast("Initialized cloud storage!");
           }
         }
-      } catch (e) {
-        if (manual) showToast("Saved locally in browser.");
-      }
+      } catch (e) {}
     }
 
     function exportTeamJSON() {
       const blob = new Blob([JSON.stringify(appState, null, 2)], { type: "application/json" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = "Team_VeGu_16Week_State.json";
+      a.download = "Team_VeGu_Research_And_16Week_State.json";
       a.click();
-      showToast("Exported Team_VeGu_16Week_State.json!");
+      showToast("Exported Team_VeGu_Research_And_16Week_State.json!");
     }
 
     function importTeamJSON(event) {
@@ -1752,8 +2354,8 @@
     }
 
     function resetToVerifiedBaseline() {
-      if (!confirm("Reset local browser data to the default 16-Week Speech & ABA Plan?")) return;
-      localStorage.removeItem("team_vegu_hub_state_v3");
+      if (!confirm("Reset local browser data to the default Research-Driven + Traditional 16-Week Plan?")) return;
+      localStorage.removeItem("team_vegu_hub_state_v4");
       location.reload();
     }
 
