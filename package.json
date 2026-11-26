@@ -1,0 +1,10 @@
+{
+  "name": "team-vegu-hub",
+  "version": 1.0,
+  "private": true,
+  "description": "Team VeGu: Home & Clinic Hub — Multi-Role ABA, 4-Week Speech, OT, Preschool & IEP Portal",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx vercel dev"
+  }
+}

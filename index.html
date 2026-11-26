@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team VeGu: Home & Clinic Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1270da;
+      --primary-dark: #0b4f9e;
+      --primary-light: #e8f2ff;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --teal: #0d9488;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --orange: #ea580c;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --purple: #7c3aed;
+      --purple-bg: #f3e8ff;
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #14201e;
+      --muted: #52605e;
+      --border: #dde3ea;
+      --radius: 18px;
+      --shadow: 0 4px 20px rgba(18, 112, 218, 0.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      padding-bottom: 96px;
+    }
+
+    /* ==================== LOGIN GATE OVERLAY ==================== */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0b4f9e 0%, #0f172a 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .login-overlay.hidden { display: none; }
+
+    .login-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 26px;
+      padding: 34px 32px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .login-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 900;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 16px rgba(18, 112, 218, 0.3);
+    }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-input:focus { border-color: var(--primary); }
+
+    .login-error {
+      background: var(--danger-bg);
+      color: #991b1b;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .quick-demo-box {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .role-quick-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .role-pill-btn {
+      padding: 6px 11px;
+      border-radius: 99px;
+      border: 1.5px solid var(--border);
+      background: #f8fafc;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .role-pill-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    /* ==================== TOP HEADER ==================== */
+    .top-header {
+      background: linear-gradient(135deg, #1270da 0%, #0b4f9e 100%);
+      color: #fff;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(11, 79, 158, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand-group { display: flex; align-items: center; gap: 14px; }
+    .avatar-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .brand-title h1 { font-size: 19px; font-weight: 800; letter-spacing: -0.3px; }
+    .brand-subtitle { font-size: 12px; color: #d6ebff; }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .control-pill {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .control-pill select {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+    .control-pill select option { color: var(--text); background: #fff; }
+
+    .role-badge-pill {
+      background: #fef08a;
+      color: #854d0e;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* Read-Only Viewer Banner */
+    .readonly-banner {
+      background: #fef3c7;
+      border-bottom: 2px solid #f59e0b;
+      color: #92400e;
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      display: none;
+    }
+    body.is-readonly .readonly-banner { display: block; }
+    body.is-readonly .edit-only {
+      opacity: 0.48;
+      pointer-events: none !important;
+      user-select: none;
+    }
+
+    /* Navigation Tabs */
+    .nav-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 78px;
+      z-index: 90;
+    }
+    .nav-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      gap: 6px;
+      padding: 10px 24px;
+      overflow-x: auto;
+    }
+    .nav-tab {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.15s;
+    }
+    .nav-tab:hover { background: var(--primary-light); color: var(--primary); }
+    .nav-tab.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(18, 112, 218, 0.25);
+    }
+    .badge-count {
+      background: rgba(0,0,0,0.12);
+      padding: 2px 7px;
+      border-radius: 99px;
+      font-size: 11px;
+    }
+    .nav-tab.active .badge-count { background: rgba(255,255,255,0.25); color: #fff; }
+
+    /* Main Layout */
+    .main-container {
+      max-width: 1260px;
+      margin: 22px auto;
+      padding: 0 24px;
+    }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+
+    .snapshot-banner {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .snap-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-left: 12px;
+      border-left: 4px solid var(--primary);
+    }
+    .snap-item.warn { border-left-color: var(--warning); }
+    .snap-item.success { border-left-color: var(--success); }
+    .snap-item.purple { border-left-color: var(--purple); }
+    .snap-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.7px; color: var(--muted); font-weight: 800; }
+    .snap-val { font-size: 14px; font-weight: 800; color: var(--text); }
+    .snap-sub { font-size: 11.5px; color: var(--muted); }
+
+    .queue-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 920px) {
+      .queue-grid { grid-template-columns: 1fr; }
+      .nav-bar { top: 118px; }
+    }
+
+    .roo-progress-bar {
+      background: #e2e8f0;
+      border-radius: 12px;
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .filter-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
+    .filter-chip {
+      padding: 6px 13px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .filter-chip.active { background: #14201e; color: #fff; border-color: #14201e; }
+
+    /* Lesson Cards */
+    .lesson-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      transition: border-color 0.15s;
+    }
+    .lesson-card:hover { border-color: var(--primary); }
+    .lesson-card.featured { background: #eef4f2; border: 2px solid #94a3b8; }
+    .lesson-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .lesson-id-group { display: flex; align-items: center; gap: 12px; }
+    .domain-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .lesson-code {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+    .code-aba { background: #fef3c7; color: #92400e; }
+    .code-speech { background: #dcfce7; color: #166534; }
+    .code-m0 { background: #dbeafe; color: #1e40af; }
+    .code-fm { background: #fce7f3; color: #9d174d; }
+    .code-se { background: #f3e8ff; color: #5b21b6; }
+
+    .lesson-title { font-size: 17px; font-weight: 800; color: var(--text); }
+    .lesson-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--muted); margin-bottom: 10px; flex-wrap: wrap; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); display: inline-block; }
+    .status-dot.prep { background: var(--warning); }
+
+    .lesson-preview-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 13px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #334155;
+    }
+    .roo-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-roo-assign {
+      background: #14201e;
+      color: #fff;
+      border: 2px solid #14201e;
+      padding: 9px 18px;
+      border-radius: 13px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      flex: 1;
+    }
+    .btn-roo-teach {
+      background: #fff;
+      color: #14201e;
+      border: 2px solid #14201e;
+      padding: 9px 18px;
+      border-radius: 13px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      flex: 1.3;
+      transition: all 0.15s;
+    }
+    .btn-roo-teach:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .side-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+    .side-card h3 { font-size: 15.5px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+
+    /* Runner Styles */
+    .runner-shell { max-width: 780px; margin: 0 auto; }
+    .runner-breadcrumb { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-size: 13.5px; font-weight: 700; color: var(--muted); }
+    .back-btn { background: #fff; border: 1px solid var(--border); padding: 6px 14px; border-radius: 99px; font-family: inherit; font-weight: 700; color: var(--primary); cursor: pointer; }
+    .runner-header-card, .trial-logger-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .needs-first-bar {
+      background: #f3ead8;
+      border: 1.5px solid #e2d1b3;
+      border-radius: 18px;
+      padding: 15px 18px;
+      margin-bottom: 16px;
+    }
+    .needs-title { font-size: 12.5px; font-weight: 800; letter-spacing: 0.7px; text-transform: uppercase; color: #5c4723; margin-bottom: 10px; display: flex; justify-content: space-between; }
+    .sensory-checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+    .sensory-check-item { background: rgba(255,255,255,0.8); padding: 8px 11px; border-radius: 10px; font-size: 12.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+    .do-card { background: #fff; border: 2px solid #bfd9ff; border-radius: 20px; overflow: hidden; margin-bottom: 16px; box-shadow: var(--shadow); }
+    .do-header { background: #d8eaff; padding: 11px 18px; font-size: 13px; font-weight: 800; color: #0b4f9e; display: flex; justify-content: space-between; }
+    .do-body { padding: 18px; }
+    .script-callout { background: #f0f7ff; border-left: 5px solid var(--primary); padding: 12px 16px; border-radius: 10px; margin: 12px 0; font-size: 15px; font-weight: 700; color: #0b3c78; }
+
+    .wait-timer-box {
+      background: #1e293b;
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .timer-bar-wrap { flex: 1; min-width: 160px; background: rgba(255,255,255,0.15); height: 11px; border-radius: 99px; overflow: hidden; }
+    .timer-bar-fill { height: 100%; width: 0%; background: #38bdf8; transition: width 0.2s linear; }
+    .btn-timer { background: #38bdf8; color: #0f172a; border: none; padding: 7px 14px; border-radius: 9px; font-family: inherit; font-weight: 800; font-size: 12.5px; cursor: pointer; }
+
+    .trial-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #f1f5f9; gap: 8px; flex-wrap: wrap; }
+    .trial-label { font-weight: 700; font-size: 13.5px; min-width: 88px; }
+    .prompt-btns { display: flex; gap: 5px; flex-wrap: wrap; }
+    .p-btn { padding: 6px 10px; border-radius: 9px; border: 1.5px solid var(--border); background: #fff; font-family: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+    .p-btn[data-p="I"].selected { background: var(--success); color: #fff; border-color: var(--success); }
+    .p-btn[data-p="V"].selected { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .p-btn[data-p="G"].selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .p-btn[data-p="M"].selected { background: var(--purple); color: #fff; border-color: var(--purple); }
+    .p-btn[data-p="Vb"].selected { background: var(--warning); color: #fff; border-color: var(--warning); }
+    .p-btn[data-p="P"].selected { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .p-btn[data-p="R"].selected { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+    /* Vocab Matrix */
+    .vocab-probe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 12px; }
+    .vocab-cat-box { border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: #f8fafc; }
+    .vocab-cat-title { font-size: 12.5px; font-weight: 800; margin-bottom: 6px; color: var(--primary-dark); display: flex; justify-content: space-between; }
+    .vocab-item-row { display: flex; align-items: center; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px dashed #e2e8f0; }
+    .mini-tog { padding: 2px 6px; border-radius: 5px; border: 1px solid #cbd5e1; background: #fff; font-size: 10.5px; font-weight: 700; cursor: pointer; }
+    .mini-tog.rec-on { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .mini-tog.exp-on { background: #16a34a; color: #fff; border-color: #16a34a; }
+
+    /* Dashboard & Tables */
+    .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 22px; }
+    @media (max-width: 900px) { .dashboard-grid { grid-template-columns: 1fr; } }
+    .chart-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 18px; box-shadow: var(--shadow); }
+    .chart-card h3 { font-size: 15.5px; font-weight: 800; margin-bottom: 4px; }
+    .chart-sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+
+    .iep-table-wrap { background: #fff; border-radius: 20px; border: 1px solid var(--border); padding: 18px; box-shadow: var(--shadow); overflow-x: auto; margin-bottom: 20px; }
+    table.iep-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    table.iep-table th { text-align: left; padding: 9px 10px; background: #f1f5f9; color: var(--muted); font-weight: 800; text-transform: uppercase; font-size: 10.5px; }
+    table.iep-table td { padding: 10px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+
+    .pdf-download-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); gap: 16px; margin-bottom: 22px; }
+    .pdf-file-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+      border: 2px solid #bfd9ff;
+      border-radius: 18px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 11px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 12.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    /* Persistent Bottom Bar */
+    .bottom-team-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 10px 20px;
+      z-index: 95;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+    }
+    .bottom-bar-inner { max-width: 1260px; margin: 0 auto; display: flex; align-items: center; gap: 10px; }
+    .note-input-pill { flex: 1; display: flex; align-items: center; background: #f1f5f9; border-radius: 999px; padding: 8px 16px; gap: 8px; }
+    .note-input-pill input { border: none; background: transparent; width: 100%; font-family: inherit; font-size: 13px; outline: none; }
+
+    /* Toast Alert */
+    .toast-msg {
+      position: fixed;
+      bottom: 72px;
+      right: 24px;
+      background: #0f172a;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 9000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== LOGIN OVERLAY ==================== -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <div class="login-logo" style="margin-bottom:0;">VeGu</div>
+        <div>
+          <div style="font-size:11px; font-weight:800; color:var(--primary); text-transform:uppercase; letter-spacing:0.8px;">Team VeGu · Home &amp; Clinic Hub</div>
+          <h2 style="font-size:22px; font-weight:900; color:var(--text);">Provider &amp; Parent Portal</h2>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:18px;">
+        Sign in with your role Login ID and Password provided by <strong>VaGu &amp; ShGu</strong> to view progress, log session trials, share notes, and print worksheets.
+      </p>
+
+      <div class="login-error" id="loginErrorBox">Invalid Login ID or Password. Please try again.</div>
+
+      <form onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label>Role Login ID</label>
+          <input type="text" id="loginIdInput" class="form-input" placeholder="e.g., parents, aba, clinic, ivybrook, iep" required autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPasswordInput" class="form-input" placeholder="Enter role password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:13px; font-size:15px; margin-top:4px;">
+          🔓 Sign In to Team VeGu Hub
+        </button>
+      </form>
+
+      <div class="quick-demo-box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:11.5px; font-weight:800; color:var(--muted); text-transform:uppercase;">⚡ Quick Role Fill (1-Tap Test Logins):</span>
+        </div>
+        <div class="role-quick-pills">
+          <button type="button" class="role-pill-btn" onclick="quickFillLogin('parents')">👨‍👩‍👦 Parents (VaGu/ShGu · Admin)</button>
+          <button type="button" class="role-pill-btn" onclick="quickFillLogin('aba')">🧩 ABA Team (StMa/VyNg/WiCo/MaGa)</button>
+          <button type="button" class="role-pill-btn" onclick="quickFillLogin('clinic')">🗣️ Speech &amp; OT (Building Bridges)</button>
+          <button type="button" class="role-pill-btn" onclick="quickFillLogin('ivybrook')">🏫 IvyBrook (AmSo/YaNe)</button>
+          <button type="button" class="role-pill-btn" onclick="quickFillLogin('iep')">🔒 District IEP (View &amp; Print Only)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- READ-ONLY VIEWER BANNER -->
+  <div class="readonly-banner">
+    🔒 <strong>VIEW &amp; PRINT ONLY MODE</strong> — Signed in as District IEP Review Team. You can inspect all charts, 3-RBT data, and print/download any PDF workbook. Data logging is disabled for this role.
+  </div>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="avatar-badge">VeGu</div>
+        <div class="brand-title">
+          <h1>Team VeGu: Home &amp; Clinic Hub</h1>
+          <div class="brand-subtitle">Shared ABA (All Kids First) · 4-Week Speech · OT · IvyBrook · IEP Tracker</div>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <span class="role-badge-pill" id="activeRoleBadge">👨‍👩‍👦 Parents (Admin)</span>
+
+        <div class="control-pill" title="Select your specific 4-letter provider/parent initials for logging">
+          <span>👤 Active Initials:</span>
+          <select id="activePersonSelect" onchange="updateActivePerson(this.value)"></select>
+        </div>
+
+        <button class="control-pill" onclick="syncFromCloud(true)" id="syncStatusPill" title="Click to sync latest data">
+          <span id="syncIndicatorText">🟢 Local + Sync Ready</span>
+        </button>
+
+        <a href="Team_Vedant_Partnership_Deck.html" target="_blank" class="control-pill">
+          <span>📽️ Slide Deck</span>
+        </a>
+
+        <button class="control-pill" style="background:rgba(220,38,38,0.35); border-color:rgba(254,202,202,0.5);" onclick="logoutUser()">
+          <span>🚪 Log Out</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <button class="nav-tab active" onclick="switchTab('queue')" id="tab-queue">
+        📋 Lesson &amp; ABA Queue <span class="badge-count" id="queueCountBadge">16</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('runner')" id="tab-runner">
+        ▶️ Live Trial Runner <span class="badge-count" id="activeLessonBadge">ABA.1</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('speech')" id="tab-speech">
+        🗣️ 4-Week Speech Plan
+      </button>
+      <button class="nav-tab" onclick="switchTab('dashboard')" id="tab-dashboard">
+        📊 3-RBT &amp; IEP Graphs
+      </button>
+      <button class="nav-tab" onclick="switchTab('worksheets')" id="tab-worksheets">
+        🖨️ Printable Colored PDFs (4)
+      </button>
+      <button class="nav-tab" onclick="switchTab('admin')" id="tab-admin" style="display:none;">
+        🔐 Parent Admin &amp; Logins
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container">
+
+    <!-- ================= TAB 1: LESSON & ABA TARGET QUEUE ================= -->
+    <section class="view-panel active" id="panel-queue">
+      <div class="snapshot-banner">
+        <div class="snap-item">
+          <span class="snap-label">3-RBT Proven Strengths</span>
+          <span class="snap-val">100% Circle, FCT, Letters B/V/C</span>
+          <span class="snap-sub">VyNg (11/23) · WiCo (11/24) · MaGa (11/25)</span>
+        </div>
+        <div class="snap-item warn">
+          <span class="snap-label">Fine-Motor 5-Trial Rule</span>
+          <span class="snap-val">80% at 5 Trials (WiCo) vs 0/6 (VyNg)</span>
+          <span class="snap-sub">Cap pre-writing &amp; coloring at 4–5 trials max</span>
+        </div>
+        <div class="snap-item success">
+          <span class="snap-label">Winning ABA Methods</span>
+          <span class="snap-val">Prompt Fading (67% Sort) &amp; Gestures (78% Wash)</span>
+          <span class="snap-sub">60s Visual Wait Mat prevents lunch denial tantrums</span>
+        </div>
+        <div class="snap-item purple">
+          <span class="snap-label">4-Week Speech Focus</span>
+          <span class="snap-val">Receptive &lt; Expressive · Wait 8s</span>
+          <span class="snap-sub">No-Gesture 1-Step → Functions → Wh-Q → Pronouns</span>
+        </div>
+      </div>
+
+      <div class="queue-grid">
+        <div>
+          <div class="roo-progress-bar">
+            <span>Active Program Queue · <span id="completedCountText">6 of 16 programs logged</span></span>
+            <span style="color:var(--primary); font-size:12.5px;">Criterion: 80% across 3 sessions ❯</span>
+          </div>
+
+          <div class="filter-row">
+            <button class="filter-chip active" onclick="filterLessons('all', this)">All Programs (16)</button>
+            <button class="filter-chip" onclick="filterLessons('ABA', this)">🧩 Active ABA Protocol (4)</button>
+            <button class="filter-chip" onclick="filterLessons('SPEECH', this)">🗣️ 4-Week Speech Plan (4)</button>
+            <button class="filter-chip" onclick="filterLessons('M0', this)">⭐ IEP Module 0 Probes (5)</button>
+            <button class="filter-chip" onclick="filterLessons('FM', this)">✏️ Fine Motor &amp; Regulation (3)</button>
+          </div>
+
+          <div id="lessonQueueContainer"></div>
+        </div>
+
+        <!-- Right Sidebar: 4 Printable PDF Workbooks + Team Handoff Feed -->
+        <div>
+          <div class="side-card" style="background: linear-gradient(135deg, #0b4f9e 0%, #1270da 100%); color:#fff;">
+            <h3 style="color:#fff;">📦 4 Printable Illustrated PDFs</h3>
+            <p style="font-size:12.5px; color:#e0f2fe; margin-bottom:12px;">
+              Ready-to-print full-color visual worksheets and clinical graphs for VeGu's team.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <a href="Vedant_ABA_Focused_Worksheets.pdf" target="_blank" class="btn-outline" style="background:#fef08a; color:#854d0e; border:none; justify-content:center; font-weight:800;">
+                ⭐ 1. Open ABA-Focused Worksheets PDF (6p)
+              </a>
+              <a href="Vedant_4Week_Speech_Plan_Worksheets.pdf" target="_blank" class="btn-outline" style="background:#dcfce7; color:#14532d; border:none; justify-content:center; font-weight:800;">
+                🗣️ 2. Open 4-Week Speech Plan PDF (6p)
+              </a>
+              <a href="Vedant_Module0_Baseline_Worksheets.pdf" target="_blank" class="btn-outline" style="background:#fff; color:#0b4f9e; border:none; justify-content:center;">
+                📄 3. Open IEP Module 0 Worksheets PDF (6p)
+              </a>
+              <a href="Vedant_Provider_Progress_Report_Sample.pdf" target="_blank" class="btn-outline" style="background:rgba(255,255,255,0.18); color:#fff; border-color:rgba(255,255,255,0.35); justify-content:center;">
+                📊 4. Open 3-RBT Clinical Report PDF (2p)
+              </a>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h3>
+              <span>💬 Shared Team Handoff Notes</span>
+              <button class="btn-outline" style="padding:4px 9px; font-size:11px;" onclick="exportTeamJSON()">⬇️ Export JSON</button>
+            </h3>
+            <div id="teamFeedList" style="display:flex; flex-direction:column; gap:9px; max-height:420px; overflow-y:auto;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: LIVE LESSON & ABA TRIAL RUNNER ================= -->
+    <section class="view-panel" id="panel-runner">
+      <div class="runner-shell">
+        <div class="runner-breadcrumb">
+          <button class="back-btn" onclick="switchTab('queue')">❮ Back to Program Queue</button>
+          <span id="runnerBreadcrumbCode">Queue › ABA.1</span>
+        </div>
+
+        <div class="runner-header-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+            <div>
+              <span class="lesson-code code-aba" id="runnerDomainBadge">ALL KIDS FIRST ABA</span>
+              <h2 style="font-size:22px; font-weight:800; margin-top:4px;" id="runnerTitle">ABA.1</h2>
+              <p style="font-size:13px; color:var(--muted); margin-top:4px;" id="runnerIepGoal"></p>
+            </div>
+            <button class="btn-outline" onclick="switchTab('worksheets')">🖨️ Open Printable PDFs</button>
+          </div>
+        </div>
+
+        <div class="needs-first-bar">
+          <div class="needs-title">
+            <span>✓ NEEDS FIRST · ANTECEDENT &amp; SENSORY PREP</span>
+            <span>Check before table demand</span>
+          </div>
+          <div class="sensory-checklist">
+            <label class="sensory-check-item"><input type="checkbox" checked /> 1. Movement / Outdoor Prime (3–5m)</label>
+            <label class="sensory-check-item"><input type="checkbox" checked /> 2. 60s Wait Mat / First–Then Board</label>
+            <label class="sensory-check-item"><input type="checkbox" checked /> 3. Proactive FCT Break/Help/Open Cards</label>
+            <label class="sensory-check-item"><input type="checkbox" checked /> 4. Cap Table Block at 4–5 Trials Max</label>
+          </div>
+        </div>
+
+        <div class="do-card">
+          <div class="do-header">
+            <span>DO · STEP-BY-STEP PROTOCOL &amp; 8-SECOND WAIT TIMER</span>
+            <span>LEAST-TO-MOST PROMPTING</span>
+          </div>
+          <div class="do-body">
+            <div id="runnerStepsText" style="font-size:14px; color:var(--text); display:flex; flex-direction:column; gap:8px;"></div>
+            <div class="script-callout" id="runnerScriptBox"></div>
+
+            <div class="wait-timer-box">
+              <div>
+                <div style="font-size:12.5px; font-weight:800; color:#38bdf8;">⏱️ 4–8 SECOND LATENCY &amp; PROCESSING WAIT TIMER</div>
+                <div style="font-size:11.5px; color:#cbd5e1;" id="timerStatusLabel">Deliver cue once, then wait silently for processing before prompting.</div>
+              </div>
+              <div class="timer-bar-wrap"><div class="timer-bar-fill" id="waitTimerFill"></div></div>
+              <button class="btn-timer" onclick="startWaitTimer()" id="waitTimerBtn">Start 8s Wait</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 25-Item Vocab Matrix (Visible for Vocab Lessons) -->
+        <div class="trial-logger-card" id="vocabMatrixSection" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+            <div>
+              <h3 style="font-size:16px; font-weight:800;">📋 Interactive 5-Category Vocabulary Matrix (25 Items)</h3>
+              <p style="font-size:12px; color:var(--muted);">Tap <strong>Rec</strong> (Receptive point-to) and <strong>Exp</strong> (Expressive naming).</p>
+            </div>
+            <div style="background:var(--primary-light); color:var(--primary-dark); padding:6px 12px; border-radius:10px; font-weight:800; font-size:13px;" id="vocabLiveScoreBadge"></div>
+          </div>
+          <div class="vocab-probe-grid" id="vocabProbeGridContainer"></div>
+        </div>
+
+        <!-- 5-Trial Least-to-Most Logger -->
+        <div class="trial-logger-card edit-only">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+            <div>
+              <h3 style="font-size:16.5px; font-weight:800;">🎯 5-Trial Prompt-Level &amp; Independence Logger</h3>
+              <p style="font-size:12px; color:var(--muted);">Tap highest prompt used: I (Indep), V (Visual), G (Gesture), M (Model), Vb (Verbal), P (Physical), R (Refused).</p>
+            </div>
+            <div style="font-size:13.5px; font-weight:800; color:var(--success);" id="trialSummaryScore"></div>
+          </div>
+
+          <div id="trialRowsContainer"></div>
+
+          <div style="margin-top:14px;">
+            <label style="font-size:12px; font-weight:700; color:var(--muted); display:block; margin-bottom:4px;">Session Note (Shared with VaGu, ShGu, StMa, VyNg, WiCo, MaGa, SLP/OT, AmSo)</label>
+            <input type="text" id="inputSessionNote" class="form-input" placeholder="e.g., Completed 4/5 trials independently using prompt fading; zero throwing or flopping." />
+          </div>
+
+          <button class="btn-primary" style="width:100%; justify-content:center; padding:13px; font-size:14.5px; margin-top:14px;" onclick="saveLessonSession()">
+            ✅ Save Session Log &amp; Sync Progress
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: 4-WEEK SPEECH & LANGUAGE PLAN HUB ================= -->
+    <section class="view-panel" id="panel-speech">
+      <div class="side-card" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;">
+        <div>
+          <span class="lesson-code code-speech">4-WEEK PARENT &amp; SLP CURRICULUM (PLS-5 &amp; IEP ALIGNED)</span>
+          <h2 style="font-size:21px; font-weight:800; margin-top:4px;">🗣️ VeGu 4-Week Speech &amp; Language Mastery Tracker</h2>
+          <p style="font-size:13px; color:var(--muted);">
+            Click any Day 1–5 cell below to cycle score (<code>0/5 → 1/5 → 2/5 → 3/5 → 4/5 [80%] → 5/5 [100%]</code>). Auto-saves &amp; syncs across Parents and SLP!
+          </p>
+        </div>
+        <a href="Vedant_4Week_Speech_Plan_Worksheets.pdf" target="_blank" class="btn-primary" style="background:#16a34a;">
+          📥 Open / Print 4-Week Speech Workbook PDF (6 Pages)
+        </a>
+      </div>
+
+      <div class="iep-table-wrap">
+        <table class="iep-table">
+          <thead>
+            <tr>
+              <th>Week &amp; Speech Target</th>
+              <th>Parent / SLP Method &amp; Worksheet</th>
+              <th>Day 1</th>
+              <th>Day 2</th>
+              <th>Day 3</th>
+              <th>Day 4</th>
+              <th>Day 5</th>
+              <th>3×80% Status</th>
+            </tr>
+          </thead>
+          <tbody id="speechTrackerTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Spontaneous 2-4 Word Utterance Logger -->
+      <div class="side-card">
+        <h3>
+          <span>🗣️ Spontaneous 2–4 Word Phrases Heard at Home / Clinic</span>
+          <span style="font-size:12px; color:var(--success);">IEP Language Goal 3</span>
+        </h3>
+        <div class="edit-only" style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+          <input type="text" id="newPhraseInput" class="form-input" style="flex:2; min-width:220px;" placeholder="e.g., 'Open big box', 'I see yellow car', 'Put apple in pot'..." />
+          <input type="text" id="newPhraseContextInput" class="form-input" style="flex:1; min-width:160px;" placeholder="Context (e.g., Pretend kitchen w/ VaGu)" />
+          <button class="btn-primary" onclick="addSpontaneousPhrase()">+ Log Phrase</button>
+        </div>
+        <div id="spontaneousPhrasesList" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:10px;"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: 3-RBT CLINICAL ANALYTICS & IEP DASHBOARD ================= -->
+    <section class="view-panel" id="panel-dashboard">
+      <div class="side-card" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;">
+        <div>
+          <h2 style="font-size:21px; font-weight:800;">📊 3-RBT Clinical Analytics (11/23 VyNg · 11/24 WiCo · 11/25 MaGa) &amp; IEP Mastery</h2>
+          <p style="font-size:13px; color:var(--muted);">
+            Visualizes target consistency across RBTs, method efficacy (Prompt Fading, 5-Trial Cap, Gestural Prompts, Proactive FCT), and all 15 IEP goals.
+          </p>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="Vedant_Provider_Progress_Report_Sample.pdf" target="_blank" class="btn-primary">
+            📊 Open 3-RBT Progress Report PDF
+          </a>
+          <button class="btn-outline" onclick="window.print()">🖨️ Print Dashboard</button>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="chart-card">
+          <h3>1. Acquisition Targets Across 3 RBTs (11/23 VyNg · 11/24 WiCo · 11/25 MaGa)</h3>
+          <div class="chart-sub">Shows how VyNg's Prompt Fading unlocked 67% on Houses-Cars and WiCo's 5-Trial Cap unlocked 80% on 5-Inch Coloring.</div>
+          <div id="chartRbtComparisonSVG"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>2. Behavior Frequency Across 3 RBTs (Why Proactive FCT &amp; Wait Mats Work)</h3>
+          <div class="chart-sub">11/23 (VyNg): 0 Aggression (3 demand throws handled via planned ignore + pick up). 11/24 (WiCo): 0 Aggression/Throws. 11/25 (MaGa): Lunch tangible denial spike.</div>
+          <div id="chartBehaviorSVG"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>3. 5-Category Vocabulary Receptive vs. Expressive Baseline (Fixes 0% IEP)</h3>
+          <div class="chart-sub">Live scores from Module 0.L1 + ABA Maintenance (Clothing 100%, Body Parts 100%, Foods 80%).</div>
+          <div id="chartVocabSVG"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>4. Method Efficacy Proof: NET Play vs. DTT &amp; 5-Trial vs. 6-Trial Cap</h3>
+          <div class="chart-sub">Proves why pairing 3D animal toys with 2D cards, gestural hand-washing prompts, and stopping at Trial 5 maximize independence.</div>
+          <div id="chartMethodProofSVG"></div>
+        </div>
+      </div>
+
+      <div class="iep-table-wrap">
+        <h3 style="font-size:17px; font-weight:800; margin-bottom:12px;">Integrated 3-RBT ABA &amp; 15 Annual IEP Goals Master Table</h3>
+        <table class="iep-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Program / IEP Goal</th>
+              <th>11/23 (VyNg)</th>
+              <th>11/24 (WiCo)</th>
+              <th>11/25 (MaGa)</th>
+              <th>Winning Method</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="iepGoalsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: PRINTABLE COLORED PDFs & WORKSHEETS ================= -->
+    <section class="view-panel" id="panel-worksheets">
+      <div class="side-card">
+        <h2 style="font-size:21px; font-weight:800;">🖨️ Printable Illustrated PDF Workbooks &amp; Clinical Reports</h2>
+        <p style="font-size:13px; color:var(--muted); margin-top:4px;">
+          All 4 full-color PDFs below feature custom vector illustrations, printer-friendly white backgrounds, dashed scissor cut-lines, and 4-letter short codes (<code>VeGu</code>).
+        </p>
+      </div>
+
+      <div class="pdf-download-cards">
+        <div class="pdf-file-card" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color:#f59e0b;">
+          <div>
+            <span class="lesson-code code-aba">1 · ALL KIDS FIRST ABA WORKBOOK (6 PAGES)</span>
+            <h3 style="font-size:17.5px; font-weight:800; margin-top:6px;">Vedant_ABA_Focused_Worksheets.pdf</h3>
+            <p style="font-size:12.5px; color:var(--muted); margin-top:4px;">
+              Built from 11/23 (VyNg), 11/24 (WiCo) &amp; 11/25 (MaGa): 3-RBT Data Tracker, 60s Waiting Mat, Hands on Lap &amp; FCT Cards (Help/Open/Stop/Break), Non-Identical Sorting (Houses vs. Cars), Animals NET-to-DTT Board, Array-of-3 Cards (Brushing, Chef, Mechanic, B/V/C), 5-Inch Color/Cut &amp; 6-Block Tower, and 9-Step Hand-Washing Strip.
+            </p>
+          </div>
+          <a href="Vedant_ABA_Focused_Worksheets.pdf" target="_blank" class="btn-primary" style="background:#d97706; justify-content:center;">
+            📥 Open / Print ABA-Focused PDF
+          </a>
+        </div>
+
+        <div class="pdf-file-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color:#22c55e;">
+          <div>
+            <span class="lesson-code code-speech">2 · 4-WEEK HOME SPEECH WORKBOOK (6 PAGES)</span>
+            <h3 style="font-size:17.5px; font-weight:800; margin-top:6px;">Vedant_4Week_Speech_Plan_Worksheets.pdf</h3>
+            <p style="font-size:12.5px; color:var(--muted); margin-top:4px;">
+              4-Week Parent-Led Speech Roadmap: Week 1 No-Gesture 1-Step Commands &amp; Song Fill-Ins, Week 2 Object Function Riddles &amp; 3-Word Commenting Strip ("I see yellow car"), Week 3 Spatial Prepositions (In/On/Under) &amp; Wh-Questions, Week 4 Pronouns (My/Your) &amp; 3-Step Pretend Kitchen Storyboard + 4-Week Data Grid.
+            </p>
+          </div>
+          <a href="Vedant_4Week_Speech_Plan_Worksheets.pdf" target="_blank" class="btn-primary" style="background:#16a34a; justify-content:center;">
+            📥 Open / Print 4-Week Speech PDF
+          </a>
+        </div>
+
+        <div class="pdf-file-card">
+          <div>
+            <span class="lesson-code code-m0">3 · IEP MODULE 0 BASELINE WORKBOOK (6 PAGES)</span>
+            <h3 style="font-size:17.5px; font-weight:800; margin-top:6px;">Vedant_Module0_Baseline_Worksheets.pdf</h3>
+            <p style="font-size:12.5px; color:var(--muted); margin-top:4px;">
+              Illustrated First–Then Contract &amp; 3-Option Coping Menu (Chewy, 5 Jumps, Quiet Pillow), All 25 Illustrated 5-Category Vocabulary Flashcards (Foods, Body Parts, Clothing, Classroom Items, Emotions), 5-Trial Vertical/Horizontal Stroke Mat with Blue Helper-Hand Anchor, and 6-Step Bathroom Routine.
+            </p>
+          </div>
+          <a href="Vedant_Module0_Baseline_Worksheets.pdf" target="_blank" class="btn-primary" style="justify-content:center;">
+            📥 Open / Print Module 0 Workbook PDF
+          </a>
+        </div>
+
+        <div class="pdf-file-card" style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-color:#c084fc;">
+          <div>
+            <span class="lesson-code code-se">4 · 3-RBT CLINICAL PROGRESS REPORT (2 PAGES)</span>
+            <h3 style="font-size:17.5px; font-weight:800; margin-top:6px;">Vedant_Provider_Progress_Report_Sample.pdf</h3>
+            <p style="font-size:12.5px; color:var(--muted); margin-top:4px;">
+              Publication-ready clinical graphs comparing 11/23 (VyNg), 11/24 (WiCo), and 11/25 (MaGa): Generalized Mastery Chart, Acquisition by Method Chart, Interfering Behavior Comparison, Method Proof Chart, and 15-Row Master Alignment Table with 5 clinical takeaways.
+            </p>
+          </div>
+          <a href="Vedant_Provider_Progress_Report_Sample.pdf" target="_blank" class="btn-primary" style="background:#7c3aed; justify-content:center;">
+            📊 Open / Print 3-RBT Progress Report PDF
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 6: PARENT ADMIN, CREDENTIALS & CLOUD SYNC ================= -->
+    <section class="view-panel" id="panel-admin">
+      <div class="side-card" style="border:2px solid var(--primary);">
+        <span class="lesson-code code-m0">PARENT ADMIN ONLY (VaGu &amp; ShGu)</span>
+        <h2 style="font-size:21px; font-weight:800; margin-top:4px;">🔐 Provider Login Credentials &amp; Role Permissions Manager</h2>
+        <p style="font-size:13px; color:var(--muted); margin-top:4px;">
+          Customize the Login ID and Password for each provider role below, or click <strong>"📋 Copy Login Invite"</strong> to paste login instructions into an email or message for <code>StMa</code>, <code>VyNg</code>, <code>WiCo</code>, <code>MaGa</code>, Building Bridges SLP/OT, or <code>AmSo</code>.
+        </p>
+
+        <div class="iep-table-wrap" style="margin-top:14px; padding:0; border:none; box-shadow:none;">
+          <table class="iep-table">
+            <thead>
+              <tr>
+                <th>Role Name</th>
+                <th>Team Members (Short Codes)</th>
+                <th>Login ID</th>
+                <th>Password</th>
+                <th>Access Mode</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminCredentialsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Cloud & File Sync Configuration -->
+      <div class="side-card">
+        <h3>☁️ Hybrid Cloud &amp; File Sync Configuration (GitHub / Vercel Deployment)</h3>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">
+          By default, the app saves every trial, speech check-off, and note immediately to browser <code>localStorage</code> and syncs via the built-in Vercel API route (<code>/api/sync</code>) or an optional external JSON store (e.g., Upstash Redis / Supabase / Firebase REST URL). You can also export or import a full JSON snapshot anytime.
+        </p>
+
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:14px; align-items:end; margin-bottom:16px;">
+          <div>
+            <label style="font-size:11.5px; font-weight:800; color:var(--muted); display:block; margin-bottom:4px;">Cloud Sync Endpoint URL (Default: <code>/api/sync</code> on Vercel, or paste custom REST webhook)</label>
+            <input type="text" id="cloudSyncUrlInput" class="form-input" value="/api/sync" />
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-primary" onclick="saveCloudConfig()">💾 Save &amp; Test Sync</button>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; padding-top:12px; border-top:1px solid var(--border);">
+          <button class="btn-primary" onclick="exportTeamJSON()">⬇️ Export Complete Team State (.json)</button>
+          <label class="btn-outline" style="cursor:pointer;">
+            ⬆️ Import Team State (.json)
+            <input type="file" accept=".json" style="display:none;" onchange="importTeamJSON(event)" />
+          </label>
+          <button class="btn-outline" style="color:var(--danger); border-color:#fecaca;" onclick="resetToVerifiedBaseline()">
+            🔄 Reset Local Data to 11/23–11/25 Verified Baseline
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PERSISTENT BOTTOM TEAM BAR -->
+  <footer class="bottom-team-bar">
+    <div class="bottom-bar-inner">
+      <div style="font-size:12px; font-weight:800; color:var(--primary-dark); white-space:nowrap;" id="activePersonFooterLabel">
+        📍 VaGu (Parent)
+      </div>
+      <div class="note-input-pill edit-only">
+        <span>💬</span>
+        <input type="text" id="quickTeamNoteInput" placeholder="Post a handoff note for VaGu, ShGu, StMa, VyNg, WiCo, MaGa, SLP/OT, or AmSo..." onkeydown="if(event.key==='Enter') postQuickTeamNote()" />
+      </div>
+      <button class="btn-primary edit-only" onclick="postQuickTeamNote()">Post Note</button>
+    </div>
+  </footer>
+
+  <div class="toast-msg" id="toastMsg">Saved!</div>
+
+  <script>
+    // ==================== DEFAULT ROLE ACCOUNTS (4-LETTER SHORT CODES) ====================
+    const DEFAULT_ACCOUNTS = [
+      {
+        roleKey: "admin",
+        roleTitle: "👨‍👩‍👦 Parents (Admin)",
+        loginId: "parents",
+        password: "vegu2026",
+        permission: "edit",
+        defaultTab: "queue",
+        members: ["VaGu (Parent)", "ShGu (Parent)"]
+      },
+      {
+        roleKey: "aba",
+        roleTitle: "🧩 All Kids First ABA",
+        loginId: "aba",
+        password: "aba2026",
+        permission: "edit",
+        defaultTab: "queue",
+        members: ["StMa (BCBA)", "VyNg (RBT · 11/23)", "WiCo (RBT · 11/24)", "MaGa (RBT · 11/25)"]
+      },
+      {
+        roleKey: "clinic",
+        roleTitle: "🗣️ Building Bridges SLP/OT",
+        loginId: "clinic",
+        password: "speech2026",
+        permission: "edit",
+        defaultTab: "speech",
+        members: ["Building Bridges SLP", "Building Bridges OT"]
+      },
+      {
+        roleKey: "school",
+        roleTitle: "🏫 IvyBrook Preschool",
+        loginId: "ivybrook",
+        password: "school2026",
+        permission: "edit",
+        defaultTab: "queue",
+        members: ["AmSo (Teacher)", "YaNe (Director)"]
+      },
+      {
+        roleKey: "viewer",
+        roleTitle: "🔒 District IEP Team",
+        loginId: "iep",
+        password: "view2026",
+        permission: "readonly",
+        defaultTab: "dashboard",
+        members: ["JuWi (Case Mgr)", "JeFa (IEP SLP)", "DaHa (IEP OT)", "InBj (Behavior)"]
+      }
+    ];
+
+    // ==================== VOCABULARY BASELINE (UPDATED WITH 11/23-11/25 ABA MASTERY) ====================
+    const DEFAULT_VOCAB = {
+      "Foods (5)": [
+        { word: "Apple", icon: "🍎", rec: true, exp: true },
+        { word: "Banana", icon: "🍌", rec: true, exp: true },
+        { word: "Water", icon: "💧", rec: true, exp: true },
+        { word: "Milk", icon: "🥛", rec: true, exp: false },
+        { word: "Cracker", icon: "🍪", rec: false, exp: false }
+      ],
+      "Body Parts (5)": [
+        { word: "Hands", icon: "👐", rec: true, exp: true },
+        { word: "Eyes (100% w/ VyNg)", icon: "👀", rec: true, exp: true },
+        { word: "Ears (100% ABA)", icon: "👂", rec: true, exp: true },
+        { word: "Knee (100% ABA)", icon: "🦵", rec: true, exp: true },
+        { word: "Tummy (100% ABA)", icon: "👕", rec: true, exp: true }
+      ],
+      "Clothing (5)": [
+        { word: "Shirt", icon: "👕", rec: true, exp: true },
+        { word: "Pants (100% ABA)", icon: "👖", rec: true, exp: true },
+        { word: "Hat (100% w/ VyNg)", icon: "🧢", rec: true, exp: true },
+        { word: "Shoes", icon: "👟", rec: true, exp: true },
+        { word: "Socks", icon: "🧦", rec: true, exp: false }
+      ],
+      "Everyday & Classroom (5)": [
+        { word: "Pencil (100% ABA)", icon: "✏️", rec: true, exp: true },
+        { word: "Umbrella (100% VyNg)", icon: "☂️", rec: true, exp: true },
+        { word: "Fork (100% VyNg)", icon: "🍴", rec: true, exp: true },
+        { word: "Book", icon: "📘", rec: true, exp: true },
+        { word: "Scissors", icon: "✂️", rec: false, exp: false }
+      ],
+      "Emotions (5)": [
+        { word: "Happy", icon: "😊", rec: true, exp: true },
+        { word: "Sad", icon: "😢", rec: false, exp: false },
+        { word: "Mad / Frustrated", icon: "😠", rec: false, exp: false },
+        { word: "Tired", icon: "🥱", rec: false, exp: false },
+        { word: "Excited", icon: "🤩", rec: false, exp: false }
+      ]
+    };
+
+    // ==================== 16 INTEGRATED LESSONS (ABA + 4-WEEK SPEECH + IEP MODULE 0) ====================
+    const DEFAULT_LESSONS = [
+      {
+        id: "ABA.1",
+        module: "ABA",
+        badgeClass: "code-aba",
+        domainLabel: "All Kids First ABA · Waiting & FCT",
+        title: "ABA.1: 1-Minute Delayed Reinforcement Wait Mat & Proactive FCT (Help / Open / Stop / Break)",
+        timing: "Before Snack / Lunch / Tangibles · 4 Trials",
+        status: "Logged ✓ (100% w/ VyNg & WiCo)",
+        assignedTo: "StMa / VyNg / WiCo / MaGa + Home",
+        iepGoal: "ABA Waiting & FCT Protocol: Wait 1 min for delayed reinforcer (100% on 11/23 & 11/24; 50% on 11/25); Mand Help/Open/Stop/Animals at 100%.",
+        summary: "Prevents the 11/25 lunch tangible-denial tantrum. Place the 60-second Star Wait Mat (ABA Sheet 1) on the table when any preferred item is delayed.",
+        script: "Point to 60s Wait Mat: 'First Hands on Lap & Wait 60s (count 6 stars) → Then your toy/snack!'",
+        steps: [
+          "1. Place ABA Sheet 1 (60s Wait Mat + FCT Break/Help/Open cards) on the table.",
+          "2. Prompt 'Hands on Lap' (86%–100% mastered across all 3 RBTs).",
+          "3. Tap 1 gold star every 10 seconds up to 60s, then immediately deliver the preferred tangible.",
+          "4. Proactively prompt touching 'Break Please' or 'Open' before frustration escalates."
+        ],
+        featured: true,
+        trials: ["I", "I", "I", "V", "I"]
+      },
+      {
+        id: "ABA.2",
+        module: "ABA",
+        badgeClass: "code-aba",
+        domainLabel: "All Kids First ABA · Sorting & NET-to-DTT",
+        title: "ABA.2: Non-Identical Sorting ('Houses vs. Cars' w/ Prompt Fading) & 'Animals' 3D-to-2D Transfer",
+        timing: "Morning Table Block · 4–5 Trials",
+        status: "Logged ✓ (67% Sort w/ VyNg)",
+        assignedTo: "VyNg / WiCo / MaGa + VaGu/ShGu",
+        iepGoal: "ABA Acquisition: Sort non-identical Houses vs. Cars (66.7% w/ VyNg prompt fading vs 25% WiCo / 0% MaGa); Bridge 100% 3D animal toy manding to 2D cards.",
+        summary: "Uses VyNg's winning 11/23 method: Errorless Teaching + immediate within-block Prompt Fading on ABA Sheet 2 (Blue House Zone vs. Orange Car Zone).",
+        script: "Hand 1 card at a time: 'Sort house' / 'Sort car'. Fade from positional/gestural point to independent within 4 trials.",
+        steps: [
+          "1. Lay out ABA Sheet 2 (Zone 1: Houses, Zone 2: Cars) and the 6 non-identical cut-out cards.",
+          "2. Trial 1: Errorless model/gestural point to correct zone. Trials 2–4: Fade gesture so VeGu places independently.",
+          "3. For Animals: Let VeGu request his favorite 3D animal toy ('100% mastered'), then immediately place the 3D toy onto the matching 2D Animal card!"
+        ],
+        featured: true,
+        trials: ["G", "I", "I", "V", "I"]
+      },
+      {
+        id: "ABA.3",
+        module: "ABA",
+        badgeClass: "code-aba",
+        domainLabel: "All Kids First ABA · Fine Motor & Block Imitation",
+        title: "ABA.3: 'Color in 5-Inch Box' (5-Trial Cap!), '5-Inch Cut on Line' (3 Checkpoints) & '6-Block Tower'",
+        timing: "Morning Fine-Motor · Max 5 Trials!",
+        status: "Ready · ABA Sheet 4",
+        assignedTo: "ABA Team + Building Bridges OT",
+        iepGoal: "ABA Fine Motor: Color in 5-inch space (80% 4/5 w/ WiCo vs 0/6 w/ VyNg); 5-inch cut on line (0% all 3 days → fade physical); 6-Block stack (33.3% 2/6).",
+        summary: "Proves the 5-Trial Cap rule: never run a 6th trial on coloring! For 5-inch cutting (0% across all 3 RBTs), use the 3 checkpoint dots (1.5\", 3\", 5\") on ABA Sheet 4.",
+        script: "Coloring: 'Color inside the blue box' (Stop at 5!). Cutting: 'Cut to Yellow Dot 1... Dot 2... Red STOP!'",
+        steps: [
+          "1. Use ABA Sheet 4. Run 4–5 trials of 'Color in 5-Inch Space' inside the thick blue border.",
+          "2. For '5-Inch Cut on Line', guide helper hand onto paper and fade from physical to gestural at the 1.5\", 3\", and 5\" checkpoint dots.",
+          "3. For 'Blocks' (2/6 independent), let VeGu stack Blocks 1 & 2, then use Forward Chaining + tap prompt on Block 3."
+        ],
+        featured: false,
+        trials: ["I", "I", "G", "P", "I"]
+      },
+      {
+        id: "ABA.4",
+        module: "ABA",
+        badgeClass: "code-aba",
+        domainLabel: "All Kids First ABA · Self-Care Task Analysis",
+        title: "ABA.4: 9-Step 'Wash Hands' Task Analysis (Gestural Prompting) & 'Brush Upper Teeth'",
+        timing: "Bathroom & Meal Routines · 9 Steps",
+        status: "Logged ✓ (78% 7/9 w/ WiCo)",
+        assignedTo: "WiCo / VyNg / MaGa + VaGu/ShGu",
+        iepGoal: "ABA Task Analysis: Wash Hands 9-step chain (77.8% [7/9] & 66.7% [6/9] w/ WiCo gestural prompting); Brush Upper Teeth (50% 1/2 w/ WiCo).",
+        summary: "Tape ABA Sheet 5 above the sink. Point silently to steps 1–9 (gestural prompt) instead of physical hand-over-hand!",
+        script: "Point to 9-Step Strip above sink: 1. Water On → 2. Wet → 3. Soap → 4. Palms → 5. Backs → 6. Rinse → 7. Tap Off → 8. Towel → 9. Dry!",
+        steps: [
+          "1. Tape the 9-Step Illustrated Strip (ABA Sheet 5) at eye level by the sink.",
+          "2. Use Gestural Prompting (point to the next picture step) rather than physical prompting.",
+          "3. For Brush Upper Teeth, break into 3 quick 3-second counts: Top-Left (1-2-3), Top-Front ('EEEE!'), Top-Right (1-2-3)."
+        ],
+        featured: false,
+        trials: ["I", "I", "I", "G", "I"]
+      },
+      {
+        id: "SP.W1",
+        module: "SPEECH",
+        badgeClass: "code-speech",
+        domainLabel: "4-Week Speech Plan · Week 1",
+        title: "SP.W1: 'Hands-in-Pockets' 1-Step Verbal Directions (No Gestures!), Song Fill-Ins & 2-Word Mands",
+        timing: "Daily Home Speech · 10 mins",
+        status: "Ready · Speech Page 2",
+        assignedTo: "VaGu & ShGu + Building Bridges SLP",
+        iepGoal: "IEP Language Goals 1, 3, 4: Follow 1-step verbal directions without gestures (80%); imitate song actions/words (80%); 2-word requests ('Open box').",
+        summary: "Week 1 of the Parent Speech Plan. Adults keep hands neutral (no pointing!) for 8 seconds on 5 commands, pause 8s in songs, and expand 'Open/Help' to 2 words.",
+        script: "Hands at sides: 'Sit on chair' / 'Give me book' / 'Throw in trash' (Wait 8s!). Snack: 'Open box!'",
+        steps: [
+          "1. Open Speech Plan PDF Page 2.",
+          "2. Run the 5 'Hands-in-Pockets' commands with zero pointing gestures and an 8-second wait.",
+          "3. Sing 3 pause songs ('Ready, set... GO!') and practice 5 trials of 'Open + [Box/Bag]'."
+        ],
+        featured: false,
+        trials: ["I", "I", "G", "I", "I"]
+      },
+      {
+        id: "SP.W2",
+        module: "SPEECH",
+        badgeClass: "code-speech",
+        domainLabel: "4-Week Speech Plan · Week 2",
+        title: "SP.W2: Object Function Riddles ('What Do We Eat/Draw With?') & 3-Word Commenting ('I see yellow car')",
+        timing: "Daily Home Speech · 10 mins",
+        status: "Ready · Speech Page 3",
+        assignedTo: "VaGu & ShGu + Building Bridges SLP",
+        iepGoal: "PLS-5 Receptive & Expressive Gaps: Understand object function/use, recognize actions, and use 2–3 word modifier/verb combinations to comment.",
+        summary: "Week 2 builds directly on his 100% ABA mastery of Fork, Umbrella, Pencil, Brushing, Kick, Small, and Yellow!",
+        script: "Lay out 3 cards from Speech Page 3: 'Which one do we EAT with?' → 'Fork!' → Model: 'Eat with fork!'",
+        steps: [
+          "1. Cut out the 6 Object Function Riddle cards on Speech Page 3 (Fork, Cup, Umbrella, Pencil, Toothbrush, Ball).",
+          "2. Ask the function riddle ('What keeps us dry in the rain?') in an array of 3.",
+          "3. Use the bottom 3-step strip to practice commenting: 'I see + [yellow / small / big] + [car / ball]'."
+        ],
+        featured: false,
+        trials: ["I", "V", "I", "I", "G"]
+      },
+      {
+        id: "SP.W3",
+        module: "SPEECH",
+        badgeClass: "code-speech",
+        domainLabel: "4-Week Speech Plan · Week 3",
+        title: "SP.W3: Spatial Prepositions (IN, ON, UNDER) & Answering 'What' vs. 'Where' Questions",
+        timing: "Daily Home Speech · 10 mins",
+        status: "Ready · Speech Page 4",
+        assignedTo: "VaGu & ShGu + Building Bridges SLP",
+        iepGoal: "PLS-5 Receptive & Expressive Gaps: Spatial concepts (In/On/Under) and answering 'What is this?', 'What is he doing?', and 'Where is it?'.",
+        summary: "Week 3 uses a real 3D animal toy + a box and chair paired with Speech Page 4's illustrated IN / ON / UNDER mats.",
+        script: "Place dog IN box: 'WHERE is the dog?' (Wait 8s) → 'In box!' Then ask: 'WHAT is the dog doing?' → 'Jumping!'",
+        steps: [
+          "1. Receptive: Ask VeGu to put his favorite animal toy IN the box, ON the table, or UNDER the table.",
+          "2. Expressive: Point to Speech Page 4 and ask 'WHERE is the ball?' ('In box', 'On table', 'Under table').",
+          "3. Run the 5-trial 'What' vs. 'Where' contrast drill."
+        ],
+        featured: false,
+        trials: ["I", "V", "G", "I", "V"]
+      },
+      {
+        id: "SP.W4",
+        module: "SPEECH",
+        badgeClass: "code-speech",
+        domainLabel: "4-Week Speech Plan · Week 4",
+        title: "SP.W4: Pronouns ('My Turn / Your Turn') & 3-Step Pretend Kitchen Play Script (3–4 Word Speech)",
+        timing: "Afternoon Play · 10 mins",
+        status: "Ready · Speech Page 5",
+        assignedTo: "VaGu & ShGu + AmSo (IvyBrook)",
+        iepGoal: "PLS-5 Pronouns/Possessives & IEP Social Goal 3: Use My/Your pronouns, sequence 3 play actions, and take 3 reciprocal turns at 80%.",
+        summary: "Week 4 combines his love for pretend kitchen play ('Chef' 67% in ABA) with a 3-step visual cooking storyboard.",
+        script: "Tap chest: 'MY turn to stir!' Point to parent: 'YOUR turn to stir!' Follow 3 steps: 'Put apple in pot → Stir hot soup → Eat with spoon!'",
+        steps: [
+          "1. Place Speech Page 5 next to his pretend kitchen set or ball.",
+          "2. Practice 3 reciprocal turns tapping the 'MY TURN' and 'YOUR TURN' pronoun cards.",
+          "3. Model the 3-step cooking sequence in 3–4 word phrases."
+        ],
+        featured: false,
+        trials: ["I", "I", "V", "I", "G"]
+      },
+      {
+        id: "M0.L1",
+        module: "M0",
+        badgeClass: "code-m0",
+        domainLabel: "IEP Module 0 · Vocabulary Probe",
+        title: "M0.L1: 5-Category Vocabulary Matrix (25 Items: Foods, Body Parts, Clothing, Classroom, Emotions)",
+        timing: "Morning Probe · 5 mins",
+        status: "Logged ✓ (76% Rec / 68% Exp)",
+        assignedTo: "VaGu & ShGu + JeFa / Building Bridges SLP",
+        iepGoal: "IEP Language Goal 2: Receptively & expressively identify 5 items each in foods, body parts, clothing, classroom items, emotions (80%, 3 sessions).",
+        summary: "Incorporates 100% ABA mastery of Body Parts (Eyes, Ears, Knee, Tummy, Hand), Clothing (Pants, Hat), and Objects (Pencil, Umbrella, Fork).",
+        script: "Use Module 0 PDF Pages 3 & 4. Focus teaching trials on Emotions (Sad, Mad, Tired, Excited) and Scissors.",
+        steps: [
+          "1. Open the 25-item interactive matrix below.",
+          "2. Since Body Parts and Clothing are at 100% in ABA, focus table trials on Emotions and Scissors."
+        ],
+        featured: false,
+        trials: ["I", "I", "I", "V", "I"]
+      },
+      {
+        id: "M0.L2",
+        module: "M0",
+        badgeClass: "code-m0",
+        domainLabel: "IEP Module 0 · Receptive Probe",
+        title: "M0.L2: 1-Step Verbal Directions Without Gestures Probe",
+        timing: "Morning Probe · 4 mins",
+        status: "Logged ✓ (80% Sit/Stand)",
+        assignedTo: "ABA Team + Home",
+        iepGoal: "IEP Language Goal 1: Follow routine 1-step verbal directions without gestural cues (80%, 3 sessions).",
+        summary: "ABA data confirms 'Sit down' (100%), 'Stand up' (100%), and 'Everybody...' group directions (100%) are mastered!",
+        script: "Test novel 1-step object directions without pointing ('Give me book', 'Throw in trash', 'Get shoes').",
+        steps: [
+          "1. Keep hands neutral at sides.",
+          "2. Deliver direction once and start the 8-second wait timer."
+        ],
+        featured: false,
+        trials: ["I", "I", "G", "I", "I"]
+      },
+      {
+        id: "M0.L3",
+        module: "M0",
+        badgeClass: "code-m0",
+        domainLabel: "IEP Module 0 · Pre-Writing Probe",
+        title: "M0.L3: 5-Trial Vertical & Horizontal Stroke Mat (With Blue Helper-Hand Anchor)",
+        timing: "Morning Table Work · 3 mins",
+        status: "Ready · Module 0 Page 5",
+        assignedTo: "Building Bridges OT + DaHa + Home",
+        iepGoal: "IEP Fine Motor Goals 1–3: Imitate vertical/horizontal strokes (4/5), emerging tripod grasp, helper hand stabilization (70%).",
+        summary: "Uses Module 0 PDF Page 5 (Blue Helper-Hand box on left, 3 Vertical and 2 Horizontal Green GO → Red STOP lanes).",
+        script: "'Helper hand flat on the blue handprint... start at Green GO, zip down to Red STOP!'",
+        steps: [
+          "1. Warm up hands with 60s play-dough squeeze.",
+          "2. Place non-dominant hand on the Blue Helper-Hand Anchor and run 5 strokes with a short chunky crayon."
+        ],
+        featured: false,
+        trials: ["I", "V", "G", "I", "V"]
+      },
+      {
+        id: "M0.L4",
+        module: "M0",
+        badgeClass: "code-m0",
+        domainLabel: "IEP Module 0 · AAC / Core Strip",
+        title: "M0.L4: Low-Tech Core Sentence Strip ('I WANT + [Card]' & 'LET'S GO + [Place]')",
+        timing: "Snack & Transitions · 5 Trials",
+        status: "Logged ✓ (100% Animal Manding)",
+        assignedTo: "Home + ABA + SLP",
+        iepGoal: "IEP Language Goal 3 & AT Trial: Use 2–3 word utterances (spoken or pictures) to request and comment (80%).",
+        summary: "Pairs his PECS board / Core Strip (Module 0 Page 4) with spoken 2–3 word phrases.",
+        script: "Guide point left-to-right: 'I want + [apple / dinosaur]' or 'Let's go + [outside / trampoline]'.",
+        steps: [
+          "1. Keep Module 0 Page 4 Sentence Strips on the table.",
+          "2. Reinforce immediately when VeGu points and vocalizes the 2–3 word combination."
+        ],
+        featured: false,
+        trials: ["I", "I", "I", "V", "I"]
+      },
+      {
+        id: "M0.L5",
+        module: "M0",
+        badgeClass: "code-m0",
+        domainLabel: "IEP Module 0 · Bathroom & Dressing Chain",
+        title: "M0.L5: 6-Step Bathroom Routine & 7-Step Pants Dressing Chain",
+        timing: "Daily Bathroom Routine",
+        status: "Logged ✓ (100% Pants Up · 43% Full Pants)",
+        assignedTo: "Home + ABA + IvyBrook",
+        iepGoal: "IEP Daily Living Goals: Toilet/dressing independence & requesting bathroom with fading prompts.",
+        summary: "ABA data shows 'Pants Up' single step is 100% across all 3 days, while full 7-step 'Pants' is 42.9% (3/7) and Bathroom Manding is emerging.",
+        script: "Point to Bathroom Card before transition: 'Say Bathroom → Pants down → Sit → Wipe → Pants up → Wash hands!'",
+        steps: [
+          "1. Prompt FCT 'Bathroom' card touch prior to scheduled sit.",
+          "2. Use Module 0 Page 6 (6-Step Bathroom Strip) and ABA Sheet 5 (9-Step Hand-Washing Strip)."
+        ],
+        featured: false,
+        trials: ["I", "I", "G", "I", "V"]
+      },
+      {
+        id: "FM.1",
+        module: "FM",
+        badgeClass: "code-fm",
+        domainLabel: "Track 2 · Multisensory Pre-Writing",
+        title: "FM.1: Sensory Tray Strokes (Rice / Shaving Cream) → Crayon Transfer",
+        timing: "Morning OT Block · 5 Trials",
+        status: "Ready",
+        assignedTo: "Building Bridges OT + Home",
+        iepGoal: "IEP Fine Motor Goal 1: Imitate vertical and horizontal strokes using a multisensory approach (4/5 across 3 sessions).",
+        summary: "2 finger strokes in tactile tray followed by 3 chunky-crayon strokes on Module 0 Page 5.",
+        script: "'Finger down in the rice... now crayon down from Green GO to Red STOP!'",
+        steps: [
+          "1. Trials 1–2: Finger tracing in sensory tray.",
+          "2. Trials 3–5: Crayon tracing on Page 5 Stroke Mat."
+        ],
+        featured: false,
+        trials: ["I", "I", "V", "I", "G"]
+      },
+      {
+        id: "FM.2",
+        module: "FM",
+        badgeClass: "code-se",
+        domainLabel: "Track 3 & 4 · Self-Regulation & Coping",
+        title: "FM.2: Choosing a Pre-Taught Coping Strategy & Accepting a Prompted Break",
+        timing: "Across Full Day · 5 Trials",
+        status: "Logged ✓ (0 Aggression on 11/23 & 11/24)",
+        assignedTo: "All Team Members",
+        iepGoal: "IEP Social-Emotional Goals 1 & 5: Choose pre-taught coping strategy (80%); accept prompted break (80%).",
+        summary: "Proactive FCT break manding on 11/24 (WiCo) kept aggression, flopping, and throwing at 0!",
+        script: "'Time for a calm break — pick Chewy Tool, 5 Jumps, or Quiet Pillow!'",
+        steps: [
+          "1. Keep Module 0 Page 2 (3-Option Coping Menu) visible.",
+          "2. Prompt a break BEFORE frustration escalates."
+        ],
+        featured: false,
+        trials: ["I", "I", "V", "I", "I"]
+      },
+      {
+        id: "FM.3",
+        module: "FM",
+        badgeClass: "code-se",
+        domainLabel: "Track 5 · Group Circle & Line Transitions",
+        title: "FM.3: 20-Min Circle Time ('Everybody...' 100%) & 'Staying in Line' (4-Second Latency Rule)",
+        timing: "Preschool Circle & Transitions",
+        status: "Logged ✓ (100% Circle · 25% Line)",
+        assignedTo: "AmSo (IvyBrook) + WiCo / VyNg / MaGa",
+        iepGoal: "IEP Social-Emotional Goal 4 & ABA Line Target: Remain in group area 10+ mins (achieved 20 mins!); Stay in line with verbal prompt.",
+        summary: "Honor VeGu's 4-second processing latency when lining up (noted by WiCo on 11/24) and let him hold a fidget spinner (100% mastered) while walking.",
+        script: "'Everybody line up!' → Wait 4–6 seconds silently → Hand fidget spinner for hallway walk.",
+        steps: [
+          "1. During circle time, use songs + peer modeling ('Everybody...' is 100% mastered!).",
+          "2. On hallway transitions, give the cue once, wait 4–6 seconds for initiation, and maintain close proximity."
+        ],
+        featured: false,
+        trials: ["I", "I", "V", "G", "I"]
+      }
+    ];
+
+    // ==================== 4-WEEK SPEECH TRACKER ROWS ====================
+    const DEFAULT_SPEECH_ROWS = [
+      { id: "W1.A", week: "Week 1", title: "1-Step Verbal Directions (No Gestures!)", method: "Hands at sides + 8s Wait (Speech Page 2)", days: [4, 4, 5, null, null] },
+      { id: "W1.B", week: "Week 1", title: "Action Song Fill-In & Joint Attention", method: "8s Melodic Pause ('Ready, set... GO!')", days: [5, 5, 4, null, null] },
+      { id: "W1.C", week: "Week 1", title: "2-Word Functional Mands ('Open box', 'Help shoe')", method: "Clear snap box + Forced choice (Page 2)", days: [5, 4, 4, null, null] },
+      { id: "W2.A", week: "Week 2", title: "Object Function Riddles ('What do we eat/draw with?')", method: "Array of 3 Riddle Cards (Speech Page 3)", days: [4, 4, null, null, null] },
+      { id: "W2.B", week: "Week 2", title: "2–3 Word Verb/Modifier ('Kick big ball', 'I see yellow car')", method: "3-Step Commenting Strip (Speech Page 3)", days: [3, 4, null, null, null] },
+      { id: "W3.A", week: "Week 3", title: "Spatial Prepositions (IN, ON, UNDER — Rec & Exp)", method: "3D Animal Toy + Box/Chair + Page 4 Mat", days: [3, null, null, null, null] },
+      { id: "W3.B", week: "Week 3", title: "Answering 'What' vs. 'Where' Contrast Questions", method: "5-Trial Contrast Drill (Speech Page 4)", days: [2, null, null, null, null] },
+      { id: "W4.A", week: "Week 4", title: "Pronouns & Possessives ('My turn / Your turn')", method: "Chest Tap + Partner Point (Speech Page 5)", days: [3, null, null, null, null] },
+      { id: "W4.B", week: "Week 4", title: "3-Step Pretend Kitchen Sequence & 3–4 Word Combos", method: "Cooking Storyboard ('Put apple in pot')", days: [4, null, null, null, null] }
+    ];
+
+    const DEFAULT_PHRASES = [
+      { phrase: '"I want dinosaur!"', context: "Spontaneous animal toy manding (100% 5/5 in ABA)", author: "MaGa (RBT · 11/25)" },
+      { phrase: '"Open box!" / "Help!"', context: "FCT requesting during home ABA session (100%)", author: "VyNg (RBT · 11/23)" },
+      { phrase: '"Kick ball!" / "Roll car!"', context: "30m outdoor play & motor directive (100%)", author: "WiCo (RBT · 11/24)" },
+      { phrase: '"Ready, set, GO!"', context: "Trampoline & circle time action song fill-in", author: "VaGu (Parent)" }
+    ];
+
+    const DEFAULT_FEED = [
+      { author: "MaGa (RBT · 11/25)", time: "11/25 · 3:08 PM", badge: "ABA", text: "100% on Spontaneous Animal Toy Manding (5/5), 'Everybody...' circle time (2/2), Letters V (4/4) & C (5/5), Help (3/3), Stop (2/2), Small (2/2), Brushing (4/4), Mechanic (1/1). Note: 10m tantrum at lunch when preferred tangible was denied -> use 60s Visual Wait Mat." },
+      { author: "WiCo (RBT · 11/24)", time: "11/24 · 3:02 PM", badge: "ABA", text: "ZERO aggression, 0 flopping, 0 throwing! Participated in 20m circle time (100% 'Everybody...', 100% Hands on Lap), 100% Wait 1 Min, 80% (4/5) Color in 5-Inch Box, 77.8% (7/9) Wash Hands with gestural prompting, and 30m outdoor ball/bike play. Note: 4s latency before lining up." },
+      { author: "VyNg (RBT · 11/23)", time: "11/23 · 3:00 PM", badge: "ABA", text: "Home session: 0 aggression, 0 flopping, 0 elopement! Prompt fading unlocked 66.7% (2/3) on Houses-Cars non-identical sorting! 100% on Weather, Letter B (6/6), V, C, Circle, Triangle, Yellow, Umbrella, Fork, Hat, Pants, Eyes, Ears, Hand, Tummy, Open, Help, Kick Ball, Roll Car." }
+    ];
+
+    const MASTER_TABLE_DATA = [
+      { cat: "Circle Time", goal: "Weather (Indep), Group 'Everybody...' (100%), 20m Circle Sit", s23: "100% Weather/Sit", s24: "100% (1/1) 20m", s25: "100% (2/2)", meth: "Music + Peer/Adult Model", stat: "MET (3/3 Days)" },
+      { cat: "Regulation", goal: "'Hands on Lap' Table & Circle Readiness", s23: "100% (4/4)", s24: "100% (4/4)", s25: "85.7% (6/7)", meth: "DRA + Visual Cue Card", stat: "MET (3/3 Days)" },
+      { cat: "Waiting", goal: "Wait 1 Min for Delayed Reinforcer & Wait w/ Verbal Prompt", s23: "100% (2/2 Both)", s24: "100% (1m) / 56%", s25: "50% (1m) / 60%", meth: "60s Visual Star Mat (ABA Sheet 1)", stat: "Met 2 of 3 Days" },
+      { cat: "FCT / Mand", goal: "Animal Toys by Name (100%) + 'Help', 'Open', 'Stop', 'Break'", s23: "100% Anim/Help/Open", s24: "Proactive Break FCT", s25: "100% Anim/Help/Stop", meth: "NET + Proactive FCT PECS", stat: "MET (100% All 3)" },
+      { cat: "Actions/Play", goal: "'Brushing' (Array of 3), 'Playing', 'Ball-Kick', 'Car-Roll'", s23: "100% (5/5 Brush)", s24: "100% (9/9 Brush)", s25: "100% (4/4 Brush)", meth: "3-Card Array + Outdoor Play", stat: "MET (3/3 Days)" },
+      { cat: "Letters/Shapes", goal: "Letters B (6/6), V (4/4), C (5/5) + Circle, Triangle, Yellow, Small", s23: "100% B,V,C,Circ,Tri", s24: "66.7% Yellow", s25: "100% V, C, Small", meth: "Errorless -> Least-to-Most", stat: "MET (100%)" },
+      { cat: "Clothing/Obj", goal: "Clothing (100%), Hat, Pants, Pants Up, Umbrella, Fork, Pencil", s23: "100% All 7 Items", s24: "100% Cloth/PantsUp", s25: "100% PantsUp/Pencil", meth: "Object Function (Speech Wk 2)", stat: "MET (3/3 Days)" },
+      { cat: "Helpers/Body", goal: "Mechanic (100%), Chef (67%) + Eyes, Ears, Hand, Tummy, Knee", s23: "100% Mech/Eyes/Ears", s24: "100% Knee (3/3)", s25: "100% Mech / 67% Chef", meth: "Array of 3 + Mirror Game", stat: "MET (67%–100%)" },
+      { cat: "Sorting (ABA)", goal: "Non-Identical Sorting: 'Houses vs. Cars'", s23: "66.7% (2/3)", s24: "25% (1/4)", s25: "0% (0/4)", meth: "Prompt Fading (VyNg Method!)", stat: "67% w/ Fading" },
+      { cat: "Animals DTT", goal: "'Animals' 2D Cards (vs. 100% 3D Animal Toy Requesting)", s23: "100% 3D Toy Mand", s24: "60% (3/5 Cards)", s25: "20% (1/5 Cards)", meth: "Pair 3D Toy w/ 2D Card (Sheet 2)", stat: "In Progress" },
+      { cat: "Fine Motor", goal: "'Color in 5-Inch Space' (Proves 5-Trial Fatigue Rule!)", s23: "0% (0/6 Trials!)", s24: "80% (4/5 Trials!)", s25: "25% (1/4 Trials)", meth: "Cap at 4–5 Trials (Avoid 6th!)", stat: "80% at 5 Trials" },
+      { cat: "Fine Motor", goal: "'5-Inch Cut on Line' (0% All 3 Days) & '6-Block Tower' (33%)", s23: "0% (0/5 Cut)", s24: "0% (0/4 Cut)", s25: "0% Cut / 33% Blocks", meth: "3 Checkpoint Dots + Forward Chain", stat: "Needs Support" },
+      { cat: "Self-Care TA", goal: "'Wash Hands' (9-Step Task Analysis) & 'Brush Upper Teeth'", s23: "Targeted", s24: "77.8% (7/9) Wash", s25: "22.2% Wash / 0% Teeth", meth: "Gestural Prompt on 9-Step Strip", stat: "78% w/ Gestures" },
+      { cat: "Transitions", goal: "'Staying in Line' (With Verbal Prompts — 4s Latency Note)", s23: "0 Elopement", s24: "25% (1/4) · 4s Wait", s25: "Targeted", meth: "Wait 4–6s Latency + Fidget Spinner", stat: "In Progress" }
+    ];
+
+    // ==================== STATE MANAGEMENT ====================
+    let appState = {
+      accounts: JSON.parse(JSON.stringify(DEFAULT_ACCOUNTS)),
+      vocab: JSON.parse(JSON.stringify(DEFAULT_VOCAB)),
+      lessons: JSON.parse(JSON.stringify(DEFAULT_LESSONS)),
+      speechRows: JSON.parse(JSON.stringify(DEFAULT_SPEECH_ROWS)),
+      phrases: JSON.parse(JSON.stringify(DEFAULT_PHRASES)),
+      teamFeed: JSON.parse(JSON.stringify(DEFAULT_FEED)),
+      cloudSyncUrl: "/api/sync"
+    };
+
+    let currentUser = null;
+    let activePerson = "VaGu (Parent)";
+    let activeLessonIndex = 0;
+    let activeFilter = "all";
+    let waitTimerInterval = null;
+
+    function loadState() {
+      const saved = localStorage.getItem("team_vegu_hub_state_v2");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          appState = Object.assign(appState, parsed);
+        } catch (e) {}
+      }
+      const savedSession = sessionStorage.getItem("team_vegu_logged_user");
+      if (savedSession) {
+        try {
+          const u = JSON.parse(savedSession);
+          const match = appState.accounts.find(a => a.roleKey === u.roleKey);
+          if (match) applyLoggedInUser(match);
+        } catch (e) {}
+      }
+    }
+
+    function saveState(pushCloud = true) {
+      localStorage.setItem("team_vegu_hub_state_v2", JSON.stringify(appState));
+      if (pushCloud) pushToCloud();
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toastMsg");
+      t.textContent = msg;
+      t.style.display = "block";
+      setTimeout(() => { t.style.display = "none"; }, 2600);
+    }
+
+    // ==================== AUTHENTICATION & ROLES ====================
+    function quickFillLogin(loginId) {
+      const acc = appState.accounts.find(a => a.loginId === loginId);
+      if (!acc) return;
+      document.getElementById("loginIdInput").value = acc.loginId;
+      document.getElementById("loginPasswordInput").value = acc.password;
+      document.getElementById("loginErrorBox").style.display = "none";
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const idVal = document.getElementById("loginIdInput").value.trim().toLowerCase();
+      const pwVal = document.getElementById("loginPasswordInput").value.trim();
+      const acc = appState.accounts.find(a => a.loginId.toLowerCase() === idVal && a.password === pwVal);
+      if (!acc) {
+        document.getElementById("loginErrorBox").style.display = "block";
+        return;
+      }
+      document.getElementById("loginErrorBox").style.display = "none";
+      applyLoggedInUser(acc);
+      showToast(`Signed in as ${acc.roleTitle}`);
+    }
+
+    function applyLoggedInUser(acc) {
+      currentUser = acc;
+      sessionStorage.setItem("team_vegu_logged_user", JSON.stringify(acc));
+      document.getElementById("loginOverlay").classList.add("hidden");
+      document.getElementById("activeRoleBadge").textContent = acc.roleTitle;
+
+      // Read-only mode check
+      document.body.classList.toggle("is-readonly", acc.permission === "readonly");
+
+      // Show Admin tab only for Parent Admin
+      document.getElementById("tab-admin").style.display = acc.roleKey === "admin" ? "inline-flex" : "none";
+
+      // Populate active person initials dropdown
+      const sel = document.getElementById("activePersonSelect");
+      sel.innerHTML = acc.members.map(m => `<option value="${m}">${m}</option>`).join("");
+      updateActivePerson(acc.members[0]);
+
+      renderAll();
+      switchTab(acc.defaultTab || "queue");
+    }
+
+    function logoutUser() {
+      currentUser = null;
+      sessionStorage.removeItem("team_vegu_logged_user");
+      document.getElementById("loginPasswordInput").value = "";
+      document.getElementById("loginOverlay").classList.remove("hidden");
+    }
+
+    function updateActivePerson(val) {
+      activePerson = val;
+      document.getElementById("activePersonFooterLabel").textContent = "📍 " + val;
+    }
+
+    // ==================== NAVIGATION & RENDER ====================
+    function switchTab(tabId) {
+      document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+      document.getElementById("panel-" + tabId).classList.add("active");
+      document.getElementById("tab-" + tabId).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderAll() {
+      renderQueue();
+      renderTeamFeed();
+      loadLessonIntoRunner(activeLessonIndex);
+      renderVocabProbeGrid();
+      renderSpeechTracker();
+      renderSpontaneousPhrases();
+      renderDashboardCharts();
+      renderIEPTable();
+      renderAdminCredentialsTable();
+      document.getElementById("cloudSyncUrlInput").value = appState.cloudSyncUrl || "/api/sync";
+    }
+
+    // ==================== TAB 1: QUEUE ====================
+    function filterLessons(mod, btn) {
+      activeFilter = mod;
+      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      renderQueue();
+    }
+
+    function renderQueue() {
+      const container = document.getElementById("lessonQueueContainer");
+      const filtered = appState.lessons.filter(l => activeFilter === "all" || l.module === activeFilter);
+      container.innerHTML = filtered.map(lesson => {
+        const realIdx = appState.lessons.findIndex(x => x.id === lesson.id);
+        const isDone = lesson.status.includes("Logged");
+        return `
+          <div class="lesson-card ${lesson.featured ? 'featured' : ''}">
+            <div class="lesson-top">
+              <div class="lesson-id-group">
+                <div class="domain-icon">${isDone ? '✓' : '▶'}</div>
+                <div>
+                  <span class="lesson-code ${lesson.badgeClass}">${lesson.domainLabel}</span>
+                  <div class="lesson-title">${lesson.title}</div>
+                </div>
+              </div>
+            </div>
+            <div class="lesson-meta">
+              <span>🕒 ${lesson.timing}</span>
+              <span>• <span class="status-dot ${isDone ? '' : 'prep'}"></span> ${lesson.status}</span>
+              <span>• 👥 ${lesson.assignedTo}</span>
+            </div>
+            <div class="lesson-preview-box">
+              <div><strong>Protocol &amp; Rationale:</strong> ${lesson.summary}</div>
+              <div style="margin-top:5px; color:#0b4f9e; font-weight:700;">🗣️ Script: "${lesson.script}"</div>
+            </div>
+            <div class="roo-actions">
+              <button class="btn-roo-assign edit-only" onclick="assignLessonToMe(${realIdx})">Assign to ${activePerson.split(' ')[0]}</button>
+              <button class="btn-roo-teach" onclick="openLessonRunner(${realIdx})">▶️ Open Runner &amp; Trials</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const doneCount = appState.lessons.filter(l => l.status.includes("Logged")).length;
+      document.getElementById("completedCountText").textContent = `${doneCount} of ${appState.lessons.length} programs logged`;
+      document.getElementById("queueCountBadge").textContent = appState.lessons.length;
+    }
+
+    function assignLessonToMe(idx) {
+      appState.lessons[idx].assignedTo = activePerson;
+      saveState();
+      renderQueue();
+      showToast(`Assigned ${appState.lessons[idx].id} to ${activePerson}`);
+    }
+
+    function openLessonRunner(idx) {
+      loadLessonIntoRunner(idx);
+      switchTab("runner");
+    }
+
+    // ==================== TAB 2: RUNNER ====================
+    function loadLessonIntoRunner(idx) {
+      activeLessonIndex = idx;
+      const lesson = appState.lessons[idx];
+      document.getElementById("activeLessonBadge").textContent = lesson.id;
+      document.getElementById("runnerBreadcrumbCode").textContent = `Queue › ${lesson.id} · ${lesson.domainLabel}`;
+      document.getElementById("runnerDomainBadge").textContent = lesson.domainLabel;
+      document.getElementById("runnerDomainBadge").className = `lesson-code ${lesson.badgeClass}`;
+      document.getElementById("runnerTitle").textContent = lesson.title;
+      document.getElementById("runnerIepGoal").textContent = lesson.iepGoal;
+      document.getElementById("runnerScriptBox").textContent = `🗣️ Adult Script: ${lesson.script}`;
+      document.getElementById("runnerStepsText").innerHTML = lesson.steps.map(s => `<div>• ${s}</div>`).join("");
+      document.getElementById("vocabMatrixSection").style.display = lesson.id === "M0.L1" ? "block" : "none";
+      renderTrialRows();
+    }
+
+    function renderTrialRows() {
+      const lesson = appState.lessons[activeLessonIndex];
+      const labels = [
+        { code: "I", name: "Indep (I)" },
+        { code: "V", name: "Visual (V)" },
+        { code: "G", name: "Gesture (G)" },
+        { code: "M", name: "Model (M)" },
+        { code: "Vb", name: "Verbal (Vb)" },
+        { code: "P", name: "Physical (P)" },
+        { code: "R", name: "Refused (R)" }
+      ];
+      document.getElementById("trialRowsContainer").innerHTML = lesson.trials.map((sel, tIdx) => `
+        <div class="trial-row">
+          <div class="trial-label">⭐ Trial ${tIdx + 1} of 5</div>
+          <div class="prompt-btns">
+            ${labels.map(l => `
+              <button class="p-btn ${sel === l.code ? 'selected' : ''}" data-p="${l.code}" onclick="setTrialPrompt(${tIdx}, '${l.code}')">
+                ${l.name}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      const indepCount = lesson.trials.filter(t => t === "I").length;
+      const pct = Math.round((indepCount / 5) * 100);
+      document.getElementById("trialSummaryScore").textContent = `Independent: ${indepCount}/5 (${pct}%)`;
+    }
+
+    function setTrialPrompt(trialIdx, code) {
+      if (currentUser && currentUser.permission === "readonly") return;
+      appState.lessons[activeLessonIndex].trials[trialIdx] = code;
+      saveState();
+      renderTrialRows();
+    }
+
+    function startWaitTimer() {
+      if (waitTimerInterval) clearInterval(waitTimerInterval);
+      const fill = document.getElementById("waitTimerFill");
+      const label = document.getElementById("timerStatusLabel");
+      const btn = document.getElementById("waitTimerBtn");
+      let elapsed = 0;
+      const total = 80;
+      fill.style.width = "0%";
+      btn.textContent = "Waiting 8.0s...";
+      waitTimerInterval = setInterval(() => {
+        elapsed++;
+        fill.style.width = Math.min(100, (elapsed / total) * 100) + "%";
+        const rem = Math.max(0, ((total - elapsed) / 10)).toFixed(1);
+        label.textContent = `Silent processing wait... ${rem}s remaining (watch for initiation).`;
+        if (elapsed >= total) {
+          clearInterval(waitTimerInterval);
+          label.textContent = "✅ 8 seconds complete! If needed, offer next least-intrusive prompt (Visual or Gesture).";
+          btn.textContent = "Restart 8s Wait";
+        }
+      }, 100);
+    }
+
+    function renderVocabProbeGrid() {
+      const container = document.getElementById("vocabProbeGridContainer");
+      let totalRec = 0, totalExp = 0, totalItems = 0;
+      let html = "";
+      for (const [catName, items] of Object.entries(appState.vocab)) {
+        const catRec = items.filter(i => i.rec).length;
+        const catExp = items.filter(i => i.exp).length;
+        totalRec += catRec; totalExp += catExp; totalItems += items.length;
+        html += `
+          <div class="vocab-cat-box">
+            <div class="vocab-cat-title"><span>${catName}</span><span>R:${catRec}/5 · E:${catExp}/5</span></div>
+            ${items.map((item, idx) => `
+              <div class="vocab-item-row">
+                <span>${item.icon} <strong>${item.word}</strong></span>
+                <div class="edit-only">
+                  <button class="mini-tog ${item.rec ? 'rec-on' : ''}" onclick="toggleVocabItem('${catName}', ${idx}, 'rec')">Rec</button>
+                  <button class="mini-tog ${item.exp ? 'exp-on' : ''}" onclick="toggleVocabItem('${catName}', ${idx}, 'exp')">Exp</button>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+      document.getElementById("vocabLiveScoreBadge").textContent =
+        `Receptive: ${totalRec}/25 (${Math.round(totalRec/totalItems*100)}%) · Expressive: ${totalExp}/25 (${Math.round(totalExp/totalItems*100)}%)`;
+    }
+
+    function toggleVocabItem(catName, idx, field) {
+      if (currentUser && currentUser.permission === "readonly") return;
+      appState.vocab[catName][idx][field] = !appState.vocab[catName][idx][field];
+      saveState();
+      renderVocabProbeGrid();
+      renderDashboardCharts();
+    }
+
+    function saveLessonSession() {
+      if (currentUser && currentUser.permission === "readonly") return;
+      const lesson = appState.lessons[activeLessonIndex];
+      const indepCount = lesson.trials.filter(t => t === "I").length;
+      const pct = Math.round((indepCount / 5) * 100);
+      const note = document.getElementById("inputSessionNote").value.trim();
+      lesson.status = `Logged ✓ (${pct}% Indep by ${activePerson.split(' ')[0]})`;
+
+      appState.teamFeed.unshift({
+        author: activePerson,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        badge: lesson.id,
+        text: `Logged ${lesson.title} — ${indepCount}/5 Independent (${pct}%) [${lesson.trials.join(', ')}]. ${note ? 'Note: ' + note : ''}`
+      });
+      document.getElementById("inputSessionNote").value = "";
+      saveState();
+      renderQueue();
+      renderTeamFeed();
+      showToast(`Saved ${lesson.id} session log!`);
+      switchTab("queue");
+    }
+
+    // ==================== TAB 3: 4-WEEK SPEECH TRACKER ====================
+    function renderSpeechTracker() {
+      const tbody = document.getElementById("speechTrackerTableBody");
+      tbody.innerHTML = appState.speechRows.map((row, rIdx) => {
+        const metDays = row.days.filter(d => d !== null && d >= 4).length;
+        const isMastered = metDays >= 3;
+        return `
+          <tr>
+            <td><strong style="color:var(--primary-dark);">${row.id}: ${row.title}</strong></td>
+            <td style="color:var(--muted);">${row.method}</td>
+            ${row.days.map((d, dIdx) => {
+              const label = d === null ? "Tap to Log" : `${d}/5 (${d*20}%)`;
+              const bg = d === null ? "#f8fafc" : (d >= 4 ? "#dcfce7" : "#fef3c7");
+              const col = d === null ? "#64748b" : (d >= 4 ? "#166534" : "#92400e");
+              return `
+                <td>
+                  <button class="edit-only" onclick="cycleSpeechDayScore(${rIdx}, ${dIdx})"
+                    style="background:${bg}; color:${col}; border:1.5px solid #cbd5e1; border-radius:8px; padding:5px 8px; font-family:inherit; font-size:11.5px; font-weight:800; cursor:pointer;">
+                    ${label}
+                  </button>
+                </td>
+              `;
+            }).join("")}
+            <td>
+              <span class="lesson-code ${isMastered ? 'code-speech' : 'code-aba'}">
+                ${isMastered ? '✓ 3×80% MET' : `${metDays}/3 Days ≥80%`}
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function cycleSpeechDayScore(rIdx, dIdx) {
+      if (currentUser && currentUser.permission === "readonly") return;
+      const cur = appState.speechRows[rIdx].days[dIdx];
+      const next = cur === null ? 3 : (cur >= 5 ? null : cur + 1);
+      appState.speechRows[rIdx].days[dIdx] = next;
+      saveState();
+      renderSpeechTracker();
+    }
+
+    function renderSpontaneousPhrases() {
+      const container = document.getElementById("spontaneousPhrasesList");
+      container.innerHTML = appState.phrases.map(p => `
+        <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:10px 12px;">
+          <div style="font-size:14.5px; font-weight:800; color:#14532d;">${p.phrase}</div>
+          <div style="font-size:12px; color:#166534; margin-top:2px;">${p.context}</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px; font-weight:700;">Logged by: ${p.author}</div>
+        </div>
+      `).join("");
+    }
+
+    function addSpontaneousPhrase() {
+      if (currentUser && currentUser.permission === "readonly") return;
+      const pIn = document.getElementById("newPhraseInput");
+      const cIn = document.getElementById("newPhraseContextInput");
+      const phrase = pIn.value.trim();
+      if (!phrase) return;
+      appState.phrases.unshift({
+        phrase: phrase.startsWith('"') ? phrase : `"${phrase}"`,
+        context: cIn.value.trim() || "Spontaneous home/clinic utterance",
+        author: activePerson
+      });
+      pIn.value = ""; cIn.value = "";
+      saveState();
+      renderSpontaneousPhrases();
+      showToast("Logged new spontaneous phrase!");
+    }
+
+    // ==================== TEAM FEED ====================
+    function renderTeamFeed() {
+      const list = document.getElementById("teamFeedList");
+      list.innerHTML = appState.teamFeed.map(item => `
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:10px 12px; font-size:12px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <strong style="color:var(--primary-dark);">${item.author}</strong>
+            <span style="color:var(--muted); font-size:11px;">${item.time}</span>
+          </div>
+          <div style="color:#334155;">${item.text}</div>
+        </div>
+      `).join("");
+    }
+
+    function postQuickTeamNote() {
+      if (currentUser && currentUser.permission === "readonly") return;
+      const input = document.getElementById("quickTeamNoteInput");
+      const val = input.value.trim();
+      if (!val) return;
+      appState.teamFeed.unshift({
+        author: activePerson,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        badge: "Note",
+        text: val
+      });
+      input.value = "";
+      saveState();
+      renderTeamFeed();
+      showToast("Note posted to Team Feed!");
+    }
+
+    // ==================== TAB 4: 3-RBT CHARTS & MASTER TABLE ====================
+    function renderDashboardCharts() {
+      // Chart 1: 3-RBT Acquisition Comparison
+      const targets = [
+        { name: "Wait 1m", v23: 100, v24: 100, v25: 50 },
+        { name: "Houses-Cars", v23: 67, v24: 25, v25: 0 },
+        { name: "5-In Color", v23: 0, v24: 80, v25: 25 },
+        { name: "Wash Hands", v23: 50, v24: 78, v25: 22 },
+        { name: "Animals 2D", v23: 100, v24: 60, v25: 20 }
+      ];
+      let bars1 = "";
+      targets.forEach((t, i) => {
+        const x = 48 + i * 94;
+        const h23 = (t.v23 / 100) * 130;
+        const h24 = (t.v24 / 100) * 130;
+        const h25 = (t.v25 / 100) * 130;
+        bars1 += `
+          <rect x="${x}" y="${165 - h23}" width="20" height="${h23}" rx="3" fill="#7c3aed" />
+          <rect x="${x + 22}" y="${165 - h24}" width="20" height="${h24}" rx="3" fill="#16a34a" />
+          <rect x="${x + 44}" y="${165 - h25}" width="20" height="${h25}" rx="3" fill="#f97316" />
+          <text x="${x + 32}" y="184" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">${t.name}</text>
+        `;
+      });
+      document.getElementById("chartRbtComparisonSVG").innerHTML = `
+        <svg viewBox="0 0 530 215" width="100%" height="215">
+          <line x1="35" y1="${165 - 0.8*130}" x2="515" y2="${165 - 0.8*130}" stroke="#dc2626" stroke-dasharray="4,4" stroke-width="1.8" />
+          <line x1="35" y1="165" x2="515" y2="165" stroke="#cbd5e1" stroke-width="2" />
+          ${bars1}
+          <rect x="65" y="198" width="11" height="11" rx="2" fill="#7c3aed" /><text x="80" y="208" font-size="10.5" font-weight="700">11/23 VyNg</text>
+          <rect x="195" y="198" width="11" height="11" rx="2" fill="#16a34a" /><text x="210" y="208" font-size="10.5" font-weight="700">11/24 WiCo</text>
+          <rect x="325" y="198" width="11" height="11" rx="2" fill="#f97316" /><text x="340" y="208" font-size="10.5" font-weight="700">11/25 MaGa</text>
+        </svg>
+      `;
+
+      // Chart 2: Behavior Counts Across 3 RBTs
+      document.getElementById("chartBehaviorSVG").innerHTML = `
+        <svg viewBox="0 0 530 210" width="100%" height="210">
+          <text x="15" y="38" font-size="11.5" font-weight="800" fill="#7c3aed">11/23 VyNg (Home)</text>
+          <rect x="165" y="22" width="75" height="22" rx="5" fill="#7c3aed" />
+          <text x="248" y="38" font-size="11" font-weight="800" fill="#7c3aed">0 Agg · 0 Flop · 3 Throws (Picked Up)</text>
+
+          <text x="15" y="88" font-size="11.5" font-weight="800" fill="#16a34a">11/24 WiCo (Proactive FCT)</text>
+          <rect x="165" y="72" width="45" height="22" rx="5" fill="#16a34a" />
+          <text x="218" y="88" font-size="11" font-weight="800" fill="#16a34a">0 Agg · 0 Flop · 0 Throws · 2 Elope</text>
+
+          <text x="15" y="138" font-size="11.5" font-weight="800" fill="#dc2626">11/25 MaGa (Lunch Denial)</text>
+          <rect x="165" y="122" width="240" height="22" rx="5" fill="#dc2626" />
+          <text x="412" y="138" font-size="11" font-weight="800" fill="#dc2626">10 Agg · 5 Flop · 5 Throws</text>
+
+          <text x="265" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">
+            Takeaway: Proactive Break FCT + 60s Wait Mat eliminates tangible-denial aggression spikes.
+          </text>
+        </svg>
+      `;
+
+      // Chart 3: Vocab 5-Category Receptive vs Expressive
+      const cats = Object.keys(appState.vocab);
+      let bars3 = "";
+      cats.forEach((cat, i) => {
+        const items = appState.vocab[cat];
+        const recPct = (items.filter(x => x.rec).length / 5) * 100;
+        const expPct = (items.filter(x => x.exp).length / 5) * 100;
+        const xBase = 48 + i * 94;
+        const recH = (recPct / 100) * 130;
+        const expH = (expPct / 100) * 130;
+        const shortName = cat.split(" ")[0];
+        bars3 += `
+          <rect x="${xBase}" y="${165 - recH}" width="24" height="${recH}" rx="4" fill="#1270da" />
+          <text x="${xBase + 12}" y="${160 - recH}" text-anchor="middle" font-size="10" font-weight="700" fill="#1270da">${recPct}%</text>
+          <rect x="${xBase + 27}" y="${165 - expH}" width="24" height="${expH}" rx="4" fill="#16a34a" />
+          <text x="${xBase + 39}" y="${160 - expH}" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">${expPct}%</text>
+          <text x="${xBase + 25}" y="184" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">${shortName}</text>
+        `;
+      });
+      document.getElementById("chartVocabSVG").innerHTML = `
+        <svg viewBox="0 0 530 210" width="100%" height="210">
+          <line x1="35" y1="${165 - 0.8*130}" x2="515" y2="${165 - 0.8*130}" stroke="#dc2626" stroke-dasharray="4,4" stroke-width="1.8" />
+          <line x1="35" y1="165" x2="515" y2="165" stroke="#cbd5e1" stroke-width="2" />
+          ${bars3}
+        </svg>
+      `;
+
+      // Chart 4: Method Proof
+      const proofs = [
+        { label: "Sort w/ Fade", val: 67, col: "#7c3aed" },
+        { label: "Sort No Fade", val: 0, col: "#cbd5e1" },
+        { label: "Color 5-Trial", val: 80, col: "#16a34a" },
+        { label: "Color 6-Trial", val: 0, col: "#fca5a5" },
+        { label: "Wash Gesture", val: 78, col: "#0284c7" },
+        { label: "3D Animal NET", val: 100, col: "#15803d" }
+      ];
+      let bars4 = "";
+      proofs.forEach((p, i) => {
+        const x = 42 + i * 78;
+        const h = Math.max(4, (p.val / 100) * 130);
+        bars4 += `
+          <rect x="${x}" y="${165 - h}" width="42" height="${h}" rx="5" fill="${p.col}" />
+          <text x="${x + 21}" y="${158 - h}" text-anchor="middle" font-size="10.5" font-weight="800" fill="#0f172a">${p.val}%</text>
+          <text x="${x + 21}" y="184" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">${p.label}</text>
+        `;
+      });
+      document.getElementById("chartMethodProofSVG").innerHTML = `
+        <svg viewBox="0 0 530 210" width="100%" height="210">
+          <line x1="35" y1="${165 - 0.8*130}" x2="515" y2="${165 - 0.8*130}" stroke="#dc2626" stroke-dasharray="4,4" stroke-width="1.8" />
+          <line x1="35" y1="165" x2="515" y2="165" stroke="#cbd5e1" stroke-width="2" />
+          ${bars4}
+        </svg>
+      `;
+    }
+
+    function renderIEPTable() {
+      const tbody = document.getElementById("iepGoalsTableBody");
+      tbody.innerHTML = MASTER_TABLE_DATA.map(r => `
+        <tr>
+          <td><span class="lesson-code code-m0">${r.cat}</span></td>
+          <td><strong>${r.goal}</strong></td>
+          <td style="color:#7c3aed; font-weight:700;">${r.s23}</td>
+          <td style="color:#16a34a; font-weight:700;">${r.s24}</td>
+          <td style="color:#0284c7; font-weight:700;">${r.s25}</td>
+          <td>${r.meth}</td>
+          <td><span class="lesson-code ${r.stat.includes('MET') || r.stat.includes('80') || r.stat.includes('78') || r.stat.includes('67') ? 'code-speech' : 'code-aba'}">${r.stat}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    // ==================== TAB 6: PARENT ADMIN & CREDENTIALS MANAGER ====================
+    function renderAdminCredentialsTable() {
+      const tbody = document.getElementById("adminCredentialsTableBody");
+      if (!tbody) return;
+      tbody.innerHTML = appState.accounts.map((acc, idx) => `
+        <tr>
+          <td><strong>${acc.roleTitle}</strong></td>
+          <td style="font-size:12px; color:var(--muted);">${acc.members.join(", ")}</td>
+          <td>
+            <input type="text" value="${acc.loginId}" class="form-input" style="padding:6px 10px; font-size:12.5px; width:120px;"
+              onchange="updateAccountField(${idx}, 'loginId', this.value)" />
+          </td>
+          <td>
+            <input type="text" value="${acc.password}" class="form-input" style="padding:6px 10px; font-size:12.5px; width:120px;"
+              onchange="updateAccountField(${idx}, 'password', this.value)" />
+          </td>
+          <td>
+            <select class="form-input" style="padding:6px 10px; font-size:12px; width:155px;"
+              onchange="updateAccountField(${idx}, 'permission', this.value)">
+              <option value="edit" ${acc.permission === 'edit' ? 'selected' : ''}>✏️ Full Log &amp; Edit</option>
+              <option value="readonly" ${acc.permission === 'readonly' ? 'selected' : ''}>🔒 View &amp; Print Only</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn-outline" style="padding:6px 10px; font-size:11.5px;" onclick="copyLoginInvite(${idx})">
+              📋 Copy Login Invite
+            </button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function updateAccountField(idx, field, val) {
+      appState.accounts[idx][field] = val.trim();
+      saveState();
+      showToast(`Updated ${appState.accounts[idx].roleTitle} (${field})`);
+    }
+
+    function copyLoginInvite(idx) {
+      const acc = appState.accounts[idx];
+      const url = window.location.href.split("#")[0];
+      const invite = `Team VeGu: Home & Clinic Hub — Login Credentials\nRole: ${acc.roleTitle} (${acc.members.join(", ")})\nWebsite URL: ${url}\nLogin ID: ${acc.loginId}\nPassword: ${acc.password}\nAccess: ${acc.permission === 'edit' ? 'View Progress, Log Trials, Post Notes & Print PDFs' : 'View Progress Charts & Print PDFs (Read-Only)'}`;
+      navigator.clipboard.writeText(invite).then(() => {
+        showToast(`Copied login invite for ${acc.roleTitle}!`);
+      });
+    }
+
+    // ==================== HYBRID CLOUD & FILE SYNC ====================
+    function saveCloudConfig() {
+      appState.cloudSyncUrl = document.getElementById("cloudSyncUrlInput").value.trim() || "/api/sync";
+      saveState(true);
+      syncFromCloud(true);
+    }
+
+    async function pushToCloud() {
+      const url = appState.cloudSyncUrl;
+      if (!url || window.location.protocol === "file:") return;
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(appState)
+        });
+        if (res.ok) {
+          document.getElementById("syncIndicatorText").textContent = "☁️ Cloud Synced";
+        }
+      } catch (e) {}
+    }
+
+    async function syncFromCloud(manual = false) {
+      const url = appState.cloudSyncUrl;
+      if (!url || window.location.protocol === "file:") {
+        if (manual) showToast("Running offline locally — use Export/Import JSON or deploy to Vercel for Cloud Sync!");
+        return;
+      }
+      try {
+        const res = await fetch(url);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.lessons) {
+            appState = Object.assign(appState, data);
+            localStorage.setItem("team_vegu_hub_state_v2", JSON.stringify(appState));
+            renderAll();
+            document.getElementById("syncIndicatorText").textContent = "☁️ Cloud Synced";
+            if (manual) showToast("Synced latest team data from cloud!");
+          } else if (manual) {
+            await pushToCloud();
+            showToast("Initialized cloud storage with current team data!");
+          }
+        }
+      } catch (e) {
+        if (manual) showToast("Saved locally in browser (deploy to Vercel to activate /api/sync).");
+      }
+    }
+
+    function exportTeamJSON() {
+      const blob = new Blob([JSON.stringify(appState, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Team_VeGu_Hub_State.json";
+      a.click();
+      showToast("Exported Team_VeGu_Hub_State.json!");
+    }
+
+    function importTeamJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed && parsed.lessons) {
+            appState = Object.assign(appState, parsed);
+            saveState();
+            renderAll();
+            showToast("Imported team state successfully!");
+          }
+        } catch (err) {
+          showToast("Invalid JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetToVerifiedBaseline() {
+      if (!confirm("Reset local browser data to the verified 11/23–11/25 ABA & Speech baseline?")) return;
+      localStorage.removeItem("team_vegu_hub_state_v2");
+      location.reload();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadState();
+      renderAll();
+      syncFromCloud(false);
+    });
+  </script>
+</body>
+</html>
